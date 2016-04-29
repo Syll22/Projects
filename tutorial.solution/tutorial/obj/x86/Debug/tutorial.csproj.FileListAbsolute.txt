@@ -1,0 +1,5 @@
+C:\Users\sserigeanu\Documents\Projects\tutorial.solution\tutorial\bin\Debug\tutorial.exe
+C:\Users\sserigeanu\Documents\Projects\tutorial.solution\tutorial\bin\Debug\tutorial.pdb
+C:\Users\sserigeanu\Documents\Projects\tutorial.solution\tutorial\obj\x86\Debug\tutorial.csprojResolveAssemblyReference.cache
+C:\Users\sserigeanu\Documents\Projects\tutorial.solution\tutorial\obj\x86\Debug\tutorial.exe
+C:\Users\sserigeanu\Documents\Projects\tutorial.solution\tutorial\obj\x86\Debug\tutorial.pdb
