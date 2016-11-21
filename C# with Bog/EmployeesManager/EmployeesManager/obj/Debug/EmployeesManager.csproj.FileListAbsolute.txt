@@ -1,0 +1,10 @@
+D:\Projects\C# with Bog\EmployeesManager\EmployeesManager\bin\Debug\EmployeesManager.exe.config
+D:\Projects\C# with Bog\EmployeesManager\EmployeesManager\bin\Debug\EmployeesManager.exe
+D:\Projects\C# with Bog\EmployeesManager\EmployeesManager\bin\Debug\EmployeesManager.pdb
+D:\Projects\C# with Bog\EmployeesManager\EmployeesManager\obj\Debug\EmployeesManager.csprojResolveAssemblyReference.cache
+D:\Projects\C# with Bog\EmployeesManager\EmployeesManager\obj\Debug\EmployeesManager.Properties.Resources.resources
+D:\Projects\C# with Bog\EmployeesManager\EmployeesManager\obj\Debug\EmployeesManager.csproj.GenerateResource.Cache
+D:\Projects\C# with Bog\EmployeesManager\EmployeesManager\obj\Debug\EmployeesManager.exe
+D:\Projects\C# with Bog\EmployeesManager\EmployeesManager\obj\Debug\EmployeesManager.pdb
+D:\Projects\C# with Bog\EmployeesManager\EmployeesManager\obj\Debug\EmployeesManager.Form1.resources
+D:\Projects\C# with Bog\EmployeesManager\EmployeesManager\obj\Debug\EmployeesManager.EmployeeForm.resources

@@ -7,3 +7,6 @@ E:\Silviu Serigeanu\Projects\Sal\Sal\obj\Debug\Sal.Properties.Resources.resource
 E:\Silviu Serigeanu\Projects\Sal\Sal\obj\Debug\Sal.csproj.GenerateResource.Cache
 E:\Silviu Serigeanu\Projects\Sal\Sal\obj\Debug\Sal.exe
 E:\Silviu Serigeanu\Projects\Sal\Sal\obj\Debug\Sal.pdb
+D:\Projects\Sal\Sal\bin\Debug\Sal.exe.config
+D:\Projects\Sal\Sal\obj\Debug\Sal.exe
+D:\Projects\Sal\Sal\obj\Debug\Sal.pdb

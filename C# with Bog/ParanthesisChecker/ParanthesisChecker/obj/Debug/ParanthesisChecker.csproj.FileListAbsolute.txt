@@ -1,0 +1,6 @@
+D:\Projects\C# with Bog\ParanthesisChecker\ParanthesisChecker\bin\Debug\ParanthesisChecker.exe.config
+D:\Projects\C# with Bog\ParanthesisChecker\ParanthesisChecker\bin\Debug\ParanthesisChecker.exe
+D:\Projects\C# with Bog\ParanthesisChecker\ParanthesisChecker\bin\Debug\ParanthesisChecker.pdb
+D:\Projects\C# with Bog\ParanthesisChecker\ParanthesisChecker\obj\Debug\ParanthesisChecker.csprojResolveAssemblyReference.cache
+D:\Projects\C# with Bog\ParanthesisChecker\ParanthesisChecker\obj\Debug\ParanthesisChecker.exe
+D:\Projects\C# with Bog\ParanthesisChecker\ParanthesisChecker\obj\Debug\ParanthesisChecker.pdb

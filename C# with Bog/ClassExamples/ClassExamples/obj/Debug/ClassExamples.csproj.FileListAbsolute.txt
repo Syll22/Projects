@@ -1,0 +1,6 @@
+D:\Projects\C# with Bog\ClassExamples\ClassExamples\bin\Debug\ClassExamples.exe.config
+D:\Projects\C# with Bog\ClassExamples\ClassExamples\bin\Debug\ClassExamples.exe
+D:\Projects\C# with Bog\ClassExamples\ClassExamples\bin\Debug\ClassExamples.pdb
+D:\Projects\C# with Bog\ClassExamples\ClassExamples\obj\Debug\ClassExamples.csprojResolveAssemblyReference.cache
+D:\Projects\C# with Bog\ClassExamples\ClassExamples\obj\Debug\ClassExamples.exe
+D:\Projects\C# with Bog\ClassExamples\ClassExamples\obj\Debug\ClassExamples.pdb
