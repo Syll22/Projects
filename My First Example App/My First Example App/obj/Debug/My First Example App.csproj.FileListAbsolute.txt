@@ -1,6 +1,0 @@
-D:\Projects\My First Example App\My First Example App\bin\Debug\My First Example App.exe.config
-D:\Projects\My First Example App\My First Example App\bin\Debug\My First Example App.exe
-D:\Projects\My First Example App\My First Example App\bin\Debug\My First Example App.pdb
-D:\Projects\My First Example App\My First Example App\obj\Debug\My First Example App.csprojResolveAssemblyReference.cache
-D:\Projects\My First Example App\My First Example App\obj\Debug\My First Example App.exe
-D:\Projects\My First Example App\My First Example App\obj\Debug\My First Example App.pdb
