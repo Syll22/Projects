@@ -4,20 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-<<<<<<< HEAD
-    <ProjectGuid>{A4B20B60-5477-48D2-9BDF-6C74266AA3F7}</ProjectGuid>
-=======
-    <ProjectGuid>{99819ABC-C23D-4F37-A60C-AE7D01C0EBB8}</ProjectGuid>
->>>>>>> c17444b96f268541ca16e0656ec680a9627e7ba3
+    <ProjectGuid>{DF2A1011-0527-424A-BAD4-1AA8E032C994}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Palindrom</RootNamespace>
-    <AssemblyName>Palindrom</AssemblyName>
-<<<<<<< HEAD
+    <RootNamespace>Palindrome2</RootNamespace>
+    <AssemblyName>Palindrome2</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-=======
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
->>>>>>> c17444b96f268541ca16e0656ec680a9627e7ba3
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>

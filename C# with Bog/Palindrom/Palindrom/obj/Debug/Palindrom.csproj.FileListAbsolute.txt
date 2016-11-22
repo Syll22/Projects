@@ -1,6 +1,0 @@
-C:\Users\Syll\Documents\GitRepo\C# with Bog\Palindrom\Palindrom\bin\Debug\Palindrom.exe.config
-C:\Users\Syll\Documents\GitRepo\C# with Bog\Palindrom\Palindrom\bin\Debug\Palindrom.exe
-C:\Users\Syll\Documents\GitRepo\C# with Bog\Palindrom\Palindrom\bin\Debug\Palindrom.pdb
-C:\Users\Syll\Documents\GitRepo\C# with Bog\Palindrom\Palindrom\obj\Debug\Palindrom.csprojResolveAssemblyReference.cache
-C:\Users\Syll\Documents\GitRepo\C# with Bog\Palindrom\Palindrom\obj\Debug\Palindrom.exe
-C:\Users\Syll\Documents\GitRepo\C# with Bog\Palindrom\Palindrom\obj\Debug\Palindrom.pdb
