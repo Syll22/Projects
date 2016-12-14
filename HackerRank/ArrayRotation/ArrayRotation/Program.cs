@@ -12,8 +12,8 @@ namespace ArrayRotation
         {
 
             string[] tokens_n = Console.ReadLine().Split(' ');
-            int n = Convert.ToInt32(tokens_n[0]);//lungimea vectorului
-            int k = Convert.ToInt32(tokens_n[1]);//nr de permutari
+            int n = Convert.ToInt32(tokens_n[0]);// lungimea vectorului
+            int k = Convert.ToInt32(tokens_n[1]);// nr de permutari
             int q = Convert.ToInt32(tokens_n[2]);// cate pozitii iti cere
 
             string[] a_temp = Console.ReadLine().Split(' ');
