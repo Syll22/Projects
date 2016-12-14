@@ -4,3 +4,6 @@ D:\Projects\C# with Bog\Sortare\Sortare\bin\Debug\Sortare.pdb
 D:\Projects\C# with Bog\Sortare\Sortare\obj\Debug\Sortare.csprojResolveAssemblyReference.cache
 D:\Projects\C# with Bog\Sortare\Sortare\obj\Debug\Sortare.exe
 D:\Projects\C# with Bog\Sortare\Sortare\obj\Debug\Sortare.pdb
+D:\GitRepo\C# with Bog\Sortare\Sortare\bin\Debug\Sortare.exe.config
+D:\GitRepo\C# with Bog\Sortare\Sortare\obj\Debug\Sortare.exe
+D:\GitRepo\C# with Bog\Sortare\Sortare\obj\Debug\Sortare.pdb
