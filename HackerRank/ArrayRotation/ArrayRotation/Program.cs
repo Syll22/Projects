@@ -18,12 +18,24 @@ namespace ArrayRotation
 
             string[] a_temp = Console.ReadLine().Split(' ');
             int[] a = Array.ConvertAll(a_temp, Int32.Parse);
+
+            for (int l = 0; l < k%n; l++)
+            {
+                int j = a.Last();
+                for (int i = a.Length - 1; i > 0; i--)
+                {
+                    a[i] = a[i - 1];
+                }
+                a[0] = j;
+            }
+
             for (int a0 = 0; a0 < q; a0++)
             {
                 int m = Convert.ToInt32(Console.ReadLine());
-
-
+                Console.WriteLine(a[m]);
             }
+
+
         }
     }
 }
