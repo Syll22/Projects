@@ -16,11 +16,14 @@ namespace DesignerPDFViewer
             string alphabet = "abcdefghijklmnopqrstuvwxyz";
             int maxH = 0;
             Dictionary<char, int> dict = new Dictionary<char, int>();
-            
-            for (int i = 0; i<alphabet.Length-1; i++)
+
+            for (int i = 0; i < alphabet.Length; i++)
                 dict.Add(alphabet[i], h[i]);
 
-            maxH = Math.Max(dict.TryGetValue(word[0]));
+            for (int i = 0; i < word.Length - 1; i++)
+                maxH = Math.Max(dict[word[i]], maxH);
+
+            Console.WriteLine(maxH * word.Length);
         }
     }
 }
