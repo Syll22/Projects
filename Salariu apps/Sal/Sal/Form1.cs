@@ -21,7 +21,7 @@ namespace Sal
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             if (radioButtonScutit.Checked && textBoxNet.Text != "")
             {
@@ -53,7 +53,7 @@ namespace Sal
             }
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void Button1_Click_1(object sender, EventArgs e)
         {
             net = 0;
             brut = 0;
