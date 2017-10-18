@@ -17,6 +17,7 @@ namespace _5_Homework
 
             Start:
             Console.Write("\nWhat is {0} times {1}: ", num01, num02);
+
             int result = Convert.ToInt32(Console.ReadLine());
 
             if (result == num01 * num02)
