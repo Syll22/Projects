@@ -23,7 +23,7 @@ namespace _9_MultiDimensionalArrays
             int height = 5;
 
             int[,] grid = new int[width, height];
-            grid[2, 3] = 4;
+            //grid[2, 3] = 4;
 
             for (int x = 0; x < width; x++)
             {
