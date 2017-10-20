@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LAB4_1", "LAB4_1\LAB4_1.csproj", "{CDD07E5B-9C0D-4778-8F83-0C2E3A2A2312}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CDD07E5B-9C0D-4778-8F83-0C2E3A2A2312}.Debug|x86.ActiveCfg = Debug|x86
+		{CDD07E5B-9C0D-4778-8F83-0C2E3A2A2312}.Debug|x86.Build.0 = Debug|x86
+		{CDD07E5B-9C0D-4778-8F83-0C2E3A2A2312}.Release|x86.ActiveCfg = Release|x86
+		{CDD07E5B-9C0D-4778-8F83-0C2E3A2A2312}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
