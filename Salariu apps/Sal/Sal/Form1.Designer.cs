@@ -84,7 +84,7 @@
             this.buton_calcul.TabIndex = 4;
             this.buton_calcul.Text = "Calculeaza";
             this.buton_calcul.UseVisualStyleBackColor = true;
-            this.buton_calcul.Click += new System.EventHandler(this.Button1_Click);
+            this.buton_calcul.Click += new System.EventHandler(this.CalculeazaButton);
             // 
             // radioButtonScutit
             // 
@@ -119,7 +119,7 @@
             this.buton_reset.TabIndex = 6;
             this.buton_reset.Text = "Reset";
             this.buton_reset.UseVisualStyleBackColor = true;
-            this.buton_reset.Click += new System.EventHandler(this.Button1_Click_1);
+            this.buton_reset.Click += new System.EventHandler(this.ResetButton);
             // 
             // Form1
             // 
