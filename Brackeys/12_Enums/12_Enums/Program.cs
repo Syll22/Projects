@@ -8,6 +8,8 @@ namespace _12_Enums
 {
     class Program
     {
+        enum Breed { Bulldog, Boxer, Chihuahua, Briard };
+
         // Base class
         class Animal
         {
@@ -19,9 +21,9 @@ namespace _12_Enums
         // Derived class
         class Dog : Animal
         {
-            public int breed;
+            public Breed breed;
 
-            public Dog (string _name, int _age, float _happiness, int _breed)
+            public Dog (string _name, int _age, float _happiness, Breed _breed)
             {
                 name = _name;
                 age = _age;
@@ -31,19 +33,17 @@ namespace _12_Enums
 
             public void Print() // Prints details about the dog to the console
             {
-                Console.WriteLine("Name: {0}\nAge: {1}\nHappiness: {2}" + name,age,happiness);
-
-                switch (breed)
-                {
-
-                    default:
-                        break;
-                }
+                Console.WriteLine("Name: " + name);
+                Console.WriteLine("Age: " + age);
+                Console.WriteLine("Happiness: " + happiness);
+                Console.WriteLine("Breed: " + breed);
             }
         }
 
         static void Main(string[] args)
         {
+            Dog hulk = new Dog("Hulk", 6, 0.7f, Breed.Chihuahua);
+            hulk.Print();
 
             Console.ReadKey();
         }
