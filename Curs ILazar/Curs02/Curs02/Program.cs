@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Curs01
+namespace Curs02
 {
-    public class Enumeration
+    class Program
     {
-        public enum AccountType { Cec, Deposit }
+        static void Main(string[] args)
+        {
+
+        }
     }
 }
