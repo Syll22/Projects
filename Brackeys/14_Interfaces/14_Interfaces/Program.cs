@@ -49,7 +49,7 @@ namespace _14_Interfaces
 
             public void Sell()
             {
-                Console.WriteLine(name + "sold for " + goldValue + "coins.");
+                Console.WriteLine(name + " sold for " + goldValue + " coins.");
             }
 
             public void TakeDamage (int _dmg)
@@ -84,7 +84,7 @@ namespace _14_Interfaces
 
             public void Sell()
             {
-                Console.WriteLine(name + "sold for " + goldValue + "coins.");
+                Console.WriteLine(name + " sold for " + goldValue + " coins.");
             }
 
             public void TakeDamage(int _dmg)
@@ -108,6 +108,24 @@ namespace _14_Interfaces
             axe.Equip();
             axe.TakeDamage(20);
             axe.Sell();
+
+            Console.WriteLine();
+
+            // Create an inventory.
+            IItem[] inventory = new IItem[2];
+            inventory[0] = sword;
+            inventory[1] = axe;
+
+            // Loop through the inventory and turn in all quests
+            for (int i = 0; i < inventory.Length; i++)
+            {
+                IPartOfQuest questItem = inventory[i] as IPartOfQuest;
+                if (questItem !=null)
+                {
+                    questItem.TurnIn();
+                }
+            }
+
 
             Console.ReadKey();
         }
