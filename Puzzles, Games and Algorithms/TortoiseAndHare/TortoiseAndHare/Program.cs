@@ -4,16 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Curs02
+namespace TortoiseAndHare
 {
     class Program
     {
         static void Main(string[] args)
         {
-            
+            Track track = new Track();
+
+            track.DisplayRaceTrack();
+
+
+
             // Wait for use to ackowledge the results.
             Console.WriteLine("Press any key to close the console...");
-            Console.ReadLine();
+            Console.ReadKey();
         }
     }
 }
