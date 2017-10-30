@@ -16,5 +16,6 @@ namespace TortoiseAndHare
         public const int BigSlip = -12;
         public const int SmallHop = 1;
         public const int SmallSlip = -2;
+        public const int BearJump = 5;
     }
 }

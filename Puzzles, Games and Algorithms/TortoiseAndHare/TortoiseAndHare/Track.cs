@@ -8,8 +8,8 @@ namespace TortoiseAndHare
 {
     public class Track
     {
-        public const int TrackLength = 10;
-        public const int NumOfRunners = 2;
+        public const int TrackLength = 45;
+        public const int NumOfRunners = 3;
 
         public string[,] Tracks { get; set; }
 

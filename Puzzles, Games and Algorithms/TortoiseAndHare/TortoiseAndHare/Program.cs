@@ -10,11 +10,8 @@ namespace TortoiseAndHare
     {
         static void Main(string[] args)
         {
-            Track track = new Track();
-
-            track.DisplayRaceTrack();
-
-
+            var race = new Race();
+            race.Racing();
 
             // Wait for use to ackowledge the results.
             Console.WriteLine("Press any key to close the console...");
