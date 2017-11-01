@@ -31,8 +31,11 @@ namespace TortoiseAndHare
 
         public void GetPlace()
         {
-            foreach(var runner in Runner.AllRunners.Where(x => x.CurrentPosition == Track.TrackLength))
+            foreach (var runner in Runner.AllRunners.Where(x => x.CurrentPosition == Track.TrackLength))
+            {
+                Console.WriteLine(runner.MoveDescription);
                 Console.WriteLine($"The winner(s) is: {runner.Name}");
+            }
         }
 
         public void Racing()
