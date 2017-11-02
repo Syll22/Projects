@@ -17,10 +17,43 @@ namespace Basic26
             3682913 
             */
 
+            long sum = 0;
+            int counter = 0;
+            int n = 0;
+
+            while (counter < 500)
+            {
+                if (isPrime(n))
+                {
+                    sum += n;
+                    counter++;
+                }
+                n++;
+            }
+
+            Console.WriteLine(sum);
+
 
             // Wait for use to ackowledge the results.
             Console.WriteLine("Press any key to close the console...");
             Console.ReadKey();
+        }
+
+        static bool isPrime(int checkedNumber)
+        {
+            if (checkedNumber == 1) return false;
+            if (checkedNumber == 2) return true;
+            if (checkedNumber % 2 == 0) return false;
+
+            int testLimit = (int)Math.Floor(Math.Sqrt(checkedNumber));
+
+            for (int i = 3; i <= testLimit; i+=2)
+            {
+                if (checkedNumber % i == 0)
+                    return false;
+            }
+
+            return true;
         }
             
     }
