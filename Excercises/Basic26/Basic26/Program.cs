@@ -27,6 +27,7 @@ namespace Basic26
                 {
                     sum += n;
                     counter++;
+                    Console.WriteLine(n);
                 }
                 n++;
             }
