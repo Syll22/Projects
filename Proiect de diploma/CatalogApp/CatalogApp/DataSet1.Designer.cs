@@ -4003,7 +4003,7 @@ SELECT IdCatalog, NumarMatricol, IdMaterie, Nota, IdProfesor, Enabled FROM Catal
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::CatalogApp.Properties.Settings.Default.PriectDiplomaConnectionString;
+            this._connection.ConnectionString = global::CatalogApp.Properties.Settings.Default.ConnString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4325,7 +4325,7 @@ SELECT IdGrupa, IdSpecializare, Enabled FROM ListaGrupe WHERE (IdGrupa = @IdGrup
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::CatalogApp.Properties.Settings.Default.PriectDiplomaConnectionString;
+            this._connection.ConnectionString = global::CatalogApp.Properties.Settings.Default.ConnString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4632,7 +4632,7 @@ SELECT IdMaterie, NumeMaterie, Enabled FROM ListaMaterii WHERE (IdMaterie = @IdM
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::CatalogApp.Properties.Settings.Default.PriectDiplomaConnectionString;
+            this._connection.ConnectionString = global::CatalogApp.Properties.Settings.Default.ConnString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4945,7 +4945,7 @@ SELECT IdMaterie, IdSpecializare FROM [Materii-specializari] WHERE (IdMaterie = 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::CatalogApp.Properties.Settings.Default.PriectDiplomaConnectionString;
+            this._connection.ConnectionString = global::CatalogApp.Properties.Settings.Default.ConnString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5248,7 +5248,7 @@ SELECT IdProfesor, NumeProfesor, Enabled FROM ListaProfesori WHERE (IdProfesor =
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::CatalogApp.Properties.Settings.Default.PriectDiplomaConnectionString;
+            this._connection.ConnectionString = global::CatalogApp.Properties.Settings.Default.ConnString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5562,7 +5562,7 @@ SELECT IdSpecializare, NumeSpecializare, Enabled FROM ListaSpecializari WHERE (I
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::CatalogApp.Properties.Settings.Default.PriectDiplomaConnectionString;
+            this._connection.ConnectionString = global::CatalogApp.Properties.Settings.Default.ConnString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5881,7 +5881,7 @@ SELECT NumarMatricol, NumeStudent, IdGrupa, Enabled FROM ListaStudenti WHERE (Nu
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::CatalogApp.Properties.Settings.Default.PriectDiplomaConnectionString;
+            this._connection.ConnectionString = global::CatalogApp.Properties.Settings.Default.ConnString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6197,7 +6197,7 @@ SELECT IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (IdMaterie = @IdMate
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::CatalogApp.Properties.Settings.Default.PriectDiplomaConnectionString;
+            this._connection.ConnectionString = global::CatalogApp.Properties.Settings.Default.ConnString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

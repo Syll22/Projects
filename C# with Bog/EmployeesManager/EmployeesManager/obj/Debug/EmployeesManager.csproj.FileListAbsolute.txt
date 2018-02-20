@@ -8,3 +8,13 @@ D:\Projects\C# with Bog\EmployeesManager\EmployeesManager\obj\Debug\EmployeesMan
 D:\Projects\C# with Bog\EmployeesManager\EmployeesManager\obj\Debug\EmployeesManager.pdb
 D:\Projects\C# with Bog\EmployeesManager\EmployeesManager\obj\Debug\EmployeesManager.Form1.resources
 D:\Projects\C# with Bog\EmployeesManager\EmployeesManager\obj\Debug\EmployeesManager.EmployeeForm.resources
+C:\Users\Syll\Documents\GitRepo\C# with Bog\EmployeesManager\EmployeesManager\bin\Debug\EmployeesManager.exe.config
+C:\Users\Syll\Documents\GitRepo\C# with Bog\EmployeesManager\EmployeesManager\bin\Debug\EmployeesManager.exe
+C:\Users\Syll\Documents\GitRepo\C# with Bog\EmployeesManager\EmployeesManager\bin\Debug\EmployeesManager.pdb
+C:\Users\Syll\Documents\GitRepo\C# with Bog\EmployeesManager\EmployeesManager\obj\Debug\EmployeesManager.EmployeeForm.resources
+C:\Users\Syll\Documents\GitRepo\C# with Bog\EmployeesManager\EmployeesManager\obj\Debug\EmployeesManager.Form1.resources
+C:\Users\Syll\Documents\GitRepo\C# with Bog\EmployeesManager\EmployeesManager\obj\Debug\EmployeesManager.Properties.Resources.resources
+C:\Users\Syll\Documents\GitRepo\C# with Bog\EmployeesManager\EmployeesManager\obj\Debug\EmployeesManager.csproj.GenerateResource.Cache
+C:\Users\Syll\Documents\GitRepo\C# with Bog\EmployeesManager\EmployeesManager\obj\Debug\EmployeesManager.csproj.CoreCompileInputs.cache
+C:\Users\Syll\Documents\GitRepo\C# with Bog\EmployeesManager\EmployeesManager\obj\Debug\EmployeesManager.exe
+C:\Users\Syll\Documents\GitRepo\C# with Bog\EmployeesManager\EmployeesManager\obj\Debug\EmployeesManager.pdb

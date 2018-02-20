@@ -3,3 +3,9 @@ E:\Silviu Serigeanu\Projects\SuperAdventure\Engine2\bin\Debug\Engine2.pdb
 E:\Silviu Serigeanu\Projects\SuperAdventure\Engine2\obj\Debug\Engine.csprojResolveAssemblyReference.cache
 E:\Silviu Serigeanu\Projects\SuperAdventure\Engine2\obj\Debug\Engine2.dll
 E:\Silviu Serigeanu\Projects\SuperAdventure\Engine2\obj\Debug\Engine2.pdb
+C:\Users\Syll\Documents\GitRepo\SuperAdventure\Engine2\bin\Debug\Engine2.dll
+C:\Users\Syll\Documents\GitRepo\SuperAdventure\Engine2\bin\Debug\Engine2.pdb
+C:\Users\Syll\Documents\GitRepo\SuperAdventure\Engine2\obj\Debug\Engine.csprojResolveAssemblyReference.cache
+C:\Users\Syll\Documents\GitRepo\SuperAdventure\Engine2\obj\Debug\Engine.csproj.CoreCompileInputs.cache
+C:\Users\Syll\Documents\GitRepo\SuperAdventure\Engine2\obj\Debug\Engine2.dll
+C:\Users\Syll\Documents\GitRepo\SuperAdventure\Engine2\obj\Debug\Engine2.pdb

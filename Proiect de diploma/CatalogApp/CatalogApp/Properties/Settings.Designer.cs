@@ -28,9 +28,9 @@ namespace CatalogApp.Properties {
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\PriectDiploma" +
             ".mdf;Integrated Security=True;Connect Timeout=30")]
-        public string PriectDiplomaConnectionString {
+        public string ConnString {
             get {
-                return ((string)(this["PriectDiplomaConnectionString"]));
+                return ((string)(this["ConnString"]));
             }
         }
     }
