@@ -4,5 +4,5 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CatalogApp"
-        mc:Ignorable="d"
-        Title="Catalog App" Height="480" Width="800" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen"/>
+        mc:Ignorable="d" FontSize="16"
+        Title="Catalog" Height="768" Width="1024" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen"/>
