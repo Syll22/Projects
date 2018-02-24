@@ -140,7 +140,6 @@
             this.Controls.Add(this.lblNume);
             this.Name = "FormStudentIntroducere";
             this.Text = "FormStudentIntroducere";
-            this.Load += new System.EventHandler(this.FormStudentIntroducere_Load);
             ((System.ComponentModel.ISupportInitialize)(this.catalogDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.listaGrupeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.listaGrupeBindingSource1)).EndInit();
