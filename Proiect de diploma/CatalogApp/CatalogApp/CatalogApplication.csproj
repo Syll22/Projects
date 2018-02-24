@@ -55,6 +55,8 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -73,16 +75,32 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DataSet1.cs">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
+    <Compile Include="CatalogDataSet.cs">
+      <DependentUpon>CatalogDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="DataSet1.Designer.cs">
+    <Compile Include="CatalogDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataSet1.xsd</DependentUpon>
+      <DependentUpon>CatalogDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Specializare.cs" />
-    <Compile Include="Student.cs" />
+    <Compile Include="FormMeniu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMeniu.Designer.cs">
+      <DependentUpon>FormMeniu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormProfesorAfisare.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProfesorAfisare.Designer.cs">
+      <DependentUpon>FormProfesorAfisare.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormProfesorIntroducere.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProfesorIntroducere.Designer.cs">
+      <DependentUpon>FormProfesorIntroducere.cs</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -91,15 +109,25 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Grupa.cs" />
     <Compile Include="DBFunctions.cs" />
+    <Compile Include="FormStudentAfisare.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStudentAfisare.Designer.cs">
+      <DependentUpon>FormStudentAfisare.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormStudentIntroducere.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStudentIntroducere.Designer.cs">
+      <DependentUpon>FormStudentIntroducere.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Profesor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -113,20 +141,32 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="FormMeniu.resx">
+      <DependentUpon>FormMeniu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProfesorAfisare.resx">
+      <DependentUpon>FormProfesorAfisare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProfesorIntroducere.resx">
+      <DependentUpon>FormProfesorIntroducere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStudentIntroducere.resx">
+      <DependentUpon>FormStudentIntroducere.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="DataSet1.xsc">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
+    <None Include="CatalogDataSet.xsc">
+      <DependentUpon>CatalogDataSet.xsd</DependentUpon>
     </None>
-    <None Include="DataSet1.xsd">
+    <None Include="CatalogDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+      <LastGenOutput>CatalogDataSet.Designer.cs</LastGenOutput>
     </None>
-    <None Include="DataSet1.xss">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
+    <None Include="CatalogDataSet.xss">
+      <DependentUpon>CatalogDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -151,11 +191,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="PriectDiploma.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="PriectDiploma_log.ldf">
       <DependentUpon>PriectDiploma.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

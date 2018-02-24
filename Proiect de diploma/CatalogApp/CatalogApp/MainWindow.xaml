@@ -5,4 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CatalogApp"
         mc:Ignorable="d" FontSize="16"
-        Title="Catalog" Height="768" Width="1024" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen"/>
+        Title="Catalog" Height="768" Width="1024" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+    <Button x:Name="btnDeschide_Copy" Content="Deschide" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Width="243" Height="75" Click="btnDeschide_Click"/>
+
+</Window>

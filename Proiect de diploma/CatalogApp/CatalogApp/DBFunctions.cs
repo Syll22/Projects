@@ -37,14 +37,16 @@ namespace CatalogApp
             return table;
         }
 
-        public static void Execute_SQL(string SQL_Text)
+        public static int Execute_SQL(string SQL_Text)
 
         {
             SqlConnection con_connection = Get_DB_Connection();
 
             SqlCommand cmd_Command = new SqlCommand(SQL_Text, con_connection);
 
-            cmd_Command.ExecuteNonQuery();
+            int result = cmd_Command.ExecuteNonQuery();
+
+            return result;
         }
         
         public static void Close_DB_Connection()
@@ -57,34 +59,34 @@ namespace CatalogApp
             if (con_connection.State != ConnectionState.Closed) con_connection.Close();
         }
 
-        static private void Db_Update_Add_Record(string sURL, string sTitle)
+        //static private void Db_Update_Add_Record(string sURL, string sTitle)
 
-        {
-            sURL = sURL.Replace("'", "''");
+        //{
+        //    sURL = sURL.Replace("'", "''");
 
-            sTitle = sTitle.Replace("'", "''");
+        //    sTitle = sTitle.Replace("'", "''");
 
-            string sSQL = "SELECT TOP 1 * FROM tbl_Details WHERE [URL] Like '" + sURL + "'";
+        //    string sSQL = "SELECT TOP 1 * FROM tbl_Details WHERE [URL] Like '" + sURL + "'";
 
-            DataTable tbl = Get_DataTable(sSQL);
+        //    DataTable tbl = Get_DataTable(sSQL);
 
-            if (tbl.Rows.Count == 0)
+        //    if (tbl.Rows.Count == 0)
 
-            {
-                string sql_Add = "INSERT INTO tbl_Details ([URL],[Title],[dtScan]) VALUES('" + sURL + "','" + sTitle + "',SYSDATETIME())";
+        //    {
+        //        string sql_Add = "INSERT INTO tbl_Details ([URL],[Title],[dtScan]) VALUES('" + sURL + "','" + sTitle + "',SYSDATETIME())";
 
-                Execute_SQL(sql_Add);
-            }
+        //        Execute_SQL(sql_Add);
+        //    }
 
-            else
+        //    else
 
-            {
-                string ID = tbl.Rows[0]["IDDetail"].ToString();
+        //    {
+        //        string ID = tbl.Rows[0]["IDDetail"].ToString();
 
-                string sql_Update = "UPDATE tbl_Details SET [dtScan] = SYSDATETIME() WHERE IDDetail = " + ID;
+        //        string sql_Update = "UPDATE tbl_Details SET [dtScan] = SYSDATETIME() WHERE IDDetail = " + ID;
 
-                Execute_SQL(sql_Update);
-            }
-        }
+        //        Execute_SQL(sql_Update);
+        //    }
+        //}
     }
 }

@@ -25,5 +25,15 @@ namespace CatalogApp
         {
             InitializeComponent();
         }
+
+        
+
+        private void btnDeschide_Click(object sender, RoutedEventArgs e)
+        {
+            // MessageBox.Show("Bun venit");
+
+            FormMenu frm = new FormMenu();
+            frm.ShowDialog();
+        }
     }
 }
