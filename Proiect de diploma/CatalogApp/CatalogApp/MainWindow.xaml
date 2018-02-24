@@ -4,8 +4,113 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CatalogApp"
-        mc:Ignorable="d" FontSize="16"
-        Title="Catalog" Height="768" Width="1024" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
-    <Button x:Name="btnDeschide_Copy" Content="Deschide" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Width="243" Height="75" Click="btnDeschide_Click"/>
+        mc:Ignorable="d" FontSize="18"
+        Title="Catalog" Height="768" Width="1024" ResizeMode="CanMinimize" 
+        WindowStartupLocation="CenterScreen" VerticalAlignment="Top">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="20" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="1" Grid.Row="2" FontSize="24" HorizontalAlignment="Left" 
+                   VerticalAlignment="Top">
+            Studenti
+        </TextBlock>
+        
+        <TextBlock Grid.Column="1" Grid.Row="3" FontSize="24" HorizontalAlignment="Left" 
+                   VerticalAlignment="Top">
+            Profesori
+        </TextBlock>
+        
+        <TextBlock Grid.Column="1" Grid.Row="4" FontSize="24" HorizontalAlignment="Left" 
+                   VerticalAlignment="Top">
+            Materii
+        </TextBlock>
+        
+        <TextBlock Grid.Column="1" Grid.Row="5" FontSize="24" HorizontalAlignment="Left" 
+                   VerticalAlignment="Top">
+            Specializari
+        </TextBlock>
+        
+        <TextBlock Grid.Column="1" Grid.Row="6" FontSize="24" HorizontalAlignment="Left" 
+                   VerticalAlignment="Top">
+            Grupe
+        </TextBlock>
+        
+        <TextBlock Grid.Column="1" Grid.Row="7" FontSize="24" HorizontalAlignment="Left" 
+                   VerticalAlignment="Top">
+            Note
+        </TextBlock>
+        
+        <Button x:Name="btnAdaugareStudenti" Grid.Column="1" Grid.Row="2" Width="125" Height="30" 
+                Click="btnAdaugareStudenti_Click" >
+            Adaugare
+        </Button>
+        
+        <Button x:Name="btnModificareStudenti" Grid.Column="1" Grid.Row="2" Width="125" Height="30" 
+                VerticalAlignment="Bottom" >
+            Modificare
+        </Button>
+
+        <Button x:Name="btnAdaugareProfesorii" Grid.Column="1" Grid.Row="3" Width="125" Height="30" Click="btnAdaugareProfesorii_Click" >
+            Adaugare
+        </Button>
+
+        <Button x:Name="btnModificareProfesori" Grid.Column="1" Grid.Row="3" Width="125" Height="30" 
+                VerticalAlignment="Bottom" >
+            Modificare
+        </Button>
+
+        <Button x:Name="btnAdaugareMaterii" Grid.Column="1" Grid.Row="4" Width="125" Height="30" >
+            Adaugare
+        </Button>
+
+        <Button x:Name="btnModificareMaterii" Grid.Column="1" Grid.Row="4" Width="125" Height="30" 
+                VerticalAlignment="Bottom" >
+            Modificare
+        </Button>
+
+        <Button x:Name="btnAdaugareSpecializari" Grid.Column="1" Grid.Row="5" Width="125" Height="30" >
+            Adaugare
+        </Button>
+
+        <Button x:Name="btnModificareSpecializari" Grid.Column="1" Grid.Row="5" Width="125" Height="30" 
+                VerticalAlignment="Bottom" >
+            Modificare
+        </Button>
+
+        <Button x:Name="btnAdaugareGrupe" Grid.Column="1" Grid.Row="6" Width="125" Height="30" >
+            Adaugare
+        </Button>
+
+        <Button x:Name="btnModificareGrupe" Grid.Column="1" Grid.Row="6" Width="125" Height="30" 
+                VerticalAlignment="Bottom" >
+            Modificare
+        </Button>
+
+        <Button x:Name="btnAdaugareNote" Grid.Column="1" Grid.Row="7" Width="125" Height="30" >
+            Adaugare
+        </Button>
+
+        <Button x:Name="btnModificareNote" Grid.Column="1" Grid.Row="7" Width="125" Height="30" 
+                VerticalAlignment="Bottom" >
+            Modificare
+        </Button>
+
+    </Grid>
 
 </Window>
