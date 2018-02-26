@@ -83,23 +83,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CatalogDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="FormMeniu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormMeniu.Designer.cs">
-      <DependentUpon>FormMeniu.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormProfesorAfisare.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProfesorAfisare.Designer.cs">
       <DependentUpon>FormProfesorAfisare.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormProfesorIntroducere.cs">
+    <Compile Include="FormProfesorAdaugare.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormProfesorIntroducere.Designer.cs">
-      <DependentUpon>FormProfesorIntroducere.cs</DependentUpon>
+    <Compile Include="FormProfesorAdaugare.Designer.cs">
+      <DependentUpon>FormProfesorAdaugare.cs</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -110,17 +104,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DBFunctions.cs" />
-    <Compile Include="FormStudentAfisare.cs">
+    <Compile Include="FormStudentAdaugare.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormStudentAfisare.Designer.cs">
-      <DependentUpon>FormStudentAfisare.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormStudentIntroducere.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormStudentIntroducere.Designer.cs">
-      <DependentUpon>FormStudentIntroducere.cs</DependentUpon>
+    <Compile Include="FormStudentAdaugare.Designer.cs">
+      <DependentUpon>FormStudentAdaugare.cs</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -141,17 +129,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="FormMeniu.resx">
-      <DependentUpon>FormMeniu.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormProfesorAfisare.resx">
       <DependentUpon>FormProfesorAfisare.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormProfesorIntroducere.resx">
-      <DependentUpon>FormProfesorIntroducere.cs</DependentUpon>
+    <EmbeddedResource Include="FormProfesorAdaugare.resx">
+      <DependentUpon>FormProfesorAdaugare.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormStudentIntroducere.resx">
-      <DependentUpon>FormStudentIntroducere.cs</DependentUpon>
+    <EmbeddedResource Include="FormStudentAdaugare.resx">
+      <DependentUpon>FormStudentAdaugare.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

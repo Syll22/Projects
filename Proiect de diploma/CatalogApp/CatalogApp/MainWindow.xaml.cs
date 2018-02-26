@@ -26,13 +26,15 @@ namespace CatalogApp
             InitializeComponent();
         }
 
-        
-
-        private void btnDeschide_Click(object sender, RoutedEventArgs e)
+        private void btnAdaugareStudenti_Click(object sender, RoutedEventArgs e)
         {
-            // MessageBox.Show("Bun venit");
+            FormStudentAdaugare frm = new FormStudentAdaugare();
+            frm.ShowDialog();
+        }
 
-            FormMenu frm = new FormMenu();
+        private void btnAdaugareProfesorii_Click(object sender, RoutedEventArgs e)
+        {
+            FormProfesorAdaugare frm = new FormProfesorAdaugare();
             frm.ShowDialog();
         }
     }
