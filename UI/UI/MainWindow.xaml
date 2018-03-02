@@ -1,0 +1,39 @@
+﻿<Window x:Class="UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI"
+        mc:Ignorable="d"
+        Title="Aplicatie Catalog" Height="550" Width="825" FontSize="20">
+    
+    <Grid Margin="2" Background="DarkGray">
+        <TabControl TabStripPlacement="Left">
+
+            <TabItem Header="Catalog" Name="catalogTab">
+
+            </TabItem>
+
+            <TabItem Header="Profesori" Name="profesoriTab">
+                
+            </TabItem>
+            
+            <TabItem Header="Studenti" Name="studentiTab">
+                
+            </TabItem>
+                    
+            <TabItem Header="Grupe" Name="grupeTab">
+
+            </TabItem>
+            
+            <TabItem Header="Materii" Name="materiiTab">
+
+            </TabItem>
+
+            <TabItem Header="Specializari" Name="specializariTab"> 
+
+            </TabItem>
+                        
+        </TabControl>
+    </Grid>
+</Window>

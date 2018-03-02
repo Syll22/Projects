@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="UI.ContentDisplayTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UI"
+             mc:Ignorable="d" >
+    <DockPanel LastChildFill="True">
+            <Expander DockPanel.Dock="Right" ExpandDirection="Left" Name="expander" IsExpanded="True">
+                <StackPanel DockPanel.Dock="Bottom" Margin="10">
+                    <TextBlock Text="Nume"/>
+                    <TextBlock Text="Nume"/>
+                    <TextBlock Text="Nume"/>
+                    <TextBlock Text="Nume"/>
+                    <Button Content="DO"/>
+                </StackPanel>
+            </Expander>
+
+            <DataGrid >
+
+            </DataGrid>
+        </DockPanel>
+</UserControl>

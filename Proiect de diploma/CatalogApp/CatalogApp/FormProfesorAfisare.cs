@@ -42,6 +42,15 @@ namespace CatalogApp
             int CodProfesor = Convert.ToInt32(dgvProfesori.Rows[rand].Cells[0].Value.ToString());
             // MessageBox.Show(CodProfesor.ToString());
 
+            var result = MessageBox.Show("Sterge profesorul cu codul" + CodProfesor, "Esti sigur?", MessageBoxButtons.YesNo);
+
+            if(result == DialogResult.Yes)
+            {
+                //Sterge profu cu codu
+                MessageBox.Show("Profu sters");
+                return;
+            }
+
             FormProfesorStergere frm = new FormProfesorStergere();
             frm.IdProfesorSelectat = CodProfesor;
             frm.ShowDialog();
