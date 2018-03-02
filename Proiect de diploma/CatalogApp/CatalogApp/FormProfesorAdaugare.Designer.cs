@@ -77,7 +77,7 @@
             this.lblPrenume.TabIndex = 4;
             this.lblPrenume.Text = "Prenume";
             // 
-            // FormProfesorIntro
+            // FormProfesorAdaugare
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -88,8 +88,9 @@
             this.Controls.Add(this.txtNume);
             this.Controls.Add(this.lblNume);
             this.MaximizeBox = false;
-            this.Name = "FormProfesorIntro";
+            this.Name = "FormProfesorAdaugare";
             this.Text = "FormProfesorIntro";
+            this.Load += new System.EventHandler(this.FormProfesorAdaugare_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

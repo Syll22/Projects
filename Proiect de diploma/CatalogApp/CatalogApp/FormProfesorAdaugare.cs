@@ -35,6 +35,7 @@ namespace CatalogApp
                 return;
             }
 
+
             // verificare daca profesorul exista deja in baza de date
 
             String sirSQL;
@@ -63,6 +64,11 @@ namespace CatalogApp
             }
 
             DBFunctions.Close_DB_Connection();
+        }
+
+        private void FormProfesorAdaugare_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -37,5 +37,11 @@ namespace CatalogApp
             FormProfesorAdaugare frm = new FormProfesorAdaugare();
             frm.ShowDialog();
         }
+
+        private void btnAfisareProfesori_Click(object sender, RoutedEventArgs e)
+        {
+            FormProfesorAfisare frm = new FormProfesorAfisare();
+            frm.ShowDialog();
+        }
     }
 }

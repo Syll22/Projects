@@ -104,6 +104,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DBFunctions.cs" />
+    <Compile Include="FormProfesorModificare.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProfesorModificare.Designer.cs">
+      <DependentUpon>FormProfesorModificare.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormProfesorStergere.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProfesorStergere.Designer.cs">
+      <DependentUpon>FormProfesorStergere.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormStudentAdaugare.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +146,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProfesorAdaugare.resx">
       <DependentUpon>FormProfesorAdaugare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProfesorModificare.resx">
+      <DependentUpon>FormProfesorModificare.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProfesorStergere.resx">
+      <DependentUpon>FormProfesorStergere.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStudentAdaugare.resx">
       <DependentUpon>FormStudentAdaugare.cs</DependentUpon>
