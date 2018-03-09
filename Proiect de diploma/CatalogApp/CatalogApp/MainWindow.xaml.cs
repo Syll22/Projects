@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,22 +27,27 @@ namespace CatalogApp
             InitializeComponent();
         }
 
-        private void btnAdaugareStudenti_Click(object sender, RoutedEventArgs e)
+        private void profesori_data_grid_Loaded(object sender, RoutedEventArgs e)
         {
-            FormStudentAdaugare frm = new FormStudentAdaugare();
-            frm.ShowDialog();
-        }
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = Properties.Settings.Default.ConnString;
+            conn.Open();
 
-        private void btnAdaugareProfesorii_Click(object sender, RoutedEventArgs e)
-        {
-            FormProfesorAdaugare frm = new FormProfesorAdaugare();
-            frm.ShowDialog();
-        }
+            string query = "SELECT * FROM ListaProfesori";
+            //WHERE idProfesor=" + IdProfesorSelectat.ToString();
 
-        private void btnAfisareProfesori_Click(object sender, RoutedEventArgs e)
-        {
-            FormProfesorAfisare frm = new FormProfesorAfisare();
-            frm.ShowDialog();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dataReader = cmd.ExecuteReader();
+            DataTable dataTable = new DataTable();
+            dataTable.Load(dataReader);
+            profesori_data_grid.ItemsSource = dataTable.DefaultView;
+
+            //lblIdProfesor.Text += ": " + dataReader["IdProfesor"].ToString();
+            //txtNume.Text = dataReader["NumeProfesor"].ToString();
+            //txtPrenume.Text = dataReader["PrenumeProfesor"].ToString();
+
+            dataReader.Close();
+            conn.Close();
         }
     }
 }

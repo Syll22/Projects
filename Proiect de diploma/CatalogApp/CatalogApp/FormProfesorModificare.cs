@@ -22,7 +22,7 @@ namespace CatalogApp
 
         private void FormProfesorModificare_Load(object sender, EventArgs e)
         {
-                        SqlConnection conn = new SqlConnection();
+            SqlConnection conn = new SqlConnection();
             conn.ConnectionString = Properties.Settings.Default.ConnString;
             conn.Open();
 
