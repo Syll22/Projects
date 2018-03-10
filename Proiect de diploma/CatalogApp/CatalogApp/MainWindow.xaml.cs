@@ -132,7 +132,7 @@ namespace CatalogApp
             conn.ConnectionString = Properties.Settings.Default.ConnString;
             conn.Open();
 
-            String msg = "";
+            //String msg = "";
             String sql = "";
 
             // verificare daca are examene in tabela Catalog
@@ -152,40 +152,42 @@ namespace CatalogApp
 
             dr.Close();
 
-            try
-            {
-                SqlCommand cmd2 = conn.CreateCommand();
-                cmd2.CommandType = CommandType.Text;
+            AUDProfesori(2);
 
-                sql = "DELETE FROM MateriiProfesori WHERE IdProfesor=" + txtId.Text;
-                int n1 = cmd2.ExecuteNonQuery();
+            //try
+            //{
+            //    SqlCommand cmd2 = conn.CreateCommand();
+            //    cmd2.CommandType = CommandType.Text;
 
-                sql = "DELETE FROM ListaProfesori WHERE IdProfesor=" + txtId.Text;
-                msg = "Datele despre profesor au fost sterse.";
+            //    sql = "DELETE FROM MateriiProfesori WHERE IdProfesor=" + txtId.Text;
+            //    int n1 = cmd2.ExecuteNonQuery();
 
-                int n = cmd2.ExecuteNonQuery();
-                if (n1>0 && n > 0)
-                {
-                    MessageBox.Show(msg);
-                    this.updateDataGrid_Profesori();
-                }
-                else
-                {
-                    MessageBox.Show("Eroare la stergerea profesorului!");
-                }
+            //    sql = "DELETE FROM ListaProfesori WHERE IdProfesor=" + txtId.Text;
+            //    msg = "Datele despre profesor au fost sterse.";
+
+            //    int n = cmd2.ExecuteNonQuery();
+            //    if (n1>0 && n > 0)
+            //    {
+            //        MessageBox.Show(msg);
+            //        this.updateDataGrid_Profesori();
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Eroare la stergerea profesorului!");
+            //    }
 
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+            //finally
+            //{
+            //    conn.Close();
+            //}
 
-            resetProfesori();
+            //resetProfesori();
         }
 
         private void btnResetProfesor_Click(object sender, RoutedEventArgs e)
