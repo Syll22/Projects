@@ -150,8 +150,6 @@ namespace CatalogApp
                 return;
             }
 
-            dr.Close();
-
             AUDProfesori(2);
 
             //try
