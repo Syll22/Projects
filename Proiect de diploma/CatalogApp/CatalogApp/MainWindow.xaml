@@ -95,13 +95,13 @@
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                                     <TextBlock Grid.Column="2" Grid.Row="0" Text="Prenume profesor:"
                                            Margin="50,2,2,2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Materie:"
+                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Id:"
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                    
 
-                                    <TextBox Margin="2" Grid.Column="1" Grid.Row="0" Padding="2" Width="200" />
-                                    <TextBox Margin="2" Grid.Column="3" Grid.Row="0" Padding="2" Width="200"/>
-                                    <ComboBox Margin="2" Grid.Column="1" Grid.Row="1" Padding="2" />
+                                    <TextBox x:Name="txtNumeProfesor" Margin="2" Grid.Column="1" Grid.Row="0" Padding="2" Width="200" />
+                                    <TextBox x:Name="txtPrenumeProfesor" Margin="2" Grid.Column="3" Grid.Row="0" Padding="2" Width="200"/>
+                                    <TextBox x:Name="txtId" Margin="2" Grid.Column="1" Grid.Row="1" Padding="2" IsEnabled="False"/>
+
                                 </Grid>
                             </GroupBox>
                             <Grid Margin="3">
@@ -112,18 +112,16 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Button Margin="5" Grid.Column="0" Content="Add"/>
-                                <Button Margin="5" Grid.Column="1" Content="Update"/>
-                                <Button Margin="5" Grid.Column="2" Content="Delete"/>
-                                <Button Margin="5" Grid.Column="3" Content="Reset"/>
+                                <Button x:Name="btnAddProfesor" Margin="5" Grid.Column="0" Content="Add" Click="btnAddProfesor_Click"/>
+                                <Button x:Name="btnUpdateProfesor" Margin="5" Grid.Column="1" Content="Update" Click="btnUpdateProfesor_Click"/>
+                                <Button x:Name="btnDeleteProfesor" Margin="5" Grid.Column="2" Content="Delete" Click="btnDeleteProfesor_Click"/>
+                                <Button x:Name="btnResetProfesor" Margin="5" Grid.Column="3" Content="Reset"/>
                             </Grid>
 
                         </StackPanel>
                     </Expander>
 
-                    <DataGrid x:Name="profesori_data_grid" Loaded="profesori_data_grid_Loaded" >
-
-                    </DataGrid>
+                    <DataGrid x:Name="dgr_profesori" Loaded="dgr_profesori_Loaded" SelectionChanged="dgr_profesori_SelectionChanged" IsReadOnly="True" />
                 </DockPanel>
             </TabItem>
 
