@@ -115,7 +115,7 @@
                                 <Button x:Name="btnAddProfesor" Margin="5" Grid.Column="0" Content="Add" Click="btnAddProfesor_Click"/>
                                 <Button x:Name="btnUpdateProfesor" Margin="5" Grid.Column="1" Content="Update" Click="btnUpdateProfesor_Click"/>
                                 <Button x:Name="btnDeleteProfesor" Margin="5" Grid.Column="2" Content="Delete" Click="btnDeleteProfesor_Click"/>
-                                <Button x:Name="btnResetProfesor" Margin="5" Grid.Column="3" Content="Reset"/>
+                                <Button x:Name="btnResetProfesor" Margin="5" Grid.Column="3" Content="Reset" Click="btnResetProfesor_Click"/>
                             </Grid>
 
                         </StackPanel>

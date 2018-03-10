@@ -41,10 +41,6 @@ namespace CatalogApp
             dataTable.Load(dataReader);
             dgr_profesori.ItemsSource = dataTable.DefaultView;
 
-            //lblIdProfesor.Text += ": " + dataReader["IdProfesor"].ToString();
-            //txtNume.Text = dataReader["NumeProfesor"].ToString();
-            //txtPrenume.Text = dataReader["PrenumeProfesor"].ToString();
-
             dataReader.Close();
             conn.Close();
         }
@@ -68,11 +64,11 @@ namespace CatalogApp
 
         private void AUDProfesori(int pOperatie)
         {
-            String msg = "";
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = Properties.Settings.Default.ConnString;
             conn.Open();
 
+            String msg = "";
             String sql = "";
 
             switch (pOperatie)
@@ -132,26 +128,29 @@ namespace CatalogApp
         private void btnDeleteProfesor_Click(object sender, RoutedEventArgs e)
         {
 
-            String msg = "";
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = Properties.Settings.Default.ConnString;
             conn.Open();
 
+            String msg = "";
             String sql = "";
+
             // verificare daca are examene in tabela Catalog
             sql = "SELECT * FROM Catalog WHERE IdProfesor=" + txtId.Text;
 
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = sql;
-            // cmd.CommandType = CommandType.Text;
+            cmd.CommandType = CommandType.Text;
 
             SqlDataReader dr = cmd.ExecuteReader();
+
             if (dr.HasRows == true)
             {
                 MessageBox.Show("Acest profesor nu poate fi sters, deoarece a sustinut deja minim un examen!");
                 return;
             }
 
+            dr.Close();
 
             try
             {
@@ -175,6 +174,7 @@ namespace CatalogApp
                     MessageBox.Show("Eroare la stergerea profesorului!");
                 }
 
+
             }
             catch (Exception ex)
             {
@@ -188,11 +188,17 @@ namespace CatalogApp
             resetProfesori();
         }
 
+        private void btnResetProfesor_Click(object sender, RoutedEventArgs e)
+        {
+            resetProfesori();
+        }
+
         private void resetProfesori()
         {
             txtNumeProfesor.Text = "";
             txtPrenumeProfesor.Text = "";
             txtId.Text = "";
         }
+
     }
 }
