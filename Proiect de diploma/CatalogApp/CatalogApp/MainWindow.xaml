@@ -77,7 +77,7 @@
                         </StackPanel>
                     </Expander>
 
-                    <DataGrid x:Name="dgr_catalog" >
+                    <DataGrid x:Name="dgr_catalog" IsReadOnly="True" >
 
                     </DataGrid>
                 </DockPanel>
@@ -168,7 +168,7 @@
                                     <TextBox x:Name="txtNumeStudent" Margin="2" Grid.Column="1" Grid.Row="0" Padding="2" Width="200"/>
                                     <TextBox x:Name="txtPrenumeStudent" Margin="2" Grid.Column="3" Grid.Row="0" Padding="2" Width="200"/>
                                     <TextBox x:Name="txtNumarMatricol" Margin="2" Grid.Column="1" Grid.Row="1" Padding="2" Width="200" IsEnabled="False" Background="#FFE0E0E0" />
-                                    <ComboBox x:Name="txtGrupa" Margin="2" Grid.Column="3" Grid.Row="1" Padding="2" Width="200"/>
+                                    <ComboBox x:Name="cbxStuGrupa" Margin="2" Grid.Column="3" Grid.Row="1" Padding="2" Width="200"/>
                                 </Grid>
                             </GroupBox>
                             <Grid Margin="3">
@@ -188,7 +188,7 @@
                         </StackPanel>
                     </Expander>
 
-                    <DataGrid x:Name="dgr_studenti" >
+                    <DataGrid x:Name="dgr_studenti" IsReadOnly="True" Loaded="dgr_studenti_Loaded" >
 
                     </DataGrid>
                 </DockPanel>
@@ -217,8 +217,8 @@
                                     <TextBlock Grid.Column="2" Grid.Row="0" Text="Specializare:"
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
 
-                                    <TextBox Margin="2" Grid.Column="1" Grid.Row="0" Padding="2" Width="200" />
-                                    <ComboBox Margin="2" Grid.Column="3" Grid.Row="0" Padding="2" Width="200"/>
+                                    <TextBox x:Name="txtGruNumeGrupa" Margin="2" Grid.Column="1" Grid.Row="0" Padding="2" Width="200" />
+                                    <ComboBox x:Name="cbxGruSpecializare" Margin="2" Grid.Column="3" Grid.Row="0" Padding="2" Width="200"/>
                                 </Grid>
                             </GroupBox>
                             <Grid Margin="3">
@@ -238,7 +238,7 @@
                         </StackPanel>
                     </Expander>
 
-                    <DataGrid x:Name="dgr_grupe" >
+                    <DataGrid x:Name="dgr_grupe" IsReadOnly="True" >
 
                     </DataGrid>
                 </DockPanel>
@@ -253,11 +253,9 @@
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
 
                                     <Grid.RowDefinitions>
@@ -265,22 +263,16 @@
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
 
-                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Profesor:" 
+                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Materie:" 
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Materie:"
+                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Id Profesor:"
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                    <TextBlock Grid.Column="4" Grid.Row="0" Text="Nota:"
-                                           Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Student:"
-                                           Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                    <TextBlock Grid.Column="2" Grid.Row="1" Text="Data examen:"
+                                    <TextBlock Grid.Column="2" Grid.Row="1" Text="Id Specializare:"
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
 
-                                    <ComboBox Margin="2" Grid.Column="1" Grid.Row="0" Padding="2" Width="200" />
-                                    <ComboBox Margin="2" Grid.Column="3" Grid.Row="0" Padding="2" />
-                                    <ComboBox Margin="2" Grid.Column="5" Grid.Row="0" Padding="2" Width="35"/>
-                                    <ComboBox Margin="2" Grid.Column="1" Grid.Row="1" Padding="2" />
-                                    <DatePicker Margin="2" Grid.Column="3" Grid.Row="1" FirstDayOfWeek="Monday"/>
+                                    <TextBox x:Name="txtMatNumeMaterie" Margin="2" Grid.Column="1" Grid.Row="0" Padding="2" Width="200"/>
+                                    <TextBox x:Name="txtMatIdProfesor" Margin="2" Grid.Column="1" Grid.Row="1" Padding="2" Width="200" IsEnabled="False" Background="#FFE0E0E0" />
+                                    <ComboBox x:Name="txtMatIdSpecializare" Margin="2" Grid.Column="3" Grid.Row="1" Padding="2" Width="200"/>
                                 </Grid>
                             </GroupBox>
                             <Grid Margin="3">
@@ -300,7 +292,7 @@
                         </StackPanel>
                     </Expander>
 
-                    <DataGrid x:Name="dgr_materii" >
+                    <DataGrid x:Name="dgr_materii" IsReadOnly="True" >
 
                     </DataGrid>
                 </DockPanel>
@@ -315,34 +307,22 @@
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
 
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
 
-                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Profesor:" 
+                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Nume Specializare:" 
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Materie:"
-                                           Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                    <TextBlock Grid.Column="4" Grid.Row="0" Text="Nota:"
-                                           Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Student:"
-                                           Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                    <TextBlock Grid.Column="2" Grid.Row="1" Text="Data examen:"
+                                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Id:"
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
 
-                                    <ComboBox Margin="2" Grid.Column="1" Grid.Row="0" Padding="2" Width="200" />
-                                    <ComboBox Margin="2" Grid.Column="3" Grid.Row="0" Padding="2" />
-                                    <ComboBox Margin="2" Grid.Column="5" Grid.Row="0" Padding="2" Width="35"/>
-                                    <ComboBox Margin="2" Grid.Column="1" Grid.Row="1" Padding="2" />
-                                    <DatePicker Margin="2" Grid.Column="3" Grid.Row="1" FirstDayOfWeek="Monday"/>
+                                    <TextBox x:Name="txtNumeSpecializare" Margin="2" Grid.Column="1" Grid.Row="0" Padding="2" Width="200" />
+                                    <TextBox x:Name="txtIdSpecializare" Margin="2" Grid.Column="3" Grid.Row="0" Padding="2" Width="200" IsEnabled="False" Background="#FFE0E0E0"/>
                                 </Grid>
                             </GroupBox>
                             <Grid Margin="3">
@@ -362,14 +342,14 @@
                         </StackPanel>
                     </Expander>
 
-                    <DataGrid x:Name="dgr_specializari" >
+                    <DataGrid x:Name="dgr_specializari" IsReadOnly="True" >
 
                     </DataGrid>
                 </DockPanel>
             </TabItem>
 
         </TabControl>
-        <StatusBar x:Name="status_conn" Height="20" Width="110" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+        <StatusBar x:Name="status_conn" Height="1" Width="110" VerticalAlignment="Bottom" HorizontalAlignment="Left">
             <StatusBar.Background>
                 <SolidColorBrush Color="Red" />
             </StatusBar.Background>

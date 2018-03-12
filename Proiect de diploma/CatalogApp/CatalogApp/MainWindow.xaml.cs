@@ -27,6 +27,8 @@ namespace CatalogApp
             InitializeComponent();
         }
 
+        // Profesori --------------------------------------------------------------------------------------------------------
+
         private void updateDataGrid_Profesori()
         {
             SqlConnection conn = new SqlConnection();
@@ -162,6 +164,7 @@ namespace CatalogApp
                 status_conn.Background = Brushes.Red;
 
                 AUDProfesori(2);
+                resetProfesori();
             }
 
             //try
@@ -212,5 +215,29 @@ namespace CatalogApp
             txtId.Text = "";
         }
 
+        // Studenti --------------------------------------------------------------------------------------------------------
+
+        private void updateDataGrid_Studenti()
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = Properties.Settings.Default.ConnString;
+            conn.Open();
+
+            string query = "SELECT NumarMatricol, NumeStudent, PrenumeStudent FROM ListaStudenti ORDER BY NumeStudent";
+
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dataReader = cmd.ExecuteReader();
+            DataTable dataTable = new DataTable();
+            dataTable.Load(dataReader);
+            dgr_studenti.ItemsSource = dataTable.DefaultView;
+
+            dataReader.Close();
+            conn.Close();
+        }
+
+        private void dgr_studenti_Loaded(object sender, RoutedEventArgs e)
+        {
+            updateDataGrid_Studenti();
+        }
     }
 }
