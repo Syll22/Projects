@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:CatalogApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
+        <Color x:Key="GreenCol">#FF94D606</Color>
+
     </Application.Resources>
 </Application>

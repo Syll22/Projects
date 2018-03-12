@@ -67,6 +67,7 @@ namespace CatalogApp
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = Properties.Settings.Default.ConnString;
             conn.Open();
+            status_conn.Background = Brushes.Green;
 
             String msg = "";
             String sql = "";
@@ -110,6 +111,9 @@ namespace CatalogApp
             finally
             {
                 conn.Close();
+                status_conn.Background = Brushes.Red;
+
+                resetProfesori();
             }
         }
 
@@ -128,29 +132,37 @@ namespace CatalogApp
         private void btnDeleteProfesor_Click(object sender, RoutedEventArgs e)
         {
 
-            SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = Properties.Settings.Default.ConnString;
-            conn.Open();
-
-            //String msg = "";
-            String sql = "";
-
-            // verificare daca are examene in tabela Catalog
-            sql = "SELECT * FROM Catalog WHERE IdProfesor=" + txtId.Text;
-
-            SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = sql;
-            cmd.CommandType = CommandType.Text;
-
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            if (dr.HasRows == true)
+            using (SqlConnection conn = new SqlConnection())
             {
-                MessageBox.Show("Acest profesor nu poate fi sters, deoarece a sustinut deja minim un examen!");
-                return;
-            }
+                conn.ConnectionString = Properties.Settings.Default.ConnString;
+                conn.Open();
+                status_conn.Background = Brushes.Green;
 
-            AUDProfesori(2);
+
+                //String msg = "";
+                String sql = "";
+
+                // verificare daca are examene in tabela Catalog
+                sql = "SELECT * FROM Catalog WHERE IdProfesor=" + txtId.Text;
+
+                SqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = sql;
+                cmd.CommandType = CommandType.Text;
+
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.HasRows == true)
+                {
+                    MessageBox.Show("Acest profesor nu poate fi sters, deoarece a sustinut deja minim un examen!");
+                    return;
+                }
+
+                dr.Close();
+                conn.Close();
+                status_conn.Background = Brushes.Red;
+
+                AUDProfesori(2);
+            }
 
             //try
             //{

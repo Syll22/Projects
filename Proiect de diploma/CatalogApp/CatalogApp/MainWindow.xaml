@@ -369,6 +369,13 @@
             </TabItem>
 
         </TabControl>
+        <StatusBar x:Name="status_conn" Height="20" Width="110" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+            <StatusBar.Background>
+                <SolidColorBrush Color="Red" />
+            </StatusBar.Background>
+        </StatusBar>
+
     </Grid>
+    
 
 </Window>
