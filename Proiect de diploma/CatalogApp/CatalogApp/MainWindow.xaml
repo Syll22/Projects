@@ -124,8 +124,8 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Button x:Name="btnAddProfesor" Margin="5" Grid.Column="0" Content="Add" Click="btnAddProfesor_Click"/>
-                                <Button x:Name="btnUpdateProfesor" Margin="5" Grid.Column="1" Content="Update" Click="btnUpdateProfesor_Click"/>
-                                <Button x:Name="btnDeleteProfesor" Margin="5" Grid.Column="2" Content="Delete" Click="btnDeleteProfesor_Click"/>
+                                <Button x:Name="btnUpdateProfesor" Margin="5" Grid.Column="1" Content="Update" Click="btnUpdateProfesor_Click" IsEnabled="False"/>
+                                <Button x:Name="btnDeleteProfesor" Margin="5" Grid.Column="2" Content="Delete" Click="btnDeleteProfesor_Click" IsEnabled="False"/>
                                 <Button x:Name="btnResetProfesor" Margin="5" Grid.Column="3" Content="Reset" Click="btnResetProfesor_Click"/>
                             </Grid>
 
@@ -179,16 +179,16 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Button x:Name="btnAddStudent" Margin="5" Grid.Column="0" Content="Add"/>
-                                <Button x:Name="btnUpdateStudent" Margin="5" Grid.Column="1" Content="Update"/>
-                                <Button x:Name="btnDeleteStudent" Margin="5" Grid.Column="2" Content="Delete"/>
-                                <Button x:Name="btnResetStudent" Margin="5" Grid.Column="3" Content="Reset"/>
+                                <Button x:Name="btnAddStudent" Margin="5" Grid.Column="0" Content="Add" Click="btnAddStudent_Click"/>
+                                <Button x:Name="btnUpdateStudent" Margin="5" Grid.Column="1" Content="Update" Click="btnUpdateStudent_Click" IsEnabled="False"/>
+                                <Button x:Name="btnDeleteStudent" Margin="5" Grid.Column="2" Content="Delete" Click="btnDeleteStudent_Click" IsEnabled="False"/>
+                                <Button x:Name="btnResetStudent" Margin="5" Grid.Column="3" Content="Reset" Click="btnResetStudent_Click"/>
                             </Grid>
 
                         </StackPanel>
                     </Expander>
 
-                    <DataGrid x:Name="dgr_studenti" IsReadOnly="True" Loaded="dgr_studenti_Loaded" >
+                    <DataGrid x:Name="dgr_studenti" IsReadOnly="True" Loaded="dgr_studenti_Loaded" SelectionChanged="dgr_studenti_SelectionChanged" >
 
                     </DataGrid>
                 </DockPanel>
@@ -349,6 +349,7 @@
             </TabItem>
 
         </TabControl>
+        
         <StatusBar x:Name="status_conn" Height="1" Width="110" VerticalAlignment="Bottom" HorizontalAlignment="Left">
             <StatusBar.Background>
                 <SolidColorBrush Color="Red" />
