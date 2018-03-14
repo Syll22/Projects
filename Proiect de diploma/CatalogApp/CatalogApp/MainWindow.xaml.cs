@@ -64,7 +64,6 @@ namespace CatalogApp
                 btnAddProfesor.IsEnabled = false;
                 btnUpdateProfesor.IsEnabled = true;
                 btnDeleteProfesor.IsEnabled = true;
-
             }
         }
 
@@ -100,15 +99,13 @@ namespace CatalogApp
             cmd.CommandType = CommandType.Text;
 
             try
-            {
-                
+            {              
                 int n = cmd.ExecuteNonQuery();
                 if (n > 0)
                 {
                     MessageBox.Show(msg);
-                    this.updateDataGrid_Profesori();
+                    updateDataGrid_Profesori();
                 }
-
             }
             catch (Exception ex)
             {
@@ -136,7 +133,7 @@ namespace CatalogApp
                 txtPrenumeProfesor.Focus();
                 return;
             }
-            this.AUDProfesori(0);
+            AUDProfesori(0);
         }
 
         private void btnUpdateProfesor_Click(object sender, RoutedEventArgs e)
@@ -154,7 +151,7 @@ namespace CatalogApp
                 return;
             }
 
-            this.AUDProfesori(1);
+            AUDProfesori(1);
         }
 
         private void btnDeleteProfesor_Click(object sender, RoutedEventArgs e)
@@ -166,8 +163,6 @@ namespace CatalogApp
                 conn.Open();
                 status_conn.Background = Brushes.Green;
 
-
-                //String msg = "";
                 String sql = "";
 
                 // verificare daca are examene in tabela Catalog
@@ -192,7 +187,6 @@ namespace CatalogApp
                 AUDProfesori(2);
                 resetProfesori();
             }
-
             //try
             //{
             //    SqlCommand cmd2 = conn.CreateCommand();
@@ -208,14 +202,12 @@ namespace CatalogApp
             //    if (n1>0 && n > 0)
             //    {
             //        MessageBox.Show(msg);
-            //        this.updateDataGrid_Profesori();
+            //        updateDataGrid_Profesori();
             //    }
             //    else
             //    {
             //        MessageBox.Show("Eroare la stergerea profesorului!");
             //    }
-
-
             //}
             //catch (Exception ex)
             //{
@@ -242,7 +234,6 @@ namespace CatalogApp
             btnAddProfesor.IsEnabled = true;
             btnUpdateProfesor.IsEnabled = false;
             btnDeleteProfesor.IsEnabled = false;
-
         }
 
         // Studenti --------------------------------------------------------------------------------------------------------
@@ -279,13 +270,11 @@ namespace CatalogApp
                 txtNumeStudent.Text = dataRowView["NumeStudent"].ToString();
                 txtPrenumeStudent.Text = dataRowView["PrenumeStudent"].ToString();
                 txtNumarMatricol.Text = dataRowView["NumarMatricol"].ToString();
-                //cbxStuGrupa.Text = dataRowView["IdGrupa"].ToString();
+                //cbxStuGrupa.Text = dataRowView["IdGrupa"].ToString(); //de reparat
                 btnAddStudent.IsEnabled = false;
                 btnUpdateStudent.IsEnabled = true;
                 btnDeleteStudent.IsEnabled = true;
-
             }
-
         }
 
         private void AUDStudenti(int pOperatie)
@@ -321,14 +310,12 @@ namespace CatalogApp
 
             try
             {
-
                 int n = cmd.ExecuteNonQuery();
                 if (n > 0)
                 {
                     MessageBox.Show(msg);
-                    this.updateDataGrid_Studenti();
+                    updateDataGrid_Studenti();
                 }
-
             }
             catch (Exception ex)
             {
@@ -384,10 +371,15 @@ namespace CatalogApp
             btnAddStudent.IsEnabled = true;
             btnUpdateStudent.IsEnabled = false;
             btnDeleteStudent.IsEnabled = false;
-
         }
 
         // Grupe --------------------------------------------------------------------------------------------------------
+
+        // Materii --------------------------------------------------------------------------------------------------------
+
+        // Specializari --------------------------------------------------------------------------------------------------------
+
+        // Catalog --------------------------------------------------------------------------------------------------------
 
     }
 }
