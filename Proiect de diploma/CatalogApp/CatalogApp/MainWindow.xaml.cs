@@ -27,7 +27,7 @@ namespace CatalogApp
             InitializeComponent();
         }
 
-        // Profesori --------------------------------------------------------------------------------------------------------
+        // Profesori ------------------------------------------------------------------------------------------------------
 
         private void updateDataGrid_Profesori()
         {
@@ -236,7 +236,7 @@ namespace CatalogApp
             btnDeleteProfesor.IsEnabled = false;
         }
 
-        // Studenti --------------------------------------------------------------------------------------------------------
+        // Studenti -------------------------------------------------------------------------------------------------------
 
         private void updateDataGrid_Studenti()
         {
@@ -292,11 +292,11 @@ namespace CatalogApp
                 case 0:
                     sql = "INSERT INTO ListaStudenti(NumeStudent, PrenumeStudent) " +
                         "VALUES('" + txtNumeStudent.Text + "', '" + txtPrenumeStudent.Text + "')";
-                    msg = "Datele despre Student au fost adaugate cu suuces.";
+                    msg = "Datele despre student au fost adaugate cu suuces.";
                     break;
                 case 1:
                     sql = "UPDATE ListaStudenti SET NumeStudent='" + txtNumeStudent.Text + "', PrenumeStudent='" + txtPrenumeStudent.Text + "' WHERE NumarMatricol=" + txtNumarMatricol.Text;
-                    msg = "Datele despre Student au fost actualizate.";
+                    msg = "Datele despre student au fost actualizate.";
                     break;
                 case 2:
                     sql = "DELETE FROM ListaStudenti WHERE NumarMatricol=" + txtNumarMatricol.Text;
@@ -373,11 +373,139 @@ namespace CatalogApp
             btnDeleteStudent.IsEnabled = false;
         }
 
-        // Grupe --------------------------------------------------------------------------------------------------------
+        // Grupe ----------------------------------------------------------------------------------------------------------
+
+        private void updateDataGrid_Grupe()
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = Properties.Settings.Default.ConnString;
+            conn.Open();
+
+            string query = "SELECT IdGrupa, NumeGrupa, IdSpecializare FROM ListaGrupe ORDER BY NumeGrupa";
+
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dataReader = cmd.ExecuteReader();
+            DataTable dataTable = new DataTable();
+            dataTable.Load(dataReader);
+            dgr_grupe.ItemsSource = dataTable.DefaultView;
+
+            dataReader.Close();
+            conn.Close();
+        }
+
+        private void dgr_grupe_Loaded(object sender, RoutedEventArgs e)
+        {
+            updateDataGrid_Grupe();
+        }
+
+        private void dgr_grupe_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid dataGrid = sender as DataGrid;
+            DataRowView dataRowView = dataGrid.SelectedItem as DataRowView;
+            if (dataRowView != null)
+            {
+                txtGruNumeGrupa.Text = dataRowView["NumeGrupa"].ToString();
+                txtGruIdGrupa.Text = dataRowView["IdGrupa"].ToString();
+                //cbxGruSpecializare.Text = dataRowView["IdSpecializare"].ToString(); //de reparat
+                btnAddGrupa.IsEnabled = false;
+                btnUpdateGrupa.IsEnabled = true;
+                btnDeleteGrupa.IsEnabled = true;
+            }
+        }
+
+        private void AUDGrupe(int pOperatie)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = Properties.Settings.Default.ConnString;
+            conn.Open();
+            status_conn.Background = Brushes.Green;
+
+            String msg = "";
+            String sql = "";
+
+            switch (pOperatie)
+            {
+                case 0:
+                    sql = "INSERT INTO ListaGrupe (NumeGrupa) " +
+                        "VALUES('" + txtGruNumeGrupa.Text + "')";
+                    msg = "Datele despre grupa au fost adaugate cu suuces.";
+                    break;
+                case 1:
+                    sql = "UPDATE ListaGrupe SET NumeGrupa='" + txtGruNumeGrupa.Text + "' WHERE IdGrupa=" + txtGruIdGrupa.Text;
+                    msg = "Datele despre grupa au fost actualizate.";
+                    break;
+                case 2:
+                    sql = "DELETE FROM ListaGrupe WHERE IdGrupa=" + txtGruIdGrupa.Text;
+                    msg = "Datele despre grupa au fost sterse.";
+                    break;
+            }
+
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = sql;
+            cmd.CommandType = CommandType.Text;
+
+            try
+            {
+                int n = cmd.ExecuteNonQuery();
+                if (n > 0)
+                {
+                    MessageBox.Show(msg);
+                    updateDataGrid_Grupe();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+                status_conn.Background = Brushes.Red;
+
+                resetStudenti();
+            }
+        }
+
+        private void btnAddGrupa_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtGruNumeGrupa.Text == "")
+            {
+                MessageBox.Show("Nu ati introdus numele grupei!");
+                txtGruNumeGrupa.Focus();
+                return;
+            }
+            //AUDGrupe(0); //de reparat IDSpecializare cbx sorce
+
+        }
+
+        private void btnUpdateGrupa_Click(object sender, RoutedEventArgs e)
+        {
+            AUDGrupe(1);
+        }
+
+        private void btnDeleteGrupa_Click(object sender, RoutedEventArgs e)
+        {
+            AUDGrupe(2);
+        }
+
+        private void btnResetGrupa_Click(object sender, RoutedEventArgs e)
+        {
+            resetGrupe();
+        }
+
+        private void resetGrupe()
+        {
+            txtGruNumeGrupa.Text = "";
+            txtGruIdGrupa.Text = "";
+            cbxGruSpecializare.Text = "";
+            btnAddGrupa.IsEnabled = true;
+            btnUpdateGrupa.IsEnabled = false;
+            btnDeleteGrupa.IsEnabled = false;
+        }
 
         // Materii --------------------------------------------------------------------------------------------------------
 
-        // Specializari --------------------------------------------------------------------------------------------------------
+        // Specializari ---------------------------------------------------------------------------------------------------
 
         // Catalog --------------------------------------------------------------------------------------------------------
 

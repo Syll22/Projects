@@ -210,15 +210,20 @@
 
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
 
                                     <TextBlock Grid.Column="0" Grid.Row="0" Text="Nume Grupa:" 
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Specializare:"
+                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Specializare:"
+                                           Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Id Grupa:"
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
 
                                     <TextBox x:Name="txtGruNumeGrupa" Margin="2" Grid.Column="1" Grid.Row="0" Padding="2" Width="200" />
-                                    <ComboBox x:Name="cbxGruSpecializare" Margin="2" Grid.Column="3" Grid.Row="0" Padding="2" Width="200"/>
+                                    <ComboBox x:Name="cbxGruSpecializare" Margin="2" Grid.Column="1" Grid.Row="1" Padding="2" Width="200"/>
+                                    <TextBox x:Name="txtGruIdGrupa" Margin="2" Grid.Column="3" Grid.Row="0" Padding="2" Width="200" IsEnabled="False" Background="#FFE0E0E0"/>
+
                                 </Grid>
                             </GroupBox>
                             <Grid Margin="3">
@@ -229,16 +234,16 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Button Margin="5" Grid.Column="0" Content="Add"/>
-                                <Button Margin="5" Grid.Column="1" Content="Update"/>
-                                <Button Margin="5" Grid.Column="2" Content="Delete"/>
-                                <Button Margin="5" Grid.Column="3" Content="Reset"/>
+                                <Button x:Name="btnAddGrupa" Margin="5" Grid.Column="0" Content="Add" Click="btnAddGrupa_Click"/>
+                                <Button x:Name="btnUpdateGrupa" Margin="5" Grid.Column="1" Content="Update" IsEnabled="False" Click="btnUpdateGrupa_Click"/>
+                                <Button x:Name="btnDeleteGrupa" Margin="5" Grid.Column="2" Content="Delete" IsEnabled="False" Click="btnDeleteGrupa_Click"/>
+                                <Button x:Name="btnResetGrupa" Margin="5" Grid.Column="3" Content="Reset" Click="btnResetGrupa_Click"/>
                             </Grid>
 
                         </StackPanel>
                     </Expander>
 
-                    <DataGrid x:Name="dgr_grupe" IsReadOnly="True" >
+                    <DataGrid x:Name="dgr_grupe" IsReadOnly="True" Loaded="dgr_grupe_Loaded" SelectionChanged="dgr_grupe_SelectionChanged" >
 
                     </DataGrid>
                 </DockPanel>
