@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ namespace CatalogApp
 {
     public partial class FormProfesorAfisare: Form
     {
+        private string sirProfesori = "";
+
         public FormProfesorAfisare()
         {
             InitializeComponent();
@@ -85,13 +88,41 @@ namespace CatalogApp
                 dgvProfesori.Columns.Add("Id", "Id");
                 dgvProfesori.Columns.Add("Nume", "Nume");
                 dgvProfesori.Columns.Add("Prenume", "Prenume");
+
+                sirProfesori = "Profesori \n";
                 while (reader.Read())
                 {
                     dgvProfesori.Rows.Add(reader["IdProfesor"].ToString(), reader["NumeProfesor"].ToString(), reader["PrenumeProfesor"].ToString());
+                    sirProfesori += reader["NumeProfesor"].ToString() + " " + reader["PrenumeProfesor"].ToString() + "\n";
                 }
                 reader.Close();
             }
             conn.Close();
+        }
+         
+         
+        private void preluare_date(object o, PrintPageEventArgs e)
+        {
+            e.Graphics.DrawString(sirProfesori, new Font("Arial", 20), Brushes.Blue, 10, 25);
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            PrintDocument pd2 = new PrintDocument();
+            pd2.PrintPage += new PrintPageEventHandler(this.preluare_date);
+
+            PrintDialog pdlg = new PrintDialog();
+            PrintPreviewDialog ppd = new PrintPreviewDialog();
+
+            ppd.Document = pd2;
+            ppd.ShowDialog();
+
+            pdlg.Document = pd2;
+
+            if (pdlg.ShowDialog() == DialogResult.OK)
+            {
+                pd2.Print();
+            }
         }
     }
 }

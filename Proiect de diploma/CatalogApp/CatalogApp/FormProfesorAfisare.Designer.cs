@@ -32,6 +32,8 @@
             this.btnModificare = new System.Windows.Forms.Button();
             this.btnStergere = new System.Windows.Forms.Button();
             this.btnIesire = new System.Windows.Forms.Button();
+            this.pd1 = new System.Windows.Forms.PrintDialog();
+            this.btnPrintProfesor = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProfesori)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,11 +75,26 @@
             this.btnIesire.UseVisualStyleBackColor = true;
             this.btnIesire.Click += new System.EventHandler(this.btnIesire_Click);
             // 
+            // pd1
+            // 
+            this.pd1.UseEXDialog = true;
+            // 
+            // btnPrintProfesor
+            // 
+            this.btnPrintProfesor.Location = new System.Drawing.Point(294, 407);
+            this.btnPrintProfesor.Name = "btnPrintProfesor";
+            this.btnPrintProfesor.Size = new System.Drawing.Size(242, 42);
+            this.btnPrintProfesor.TabIndex = 11;
+            this.btnPrintProfesor.Text = "Afisare";
+            this.btnPrintProfesor.UseVisualStyleBackColor = true;
+            this.btnPrintProfesor.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // FormProfesorAfisare
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(835, 453);
+            this.ClientSize = new System.Drawing.Size(835, 498);
+            this.Controls.Add(this.btnPrintProfesor);
             this.Controls.Add(this.btnIesire);
             this.Controls.Add(this.btnStergere);
             this.Controls.Add(this.btnModificare);
@@ -97,5 +114,7 @@
         private System.Windows.Forms.Button btnModificare;
         private System.Windows.Forms.Button btnStergere;
         private System.Windows.Forms.Button btnIesire;
+        private System.Windows.Forms.PrintDialog pd1;
+        private System.Windows.Forms.Button btnPrintProfesor;
     }
 }

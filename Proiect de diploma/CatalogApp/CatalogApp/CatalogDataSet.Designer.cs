@@ -26,8 +26,6 @@ namespace CatalogApp {
         
         private CatalogDataTable tableCatalog;
         
-        private _Materii_specializariDataTable _tableMaterii_specializari;
-        
         private ListaGrupeDataTable tableListaGrupe;
         
         private ListaMateriiDataTable tableListaMaterii;
@@ -38,7 +36,9 @@ namespace CatalogApp {
         
         private ListaStudentiDataTable tableListaStudenti;
         
-        private _Materii_profesoriDataTable _tableMaterii_profesori;
+        private MateriiProfesoriDataTable tableMateriiProfesori;
+        
+        private MateriiSpecializariDataTable tableMateriiSpecializari;
         
         private global::System.Data.DataRelation relationFK_Catalog_Materie;
         
@@ -46,17 +46,17 @@ namespace CatalogApp {
         
         private global::System.Data.DataRelation relationFK_Catalog_Profesor;
         
-        private global::System.Data.DataRelation _relationFK_Materii_specializari_Materii;
-        
-        private global::System.Data.DataRelation _relationFK_Materii_specializari_Specializari;
-        
         private global::System.Data.DataRelation relationFK_ListaGrupe_Specializare;
         
         private global::System.Data.DataRelation relationFK_ListaStudenti_Grupa;
         
-        private global::System.Data.DataRelation _relationFK_Materii_profesori_Materie;
+        private global::System.Data.DataRelation relationFK_MateriiProfesori_Materie;
         
-        private global::System.Data.DataRelation _relationFK_Materii_profesori_Profesor;
+        private global::System.Data.DataRelation relationFK_MateriiProfesori_Profesor;
+        
+        private global::System.Data.DataRelation relationFK_MateriiSpecializari_Materii;
+        
+        private global::System.Data.DataRelation relationFK_MateriiSpecializari_Specializari;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -89,9 +89,6 @@ namespace CatalogApp {
                 if ((ds.Tables["Catalog"] != null)) {
                     base.Tables.Add(new CatalogDataTable(ds.Tables["Catalog"]));
                 }
-                if ((ds.Tables["Materii-specializari"] != null)) {
-                    base.Tables.Add(new _Materii_specializariDataTable(ds.Tables["Materii-specializari"]));
-                }
                 if ((ds.Tables["ListaGrupe"] != null)) {
                     base.Tables.Add(new ListaGrupeDataTable(ds.Tables["ListaGrupe"]));
                 }
@@ -107,8 +104,11 @@ namespace CatalogApp {
                 if ((ds.Tables["ListaStudenti"] != null)) {
                     base.Tables.Add(new ListaStudentiDataTable(ds.Tables["ListaStudenti"]));
                 }
-                if ((ds.Tables["Materii-profesori"] != null)) {
-                    base.Tables.Add(new _Materii_profesoriDataTable(ds.Tables["Materii-profesori"]));
+                if ((ds.Tables["MateriiProfesori"] != null)) {
+                    base.Tables.Add(new MateriiProfesoriDataTable(ds.Tables["MateriiProfesori"]));
+                }
+                if ((ds.Tables["MateriiSpecializari"] != null)) {
+                    base.Tables.Add(new MateriiSpecializariDataTable(ds.Tables["MateriiSpecializari"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -135,16 +135,6 @@ namespace CatalogApp {
         public CatalogDataTable Catalog {
             get {
                 return this.tableCatalog;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public _Materii_specializariDataTable _Materii_specializari {
-            get {
-                return this._tableMaterii_specializari;
             }
         }
         
@@ -202,9 +192,19 @@ namespace CatalogApp {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public _Materii_profesoriDataTable _Materii_profesori {
+        public MateriiProfesoriDataTable MateriiProfesori {
             get {
-                return this._tableMaterii_profesori;
+                return this.tableMateriiProfesori;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public MateriiSpecializariDataTable MateriiSpecializari {
+            get {
+                return this.tableMateriiSpecializari;
             }
         }
         
@@ -278,9 +278,6 @@ namespace CatalogApp {
                 if ((ds.Tables["Catalog"] != null)) {
                     base.Tables.Add(new CatalogDataTable(ds.Tables["Catalog"]));
                 }
-                if ((ds.Tables["Materii-specializari"] != null)) {
-                    base.Tables.Add(new _Materii_specializariDataTable(ds.Tables["Materii-specializari"]));
-                }
                 if ((ds.Tables["ListaGrupe"] != null)) {
                     base.Tables.Add(new ListaGrupeDataTable(ds.Tables["ListaGrupe"]));
                 }
@@ -296,8 +293,11 @@ namespace CatalogApp {
                 if ((ds.Tables["ListaStudenti"] != null)) {
                     base.Tables.Add(new ListaStudentiDataTable(ds.Tables["ListaStudenti"]));
                 }
-                if ((ds.Tables["Materii-profesori"] != null)) {
-                    base.Tables.Add(new _Materii_profesoriDataTable(ds.Tables["Materii-profesori"]));
+                if ((ds.Tables["MateriiProfesori"] != null)) {
+                    base.Tables.Add(new MateriiProfesoriDataTable(ds.Tables["MateriiProfesori"]));
+                }
+                if ((ds.Tables["MateriiSpecializari"] != null)) {
+                    base.Tables.Add(new MateriiSpecializariDataTable(ds.Tables["MateriiSpecializari"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -338,12 +338,6 @@ namespace CatalogApp {
                     this.tableCatalog.InitVars();
                 }
             }
-            this._tableMaterii_specializari = ((_Materii_specializariDataTable)(base.Tables["Materii-specializari"]));
-            if ((initTable == true)) {
-                if ((this._tableMaterii_specializari != null)) {
-                    this._tableMaterii_specializari.InitVars();
-                }
-            }
             this.tableListaGrupe = ((ListaGrupeDataTable)(base.Tables["ListaGrupe"]));
             if ((initTable == true)) {
                 if ((this.tableListaGrupe != null)) {
@@ -374,21 +368,27 @@ namespace CatalogApp {
                     this.tableListaStudenti.InitVars();
                 }
             }
-            this._tableMaterii_profesori = ((_Materii_profesoriDataTable)(base.Tables["Materii-profesori"]));
+            this.tableMateriiProfesori = ((MateriiProfesoriDataTable)(base.Tables["MateriiProfesori"]));
             if ((initTable == true)) {
-                if ((this._tableMaterii_profesori != null)) {
-                    this._tableMaterii_profesori.InitVars();
+                if ((this.tableMateriiProfesori != null)) {
+                    this.tableMateriiProfesori.InitVars();
+                }
+            }
+            this.tableMateriiSpecializari = ((MateriiSpecializariDataTable)(base.Tables["MateriiSpecializari"]));
+            if ((initTable == true)) {
+                if ((this.tableMateriiSpecializari != null)) {
+                    this.tableMateriiSpecializari.InitVars();
                 }
             }
             this.relationFK_Catalog_Materie = this.Relations["FK_Catalog_Materie"];
             this.relationFK_Catalog_NumarMatricol = this.Relations["FK_Catalog_NumarMatricol"];
             this.relationFK_Catalog_Profesor = this.Relations["FK_Catalog_Profesor"];
-            this._relationFK_Materii_specializari_Materii = this.Relations["FK_Materii-specializari_Materii"];
-            this._relationFK_Materii_specializari_Specializari = this.Relations["FK_Materii-specializari_Specializari"];
             this.relationFK_ListaGrupe_Specializare = this.Relations["FK_ListaGrupe_Specializare"];
             this.relationFK_ListaStudenti_Grupa = this.Relations["FK_ListaStudenti_Grupa"];
-            this._relationFK_Materii_profesori_Materie = this.Relations["FK_Materii-profesori_Materie"];
-            this._relationFK_Materii_profesori_Profesor = this.Relations["FK_Materii-profesori_Profesor"];
+            this.relationFK_MateriiProfesori_Materie = this.Relations["FK_MateriiProfesori_Materie"];
+            this.relationFK_MateriiProfesori_Profesor = this.Relations["FK_MateriiProfesori_Profesor"];
+            this.relationFK_MateriiSpecializari_Materii = this.Relations["FK_MateriiSpecializari_Materii"];
+            this.relationFK_MateriiSpecializari_Specializari = this.Relations["FK_MateriiSpecializari_Specializari"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -401,8 +401,6 @@ namespace CatalogApp {
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableCatalog = new CatalogDataTable();
             base.Tables.Add(this.tableCatalog);
-            this._tableMaterii_specializari = new _Materii_specializariDataTable();
-            base.Tables.Add(this._tableMaterii_specializari);
             this.tableListaGrupe = new ListaGrupeDataTable();
             base.Tables.Add(this.tableListaGrupe);
             this.tableListaMaterii = new ListaMateriiDataTable();
@@ -413,8 +411,10 @@ namespace CatalogApp {
             base.Tables.Add(this.tableListaSpecializari);
             this.tableListaStudenti = new ListaStudentiDataTable();
             base.Tables.Add(this.tableListaStudenti);
-            this._tableMaterii_profesori = new _Materii_profesoriDataTable();
-            base.Tables.Add(this._tableMaterii_profesori);
+            this.tableMateriiProfesori = new MateriiProfesoriDataTable();
+            base.Tables.Add(this.tableMateriiProfesori);
+            this.tableMateriiSpecializari = new MateriiSpecializariDataTable();
+            base.Tables.Add(this.tableMateriiSpecializari);
             this.relationFK_Catalog_Materie = new global::System.Data.DataRelation("FK_Catalog_Materie", new global::System.Data.DataColumn[] {
                         this.tableListaMaterii.IdMaterieColumn}, new global::System.Data.DataColumn[] {
                         this.tableCatalog.IdMaterieColumn}, false);
@@ -427,14 +427,6 @@ namespace CatalogApp {
                         this.tableListaProfesori.IdProfesorColumn}, new global::System.Data.DataColumn[] {
                         this.tableCatalog.IdProfesorColumn}, false);
             this.Relations.Add(this.relationFK_Catalog_Profesor);
-            this._relationFK_Materii_specializari_Materii = new global::System.Data.DataRelation("FK_Materii-specializari_Materii", new global::System.Data.DataColumn[] {
-                        this.tableListaMaterii.IdMaterieColumn}, new global::System.Data.DataColumn[] {
-                        this._tableMaterii_specializari.IdMaterieColumn}, false);
-            this.Relations.Add(this._relationFK_Materii_specializari_Materii);
-            this._relationFK_Materii_specializari_Specializari = new global::System.Data.DataRelation("FK_Materii-specializari_Specializari", new global::System.Data.DataColumn[] {
-                        this.tableListaSpecializari.IdSpecializareColumn}, new global::System.Data.DataColumn[] {
-                        this._tableMaterii_specializari.IdSpecializareColumn}, false);
-            this.Relations.Add(this._relationFK_Materii_specializari_Specializari);
             this.relationFK_ListaGrupe_Specializare = new global::System.Data.DataRelation("FK_ListaGrupe_Specializare", new global::System.Data.DataColumn[] {
                         this.tableListaSpecializari.IdSpecializareColumn}, new global::System.Data.DataColumn[] {
                         this.tableListaGrupe.IdSpecializareColumn}, false);
@@ -443,25 +435,27 @@ namespace CatalogApp {
                         this.tableListaGrupe.IdGrupaColumn}, new global::System.Data.DataColumn[] {
                         this.tableListaStudenti.IdGrupaColumn}, false);
             this.Relations.Add(this.relationFK_ListaStudenti_Grupa);
-            this._relationFK_Materii_profesori_Materie = new global::System.Data.DataRelation("FK_Materii-profesori_Materie", new global::System.Data.DataColumn[] {
+            this.relationFK_MateriiProfesori_Materie = new global::System.Data.DataRelation("FK_MateriiProfesori_Materie", new global::System.Data.DataColumn[] {
                         this.tableListaMaterii.IdMaterieColumn}, new global::System.Data.DataColumn[] {
-                        this._tableMaterii_profesori.IdMaterieColumn}, false);
-            this.Relations.Add(this._relationFK_Materii_profesori_Materie);
-            this._relationFK_Materii_profesori_Profesor = new global::System.Data.DataRelation("FK_Materii-profesori_Profesor", new global::System.Data.DataColumn[] {
+                        this.tableMateriiProfesori.IdMaterieColumn}, false);
+            this.Relations.Add(this.relationFK_MateriiProfesori_Materie);
+            this.relationFK_MateriiProfesori_Profesor = new global::System.Data.DataRelation("FK_MateriiProfesori_Profesor", new global::System.Data.DataColumn[] {
                         this.tableListaProfesori.IdProfesorColumn}, new global::System.Data.DataColumn[] {
-                        this._tableMaterii_profesori.IdProfesorColumn}, false);
-            this.Relations.Add(this._relationFK_Materii_profesori_Profesor);
+                        this.tableMateriiProfesori.IdProfesorColumn}, false);
+            this.Relations.Add(this.relationFK_MateriiProfesori_Profesor);
+            this.relationFK_MateriiSpecializari_Materii = new global::System.Data.DataRelation("FK_MateriiSpecializari_Materii", new global::System.Data.DataColumn[] {
+                        this.tableListaMaterii.IdMaterieColumn}, new global::System.Data.DataColumn[] {
+                        this.tableMateriiSpecializari.IdMaterieColumn}, false);
+            this.Relations.Add(this.relationFK_MateriiSpecializari_Materii);
+            this.relationFK_MateriiSpecializari_Specializari = new global::System.Data.DataRelation("FK_MateriiSpecializari_Specializari", new global::System.Data.DataColumn[] {
+                        this.tableListaSpecializari.IdSpecializareColumn}, new global::System.Data.DataColumn[] {
+                        this.tableMateriiSpecializari.IdSpecializareColumn}, false);
+            this.Relations.Add(this.relationFK_MateriiSpecializari_Specializari);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeCatalog() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerialize_Materii_specializari() {
             return false;
         }
         
@@ -497,7 +491,13 @@ namespace CatalogApp {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerialize_Materii_profesori() {
+        private bool ShouldSerializeMateriiProfesori() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeMateriiSpecializari() {
             return false;
         }
         
@@ -560,9 +560,6 @@ namespace CatalogApp {
         public delegate void CatalogRowChangeEventHandler(object sender, CatalogRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void _Materii_specializariRowChangeEventHandler(object sender, _Materii_specializariRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void ListaGrupeRowChangeEventHandler(object sender, ListaGrupeRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -578,7 +575,10 @@ namespace CatalogApp {
         public delegate void ListaStudentiRowChangeEventHandler(object sender, ListaStudentiRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void _Materii_profesoriRowChangeEventHandler(object sender, _Materii_profesoriRowChangeEvent e);
+        public delegate void MateriiProfesoriRowChangeEventHandler(object sender, MateriiProfesoriRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void MateriiSpecializariRowChangeEventHandler(object sender, MateriiSpecializariRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -901,306 +901,6 @@ namespace CatalogApp {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "CatalogDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class _Materii_specializariDataTable : global::System.Data.TypedTableBase<_Materii_specializariRow> {
-            
-            private global::System.Data.DataColumn columnID;
-            
-            private global::System.Data.DataColumn columnIdMaterie;
-            
-            private global::System.Data.DataColumn columnIdSpecializare;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public _Materii_specializariDataTable() {
-                this.TableName = "Materii-specializari";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal _Materii_specializariDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected _Materii_specializariDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn IDColumn {
-                get {
-                    return this.columnID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn IdMaterieColumn {
-                get {
-                    return this.columnIdMaterie;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn IdSpecializareColumn {
-                get {
-                    return this.columnIdSpecializare;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public _Materii_specializariRow this[int index] {
-                get {
-                    return ((_Materii_specializariRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event _Materii_specializariRowChangeEventHandler _Materii_specializariRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event _Materii_specializariRowChangeEventHandler _Materii_specializariRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event _Materii_specializariRowChangeEventHandler _Materii_specializariRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event _Materii_specializariRowChangeEventHandler _Materii_specializariRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void Add_Materii_specializariRow(_Materii_specializariRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public _Materii_specializariRow Add_Materii_specializariRow(ListaMateriiRow _parentListaMateriiRowByFK_Materii_specializari_Materii, ListaSpecializariRow _parentListaSpecializariRowByFK_Materii_specializari_Specializari) {
-                _Materii_specializariRow row_Materii_specializariRow = ((_Materii_specializariRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        null,
-                        null};
-                if ((_parentListaMateriiRowByFK_Materii_specializari_Materii != null)) {
-                    columnValuesArray[1] = _parentListaMateriiRowByFK_Materii_specializari_Materii[0];
-                }
-                if ((_parentListaSpecializariRowByFK_Materii_specializari_Specializari != null)) {
-                    columnValuesArray[2] = _parentListaSpecializariRowByFK_Materii_specializari_Specializari[0];
-                }
-                row_Materii_specializariRow.ItemArray = columnValuesArray;
-                this.Rows.Add(row_Materii_specializariRow);
-                return row_Materii_specializariRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public _Materii_specializariRow FindByID(int ID) {
-                return ((_Materii_specializariRow)(this.Rows.Find(new object[] {
-                            ID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                _Materii_specializariDataTable cln = ((_Materii_specializariDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new _Materii_specializariDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal void InitVars() {
-                this.columnID = base.Columns["ID"];
-                this.columnIdMaterie = base.Columns["IdMaterie"];
-                this.columnIdSpecializare = base.Columns["IdSpecializare"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnID);
-                this.columnIdMaterie = new global::System.Data.DataColumn("IdMaterie", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIdMaterie);
-                this.columnIdSpecializare = new global::System.Data.DataColumn("IdSpecializare", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnIdSpecializare);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnID}, true));
-                this.columnID.AutoIncrement = true;
-                this.columnID.AutoIncrementSeed = -1;
-                this.columnID.AutoIncrementStep = -1;
-                this.columnID.AllowDBNull = false;
-                this.columnID.ReadOnly = true;
-                this.columnID.Unique = true;
-                this.columnIdMaterie.AllowDBNull = false;
-                this.columnIdSpecializare.AllowDBNull = false;
-                this.ExtendedProperties.Add("Generator_TableVarName", "_tableMaterii_specializari");
-                this.ExtendedProperties.Add("Generator_UserTableName", "Materii-specializari");
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public _Materii_specializariRow New_Materii_specializariRow() {
-                return ((_Materii_specializariRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new _Materii_specializariRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(_Materii_specializariRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this._Materii_specializariRowChanged != null)) {
-                    this._Materii_specializariRowChanged(this, new _Materii_specializariRowChangeEvent(((_Materii_specializariRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this._Materii_specializariRowChanging != null)) {
-                    this._Materii_specializariRowChanging(this, new _Materii_specializariRowChangeEvent(((_Materii_specializariRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this._Materii_specializariRowDeleted != null)) {
-                    this._Materii_specializariRowDeleted(this, new _Materii_specializariRowChangeEvent(((_Materii_specializariRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this._Materii_specializariRowDeleting != null)) {
-                    this._Materii_specializariRowDeleting(this, new _Materii_specializariRowChangeEvent(((_Materii_specializariRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void Remove_Materii_specializariRow(_Materii_specializariRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                CatalogDataSet ds = new CatalogDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "_Materii_specializariDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -2763,7 +2463,7 @@ namespace CatalogApp {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class _Materii_profesoriDataTable : global::System.Data.TypedTableBase<_Materii_profesoriRow> {
+        public partial class MateriiProfesoriDataTable : global::System.Data.TypedTableBase<MateriiProfesoriRow> {
             
             private global::System.Data.DataColumn columnID;
             
@@ -2773,8 +2473,8 @@ namespace CatalogApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public _Materii_profesoriDataTable() {
-                this.TableName = "Materii-profesori";
+            public MateriiProfesoriDataTable() {
+                this.TableName = "MateriiProfesori";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -2782,7 +2482,7 @@ namespace CatalogApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal _Materii_profesoriDataTable(global::System.Data.DataTable table) {
+            internal MateriiProfesoriDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -2799,7 +2499,7 @@ namespace CatalogApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected _Materii_profesoriDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected MateriiProfesoriDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -2839,60 +2539,60 @@ namespace CatalogApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public _Materii_profesoriRow this[int index] {
+            public MateriiProfesoriRow this[int index] {
                 get {
-                    return ((_Materii_profesoriRow)(this.Rows[index]));
+                    return ((MateriiProfesoriRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event _Materii_profesoriRowChangeEventHandler _Materii_profesoriRowChanging;
+            public event MateriiProfesoriRowChangeEventHandler MateriiProfesoriRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event _Materii_profesoriRowChangeEventHandler _Materii_profesoriRowChanged;
+            public event MateriiProfesoriRowChangeEventHandler MateriiProfesoriRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event _Materii_profesoriRowChangeEventHandler _Materii_profesoriRowDeleting;
+            public event MateriiProfesoriRowChangeEventHandler MateriiProfesoriRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event _Materii_profesoriRowChangeEventHandler _Materii_profesoriRowDeleted;
+            public event MateriiProfesoriRowChangeEventHandler MateriiProfesoriRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void Add_Materii_profesoriRow(_Materii_profesoriRow row) {
+            public void AddMateriiProfesoriRow(MateriiProfesoriRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public _Materii_profesoriRow Add_Materii_profesoriRow(ListaMateriiRow _parentListaMateriiRowByFK_Materii_profesori_Materie, ListaProfesoriRow _parentListaProfesoriRowByFK_Materii_profesori_Profesor) {
-                _Materii_profesoriRow row_Materii_profesoriRow = ((_Materii_profesoriRow)(this.NewRow()));
+            public MateriiProfesoriRow AddMateriiProfesoriRow(ListaMateriiRow parentListaMateriiRowByFK_MateriiProfesori_Materie, ListaProfesoriRow parentListaProfesoriRowByFK_MateriiProfesori_Profesor) {
+                MateriiProfesoriRow rowMateriiProfesoriRow = ((MateriiProfesoriRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null,
                         null};
-                if ((_parentListaMateriiRowByFK_Materii_profesori_Materie != null)) {
-                    columnValuesArray[1] = _parentListaMateriiRowByFK_Materii_profesori_Materie[0];
+                if ((parentListaMateriiRowByFK_MateriiProfesori_Materie != null)) {
+                    columnValuesArray[1] = parentListaMateriiRowByFK_MateriiProfesori_Materie[0];
                 }
-                if ((_parentListaProfesoriRowByFK_Materii_profesori_Profesor != null)) {
-                    columnValuesArray[2] = _parentListaProfesoriRowByFK_Materii_profesori_Profesor[0];
+                if ((parentListaProfesoriRowByFK_MateriiProfesori_Profesor != null)) {
+                    columnValuesArray[2] = parentListaProfesoriRowByFK_MateriiProfesori_Profesor[0];
                 }
-                row_Materii_profesoriRow.ItemArray = columnValuesArray;
-                this.Rows.Add(row_Materii_profesoriRow);
-                return row_Materii_profesoriRow;
+                rowMateriiProfesoriRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowMateriiProfesoriRow);
+                return rowMateriiProfesoriRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public _Materii_profesoriRow FindByID(int ID) {
-                return ((_Materii_profesoriRow)(this.Rows.Find(new object[] {
+            public MateriiProfesoriRow FindByID(int ID) {
+                return ((MateriiProfesoriRow)(this.Rows.Find(new object[] {
                             ID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                _Materii_profesoriDataTable cln = ((_Materii_profesoriDataTable)(base.Clone()));
+                MateriiProfesoriDataTable cln = ((MateriiProfesoriDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -2900,7 +2600,7 @@ namespace CatalogApp {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new _Materii_profesoriDataTable();
+                return new MateriiProfesoriDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2930,34 +2630,32 @@ namespace CatalogApp {
                 this.columnID.Unique = true;
                 this.columnIdMaterie.AllowDBNull = false;
                 this.columnIdProfesor.AllowDBNull = false;
-                this.ExtendedProperties.Add("Generator_TableVarName", "_tableMaterii_profesori");
-                this.ExtendedProperties.Add("Generator_UserTableName", "Materii-profesori");
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public _Materii_profesoriRow New_Materii_profesoriRow() {
-                return ((_Materii_profesoriRow)(this.NewRow()));
+            public MateriiProfesoriRow NewMateriiProfesoriRow() {
+                return ((MateriiProfesoriRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new _Materii_profesoriRow(builder);
+                return new MateriiProfesoriRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(_Materii_profesoriRow);
+                return typeof(MateriiProfesoriRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this._Materii_profesoriRowChanged != null)) {
-                    this._Materii_profesoriRowChanged(this, new _Materii_profesoriRowChangeEvent(((_Materii_profesoriRow)(e.Row)), e.Action));
+                if ((this.MateriiProfesoriRowChanged != null)) {
+                    this.MateriiProfesoriRowChanged(this, new MateriiProfesoriRowChangeEvent(((MateriiProfesoriRow)(e.Row)), e.Action));
                 }
             }
             
@@ -2965,8 +2663,8 @@ namespace CatalogApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this._Materii_profesoriRowChanging != null)) {
-                    this._Materii_profesoriRowChanging(this, new _Materii_profesoriRowChangeEvent(((_Materii_profesoriRow)(e.Row)), e.Action));
+                if ((this.MateriiProfesoriRowChanging != null)) {
+                    this.MateriiProfesoriRowChanging(this, new MateriiProfesoriRowChangeEvent(((MateriiProfesoriRow)(e.Row)), e.Action));
                 }
             }
             
@@ -2974,8 +2672,8 @@ namespace CatalogApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this._Materii_profesoriRowDeleted != null)) {
-                    this._Materii_profesoriRowDeleted(this, new _Materii_profesoriRowChangeEvent(((_Materii_profesoriRow)(e.Row)), e.Action));
+                if ((this.MateriiProfesoriRowDeleted != null)) {
+                    this.MateriiProfesoriRowDeleted(this, new MateriiProfesoriRowChangeEvent(((MateriiProfesoriRow)(e.Row)), e.Action));
                 }
             }
             
@@ -2983,14 +2681,14 @@ namespace CatalogApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this._Materii_profesoriRowDeleting != null)) {
-                    this._Materii_profesoriRowDeleting(this, new _Materii_profesoriRowChangeEvent(((_Materii_profesoriRow)(e.Row)), e.Action));
+                if ((this.MateriiProfesoriRowDeleting != null)) {
+                    this.MateriiProfesoriRowDeleting(this, new MateriiProfesoriRowChangeEvent(((MateriiProfesoriRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void Remove_Materii_profesoriRow(_Materii_profesoriRow row) {
+            public void RemoveMateriiProfesoriRow(MateriiProfesoriRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -3017,7 +2715,305 @@ namespace CatalogApp {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "_Materii_profesoriDataTable";
+                attribute2.FixedValue = "MateriiProfesoriDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class MateriiSpecializariDataTable : global::System.Data.TypedTableBase<MateriiSpecializariRow> {
+            
+            private global::System.Data.DataColumn columnID;
+            
+            private global::System.Data.DataColumn columnIdMaterie;
+            
+            private global::System.Data.DataColumn columnIdSpecializare;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MateriiSpecializariDataTable() {
+                this.TableName = "MateriiSpecializari";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal MateriiSpecializariDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected MateriiSpecializariDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn IdMaterieColumn {
+                get {
+                    return this.columnIdMaterie;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn IdSpecializareColumn {
+                get {
+                    return this.columnIdSpecializare;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MateriiSpecializariRow this[int index] {
+                get {
+                    return ((MateriiSpecializariRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event MateriiSpecializariRowChangeEventHandler MateriiSpecializariRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event MateriiSpecializariRowChangeEventHandler MateriiSpecializariRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event MateriiSpecializariRowChangeEventHandler MateriiSpecializariRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event MateriiSpecializariRowChangeEventHandler MateriiSpecializariRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddMateriiSpecializariRow(MateriiSpecializariRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MateriiSpecializariRow AddMateriiSpecializariRow(ListaMateriiRow parentListaMateriiRowByFK_MateriiSpecializari_Materii, ListaSpecializariRow parentListaSpecializariRowByFK_MateriiSpecializari_Specializari) {
+                MateriiSpecializariRow rowMateriiSpecializariRow = ((MateriiSpecializariRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        null,
+                        null};
+                if ((parentListaMateriiRowByFK_MateriiSpecializari_Materii != null)) {
+                    columnValuesArray[1] = parentListaMateriiRowByFK_MateriiSpecializari_Materii[0];
+                }
+                if ((parentListaSpecializariRowByFK_MateriiSpecializari_Specializari != null)) {
+                    columnValuesArray[2] = parentListaSpecializariRowByFK_MateriiSpecializari_Specializari[0];
+                }
+                rowMateriiSpecializariRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowMateriiSpecializariRow);
+                return rowMateriiSpecializariRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MateriiSpecializariRow FindByID(int ID) {
+                return ((MateriiSpecializariRow)(this.Rows.Find(new object[] {
+                            ID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                MateriiSpecializariDataTable cln = ((MateriiSpecializariDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new MateriiSpecializariDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnID = base.Columns["ID"];
+                this.columnIdMaterie = base.Columns["IdMaterie"];
+                this.columnIdSpecializare = base.Columns["IdSpecializare"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
+                this.columnIdMaterie = new global::System.Data.DataColumn("IdMaterie", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdMaterie);
+                this.columnIdSpecializare = new global::System.Data.DataColumn("IdSpecializare", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIdSpecializare);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnID}, true));
+                this.columnID.AutoIncrement = true;
+                this.columnID.AutoIncrementSeed = -1;
+                this.columnID.AutoIncrementStep = -1;
+                this.columnID.AllowDBNull = false;
+                this.columnID.ReadOnly = true;
+                this.columnID.Unique = true;
+                this.columnIdMaterie.AllowDBNull = false;
+                this.columnIdSpecializare.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MateriiSpecializariRow NewMateriiSpecializariRow() {
+                return ((MateriiSpecializariRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new MateriiSpecializariRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(MateriiSpecializariRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.MateriiSpecializariRowChanged != null)) {
+                    this.MateriiSpecializariRowChanged(this, new MateriiSpecializariRowChangeEvent(((MateriiSpecializariRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.MateriiSpecializariRowChanging != null)) {
+                    this.MateriiSpecializariRowChanging(this, new MateriiSpecializariRowChangeEvent(((MateriiSpecializariRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.MateriiSpecializariRowDeleted != null)) {
+                    this.MateriiSpecializariRowDeleted(this, new MateriiSpecializariRowChangeEvent(((MateriiSpecializariRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.MateriiSpecializariRowDeleting != null)) {
+                    this.MateriiSpecializariRowDeleting(this, new MateriiSpecializariRowChangeEvent(((MateriiSpecializariRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveMateriiSpecializariRow(MateriiSpecializariRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                CatalogDataSet ds = new CatalogDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "MateriiSpecializariDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -3186,76 +3182,6 @@ namespace CatalogApp {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class _Materii_specializariRow : global::System.Data.DataRow {
-            
-            private _Materii_specializariDataTable _tableMaterii_specializari;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal _Materii_specializariRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this._tableMaterii_specializari = ((_Materii_specializariDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int ID {
-                get {
-                    return ((int)(this[this._tableMaterii_specializari.IDColumn]));
-                }
-                set {
-                    this[this._tableMaterii_specializari.IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int IdMaterie {
-                get {
-                    return ((int)(this[this._tableMaterii_specializari.IdMaterieColumn]));
-                }
-                set {
-                    this[this._tableMaterii_specializari.IdMaterieColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int IdSpecializare {
-                get {
-                    return ((int)(this[this._tableMaterii_specializari.IdSpecializareColumn]));
-                }
-                set {
-                    this[this._tableMaterii_specializari.IdSpecializareColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ListaMateriiRow ListaMateriiRow {
-                get {
-                    return ((ListaMateriiRow)(this.GetParentRow(this.Table.ParentRelations["FK_Materii-specializari_Materii"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Materii-specializari_Materii"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ListaSpecializariRow ListaSpecializariRow {
-                get {
-                    return ((ListaSpecializariRow)(this.GetParentRow(this.Table.ParentRelations["FK_Materii-specializari_Specializari"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Materii-specializari_Specializari"]);
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
         public partial class ListaGrupeRow : global::System.Data.DataRow {
             
             private ListaGrupeDataTable tableListaGrupe;
@@ -3394,23 +3320,23 @@ namespace CatalogApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public _Materii_specializariRow[] _GetMaterii_specializariRows() {
-                if ((this.Table.ChildRelations["FK_Materii-specializari_Materii"] == null)) {
-                    return new _Materii_specializariRow[0];
+            public MateriiProfesoriRow[] GetMateriiProfesoriRows() {
+                if ((this.Table.ChildRelations["FK_MateriiProfesori_Materie"] == null)) {
+                    return new MateriiProfesoriRow[0];
                 }
                 else {
-                    return ((_Materii_specializariRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Materii-specializari_Materii"])));
+                    return ((MateriiProfesoriRow[])(base.GetChildRows(this.Table.ChildRelations["FK_MateriiProfesori_Materie"])));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public _Materii_profesoriRow[] _GetMaterii_profesoriRows() {
-                if ((this.Table.ChildRelations["FK_Materii-profesori_Materie"] == null)) {
-                    return new _Materii_profesoriRow[0];
+            public MateriiSpecializariRow[] GetMateriiSpecializariRows() {
+                if ((this.Table.ChildRelations["FK_MateriiSpecializari_Materii"] == null)) {
+                    return new MateriiSpecializariRow[0];
                 }
                 else {
-                    return ((_Materii_profesoriRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Materii-profesori_Materie"])));
+                    return ((MateriiSpecializariRow[])(base.GetChildRows(this.Table.ChildRelations["FK_MateriiSpecializari_Materii"])));
                 }
             }
         }
@@ -3486,12 +3412,12 @@ namespace CatalogApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public _Materii_profesoriRow[] _GetMaterii_profesoriRows() {
-                if ((this.Table.ChildRelations["FK_Materii-profesori_Profesor"] == null)) {
-                    return new _Materii_profesoriRow[0];
+            public MateriiProfesoriRow[] GetMateriiProfesoriRows() {
+                if ((this.Table.ChildRelations["FK_MateriiProfesori_Profesor"] == null)) {
+                    return new MateriiProfesoriRow[0];
                 }
                 else {
-                    return ((_Materii_profesoriRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Materii-profesori_Profesor"])));
+                    return ((MateriiProfesoriRow[])(base.GetChildRows(this.Table.ChildRelations["FK_MateriiProfesori_Profesor"])));
                 }
             }
         }
@@ -3545,23 +3471,23 @@ namespace CatalogApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public _Materii_specializariRow[] _GetMaterii_specializariRows() {
-                if ((this.Table.ChildRelations["FK_Materii-specializari_Specializari"] == null)) {
-                    return new _Materii_specializariRow[0];
-                }
-                else {
-                    return ((_Materii_specializariRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Materii-specializari_Specializari"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public ListaGrupeRow[] GetListaGrupeRows() {
                 if ((this.Table.ChildRelations["FK_ListaGrupe_Specializare"] == null)) {
                     return new ListaGrupeRow[0];
                 }
                 else {
                     return ((ListaGrupeRow[])(base.GetChildRows(this.Table.ChildRelations["FK_ListaGrupe_Specializare"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MateriiSpecializariRow[] GetMateriiSpecializariRows() {
+                if ((this.Table.ChildRelations["FK_MateriiSpecializari_Specializari"] == null)) {
+                    return new MateriiSpecializariRow[0];
+                }
+                else {
+                    return ((MateriiSpecializariRow[])(base.GetChildRows(this.Table.ChildRelations["FK_MateriiSpecializari_Specializari"])));
                 }
             }
         }
@@ -3650,25 +3576,25 @@ namespace CatalogApp {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class _Materii_profesoriRow : global::System.Data.DataRow {
+        public partial class MateriiProfesoriRow : global::System.Data.DataRow {
             
-            private _Materii_profesoriDataTable _tableMaterii_profesori;
+            private MateriiProfesoriDataTable tableMateriiProfesori;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal _Materii_profesoriRow(global::System.Data.DataRowBuilder rb) : 
+            internal MateriiProfesoriRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this._tableMaterii_profesori = ((_Materii_profesoriDataTable)(this.Table));
+                this.tableMateriiProfesori = ((MateriiProfesoriDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public int ID {
                 get {
-                    return ((int)(this[this._tableMaterii_profesori.IDColumn]));
+                    return ((int)(this[this.tableMateriiProfesori.IDColumn]));
                 }
                 set {
-                    this[this._tableMaterii_profesori.IDColumn] = value;
+                    this[this.tableMateriiProfesori.IDColumn] = value;
                 }
             }
             
@@ -3676,10 +3602,10 @@ namespace CatalogApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public int IdMaterie {
                 get {
-                    return ((int)(this[this._tableMaterii_profesori.IdMaterieColumn]));
+                    return ((int)(this[this.tableMateriiProfesori.IdMaterieColumn]));
                 }
                 set {
-                    this[this._tableMaterii_profesori.IdMaterieColumn] = value;
+                    this[this.tableMateriiProfesori.IdMaterieColumn] = value;
                 }
             }
             
@@ -3687,10 +3613,10 @@ namespace CatalogApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public int IdProfesor {
                 get {
-                    return ((int)(this[this._tableMaterii_profesori.IdProfesorColumn]));
+                    return ((int)(this[this.tableMateriiProfesori.IdProfesorColumn]));
                 }
                 set {
-                    this[this._tableMaterii_profesori.IdProfesorColumn] = value;
+                    this[this.tableMateriiProfesori.IdProfesorColumn] = value;
                 }
             }
             
@@ -3698,10 +3624,10 @@ namespace CatalogApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public ListaMateriiRow ListaMateriiRow {
                 get {
-                    return ((ListaMateriiRow)(this.GetParentRow(this.Table.ParentRelations["FK_Materii-profesori_Materie"])));
+                    return ((ListaMateriiRow)(this.GetParentRow(this.Table.ParentRelations["FK_MateriiProfesori_Materie"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Materii-profesori_Materie"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_MateriiProfesori_Materie"]);
                 }
             }
             
@@ -3709,10 +3635,80 @@ namespace CatalogApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public ListaProfesoriRow ListaProfesoriRow {
                 get {
-                    return ((ListaProfesoriRow)(this.GetParentRow(this.Table.ParentRelations["FK_Materii-profesori_Profesor"])));
+                    return ((ListaProfesoriRow)(this.GetParentRow(this.Table.ParentRelations["FK_MateriiProfesori_Profesor"])));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Materii-profesori_Profesor"]);
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_MateriiProfesori_Profesor"]);
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class MateriiSpecializariRow : global::System.Data.DataRow {
+            
+            private MateriiSpecializariDataTable tableMateriiSpecializari;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal MateriiSpecializariRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableMateriiSpecializari = ((MateriiSpecializariDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int ID {
+                get {
+                    return ((int)(this[this.tableMateriiSpecializari.IDColumn]));
+                }
+                set {
+                    this[this.tableMateriiSpecializari.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int IdMaterie {
+                get {
+                    return ((int)(this[this.tableMateriiSpecializari.IdMaterieColumn]));
+                }
+                set {
+                    this[this.tableMateriiSpecializari.IdMaterieColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int IdSpecializare {
+                get {
+                    return ((int)(this[this.tableMateriiSpecializari.IdSpecializareColumn]));
+                }
+                set {
+                    this[this.tableMateriiSpecializari.IdSpecializareColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public ListaMateriiRow ListaMateriiRow {
+                get {
+                    return ((ListaMateriiRow)(this.GetParentRow(this.Table.ParentRelations["FK_MateriiSpecializari_Materii"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_MateriiSpecializari_Materii"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public ListaSpecializariRow ListaSpecializariRow {
+                get {
+                    return ((ListaSpecializariRow)(this.GetParentRow(this.Table.ParentRelations["FK_MateriiSpecializari_Specializari"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_MateriiSpecializari_Specializari"]);
                 }
             }
         }
@@ -3737,40 +3733,6 @@ namespace CatalogApp {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public CatalogRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class _Materii_specializariRowChangeEvent : global::System.EventArgs {
-            
-            private _Materii_specializariRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public _Materii_specializariRowChangeEvent(_Materii_specializariRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public _Materii_specializariRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -3959,22 +3921,56 @@ namespace CatalogApp {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class _Materii_profesoriRowChangeEvent : global::System.EventArgs {
+        public class MateriiProfesoriRowChangeEvent : global::System.EventArgs {
             
-            private _Materii_profesoriRow eventRow;
+            private MateriiProfesoriRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public _Materii_profesoriRowChangeEvent(_Materii_profesoriRow row, global::System.Data.DataRowAction action) {
+            public MateriiProfesoriRowChangeEvent(MateriiProfesoriRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public _Materii_profesoriRow Row {
+            public MateriiProfesoriRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class MateriiSpecializariRowChangeEvent : global::System.EventArgs {
+            
+            private MateriiSpecializariRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MateriiSpecializariRowChangeEvent(MateriiSpecializariRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public MateriiSpecializariRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -4332,313 +4328,6 @@ SELECT IdCatalog, NumarMatricol, IdMaterie, Nota, IdProfesor, DataExamen, Enable
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(int NumarMatricol, int IdMaterie, int Nota, int IdProfesor, System.DateTime DataExamen, bool Enabled, int Original_IdCatalog, int Original_NumarMatricol, int Original_IdMaterie, int Original_Nota, int Original_IdProfesor, System.DateTime Original_DataExamen, bool Original_Enabled) {
             return this.Update(NumarMatricol, IdMaterie, Nota, IdProfesor, DataExamen, Enabled, Original_IdCatalog, Original_NumarMatricol, Original_IdMaterie, Original_Nota, Original_IdProfesor, Original_DataExamen, Original_Enabled, Original_IdCatalog);
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class Materii_specializariTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public Materii_specializariTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "Materii-specializari";
-            tableMapping.ColumnMappings.Add("ID", "ID");
-            tableMapping.ColumnMappings.Add("IdMaterie", "IdMaterie");
-            tableMapping.ColumnMappings.Add("IdSpecializare", "IdSpecializare");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Materii-specializari] WHERE (([ID] = @Original_ID) AND ([IdMat" +
-                "erie] = @Original_IdMaterie) AND ([IdSpecializare] = @Original_IdSpecializare))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdMaterie", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdMaterie", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdSpecializare", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdSpecializare", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Materii-specializari] ([IdMaterie], [IdSpecializare]) VALUES (" +
-                "@IdMaterie, @IdSpecializare);\r\nSELECT ID, IdMaterie, IdSpecializare FROM [Materi" +
-                "i-specializari] WHERE (ID = SCOPE_IDENTITY())";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdMaterie", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdMaterie", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdSpecializare", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdSpecializare", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Materii-specializari] SET [IdMaterie] = @IdMaterie, [IdSpecializare] = @IdSpecializare WHERE (([ID] = @Original_ID) AND ([IdMaterie] = @Original_IdMaterie) AND ([IdSpecializare] = @Original_IdSpecializare));
-SELECT ID, IdMaterie, IdSpecializare FROM [Materii-specializari] WHERE (ID = @ID)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdMaterie", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdMaterie", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdSpecializare", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdSpecializare", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdMaterie", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdMaterie", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdSpecializare", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdSpecializare", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::CatalogApp.Properties.Settings.Default.ConnString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, IdMaterie, IdSpecializare FROM dbo.[Materii-specializari]";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(CatalogDataSet._Materii_specializariDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual CatalogDataSet._Materii_specializariDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            CatalogDataSet._Materii_specializariDataTable dataTable = new CatalogDataSet._Materii_specializariDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(CatalogDataSet._Materii_specializariDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(CatalogDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "Materii-specializari");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, int Original_IdMaterie, int Original_IdSpecializare) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_IdMaterie));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_IdSpecializare));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int IdMaterie, int IdSpecializare) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(IdMaterie));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(IdSpecializare));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int IdMaterie, int IdSpecializare, int Original_ID, int Original_IdMaterie, int Original_IdSpecializare, int ID) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(IdMaterie));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(IdSpecializare));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_ID));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_IdMaterie));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_IdSpecializare));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(ID));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int IdMaterie, int IdSpecializare, int Original_ID, int Original_IdMaterie, int Original_IdSpecializare) {
-            return this.Update(IdMaterie, IdSpecializare, Original_ID, Original_IdMaterie, Original_IdSpecializare, Original_ID);
         }
     }
     
@@ -6148,7 +5837,8 @@ SELECT NumarMatricol, NumeStudent, IdGrupa, Enabled FROM ListaStudenti WHERE (Nu
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT NumarMatricol, NumeStudent, IdGrupa, Enabled FROM dbo.ListaStudenti";
+            this._commandCollection[0].CommandText = "SELECT NumarMatricol, NumeStudent, IdGrupa, Enabled, PrenumeStudent FROM ListaStu" +
+                "denti";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -6309,7 +5999,7 @@ SELECT NumarMatricol, NumeStudent, IdGrupa, Enabled FROM ListaStudenti WHERE (Nu
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class Materii_profesoriTableAdapter : global::System.ComponentModel.Component {
+    public partial class MateriiProfesoriTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -6323,7 +6013,7 @@ SELECT NumarMatricol, NumeStudent, IdGrupa, Enabled FROM ListaStudenti WHERE (Nu
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public Materii_profesoriTableAdapter() {
+        public MateriiProfesoriTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -6420,31 +6110,31 @@ SELECT NumarMatricol, NumeStudent, IdGrupa, Enabled FROM ListaStudenti WHERE (Nu
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "Materii-profesori";
+            tableMapping.DataSetTable = "MateriiProfesori";
             tableMapping.ColumnMappings.Add("ID", "ID");
             tableMapping.ColumnMappings.Add("IdMaterie", "IdMaterie");
             tableMapping.ColumnMappings.Add("IdProfesor", "IdProfesor");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Materii-profesori] WHERE (([ID] = @Original_ID) AND ([IdMateri" +
-                "e] = @Original_IdMaterie) AND ([IdProfesor] = @Original_IdProfesor))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[MateriiProfesori] WHERE (([ID] = @Original_ID) AND ([IdMaterie" +
+                "] = @Original_IdMaterie) AND ([IdProfesor] = @Original_IdProfesor))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdMaterie", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdMaterie", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdProfesor", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdProfesor", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Materii-profesori] ([IdMaterie], [IdProfesor]) VALUES (@IdMate" +
-                "rie, @IdProfesor);\r\nSELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WH" +
-                "ERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[MateriiProfesori] ([IdMaterie], [IdProfesor]) VALUES (@IdMater" +
+                "ie, @IdProfesor);\r\nSELECT ID, IdMaterie, IdProfesor FROM MateriiProfesori WHERE " +
+                "(ID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdMaterie", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdMaterie", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdProfesor", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdProfesor", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Materii-profesori] SET [IdMaterie] = @IdMaterie, [IdProfesor] = @IdProfesor WHERE (([ID] = @Original_ID) AND ([IdMaterie] = @Original_IdMaterie) AND ([IdProfesor] = @Original_IdProfesor));
-SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[MateriiProfesori] SET [IdMaterie] = @IdMaterie, [IdProfesor] = @IdProfesor WHERE (([ID] = @Original_ID) AND ([IdMaterie] = @Original_IdMaterie) AND ([IdProfesor] = @Original_IdProfesor));
+SELECT ID, IdMaterie, IdProfesor FROM MateriiProfesori WHERE (ID = @ID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdMaterie", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdMaterie", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdProfesor", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdProfesor", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6467,7 +6157,7 @@ SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT ID, IdMaterie, IdProfesor FROM dbo.[Materii-profesori]";
+            this._commandCollection[0].CommandText = "SELECT ID, IdMaterie, IdProfesor FROM dbo.MateriiProfesori";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -6475,7 +6165,7 @@ SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(CatalogDataSet._Materii_profesoriDataTable dataTable) {
+        public virtual int Fill(CatalogDataSet.MateriiProfesoriDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -6488,9 +6178,9 @@ SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual CatalogDataSet._Materii_profesoriDataTable GetData() {
+        public virtual CatalogDataSet.MateriiProfesoriDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            CatalogDataSet._Materii_profesoriDataTable dataTable = new CatalogDataSet._Materii_profesoriDataTable();
+            CatalogDataSet.MateriiProfesoriDataTable dataTable = new CatalogDataSet.MateriiProfesoriDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -6498,7 +6188,7 @@ SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(CatalogDataSet._Materii_profesoriDataTable dataTable) {
+        public virtual int Update(CatalogDataSet.MateriiProfesoriDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
@@ -6506,7 +6196,7 @@ SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(CatalogDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "Materii-profesori");
+            return this.Adapter.Update(dataSet, "MateriiProfesori");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6608,6 +6298,313 @@ SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class MateriiSpecializariTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public MateriiSpecializariTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "MateriiSpecializari";
+            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add("IdMaterie", "IdMaterie");
+            tableMapping.ColumnMappings.Add("IdSpecializare", "IdSpecializare");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[MateriiSpecializari] WHERE (([ID] = @Original_ID) AND ([IdMate" +
+                "rie] = @Original_IdMaterie) AND ([IdSpecializare] = @Original_IdSpecializare))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdMaterie", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdMaterie", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdSpecializare", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdSpecializare", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[MateriiSpecializari] ([IdMaterie], [IdSpecializare]) VALUES (@" +
+                "IdMaterie, @IdSpecializare);\r\nSELECT ID, IdMaterie, IdSpecializare FROM MateriiS" +
+                "pecializari WHERE (ID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdMaterie", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdMaterie", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdSpecializare", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdSpecializare", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[MateriiSpecializari] SET [IdMaterie] = @IdMaterie, [IdSpecializare] = @IdSpecializare WHERE (([ID] = @Original_ID) AND ([IdMaterie] = @Original_IdMaterie) AND ([IdSpecializare] = @Original_IdSpecializare));
+SELECT ID, IdMaterie, IdSpecializare FROM MateriiSpecializari WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdMaterie", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdMaterie", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdSpecializare", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdSpecializare", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdMaterie", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdMaterie", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_IdSpecializare", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "IdSpecializare", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::CatalogApp.Properties.Settings.Default.ConnString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT ID, IdMaterie, IdSpecializare FROM dbo.MateriiSpecializari";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(CatalogDataSet.MateriiSpecializariDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual CatalogDataSet.MateriiSpecializariDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            CatalogDataSet.MateriiSpecializariDataTable dataTable = new CatalogDataSet.MateriiSpecializariDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(CatalogDataSet.MateriiSpecializariDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(CatalogDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "MateriiSpecializari");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_ID, int Original_IdMaterie, int Original_IdSpecializare) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_IdMaterie));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_IdSpecializare));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(int IdMaterie, int IdSpecializare) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(IdMaterie));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((int)(IdSpecializare));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int IdMaterie, int IdSpecializare, int Original_ID, int Original_IdMaterie, int Original_IdSpecializare, int ID) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(IdMaterie));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(IdSpecializare));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_ID));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_IdMaterie));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_IdSpecializare));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(ID));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(int IdMaterie, int IdSpecializare, int Original_ID, int Original_IdMaterie, int Original_IdSpecializare) {
+            return this.Update(IdMaterie, IdSpecializare, Original_ID, Original_IdMaterie, Original_IdSpecializare, Original_ID);
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -6621,8 +6618,6 @@ SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
         
         private CatalogTableAdapter _catalogTableAdapter;
         
-        private Materii_specializariTableAdapter _materii_specializariTableAdapter;
-        
         private ListaGrupeTableAdapter _listaGrupeTableAdapter;
         
         private ListaMateriiTableAdapter _listaMateriiTableAdapter;
@@ -6633,7 +6628,9 @@ SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
         
         private ListaStudentiTableAdapter _listaStudentiTableAdapter;
         
-        private Materii_profesoriTableAdapter _materii_profesoriTableAdapter;
+        private MateriiProfesoriTableAdapter _materiiProfesoriTableAdapter;
+        
+        private MateriiSpecializariTableAdapter _materiiSpecializariTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -6661,20 +6658,6 @@ SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
             }
             set {
                 this._catalogTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public Materii_specializariTableAdapter Materii_specializariTableAdapter {
-            get {
-                return this._materii_specializariTableAdapter;
-            }
-            set {
-                this._materii_specializariTableAdapter = value;
             }
         }
         
@@ -6753,12 +6736,26 @@ SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public Materii_profesoriTableAdapter Materii_profesoriTableAdapter {
+        public MateriiProfesoriTableAdapter MateriiProfesoriTableAdapter {
             get {
-                return this._materii_profesoriTableAdapter;
+                return this._materiiProfesoriTableAdapter;
             }
             set {
-                this._materii_profesoriTableAdapter = value;
+                this._materiiProfesoriTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public MateriiSpecializariTableAdapter MateriiSpecializariTableAdapter {
+            get {
+                return this._materiiSpecializariTableAdapter;
+            }
+            set {
+                this._materiiSpecializariTableAdapter = value;
             }
         }
         
@@ -6785,10 +6782,6 @@ SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
                             && (this._catalogTableAdapter.Connection != null))) {
                     return this._catalogTableAdapter.Connection;
                 }
-                if (((this._materii_specializariTableAdapter != null) 
-                            && (this._materii_specializariTableAdapter.Connection != null))) {
-                    return this._materii_specializariTableAdapter.Connection;
-                }
                 if (((this._listaGrupeTableAdapter != null) 
                             && (this._listaGrupeTableAdapter.Connection != null))) {
                     return this._listaGrupeTableAdapter.Connection;
@@ -6809,9 +6802,13 @@ SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
                             && (this._listaStudentiTableAdapter.Connection != null))) {
                     return this._listaStudentiTableAdapter.Connection;
                 }
-                if (((this._materii_profesoriTableAdapter != null) 
-                            && (this._materii_profesoriTableAdapter.Connection != null))) {
-                    return this._materii_profesoriTableAdapter.Connection;
+                if (((this._materiiProfesoriTableAdapter != null) 
+                            && (this._materiiProfesoriTableAdapter.Connection != null))) {
+                    return this._materiiProfesoriTableAdapter.Connection;
+                }
+                if (((this._materiiSpecializariTableAdapter != null) 
+                            && (this._materiiSpecializariTableAdapter.Connection != null))) {
+                    return this._materiiSpecializariTableAdapter.Connection;
                 }
                 return null;
             }
@@ -6829,9 +6826,6 @@ SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
                 if ((this._catalogTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._materii_specializariTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 if ((this._listaGrupeTableAdapter != null)) {
                     count = (count + 1);
                 }
@@ -6847,7 +6841,10 @@ SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
                 if ((this._listaStudentiTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._materii_profesoriTableAdapter != null)) {
+                if ((this._materiiProfesoriTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._materiiSpecializariTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -6915,21 +6912,21 @@ SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._materii_specializariTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet._Materii_specializari.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._materiiProfesoriTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.MateriiProfesori.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._materii_specializariTableAdapter.Update(updatedRows));
+                    result = (result + this._materiiProfesoriTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._materii_profesoriTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet._Materii_profesori.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._materiiSpecializariTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.MateriiSpecializari.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._materii_profesoriTableAdapter.Update(updatedRows));
+                    result = (result + this._materiiSpecializariTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -6991,19 +6988,19 @@ SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._materii_specializariTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet._Materii_specializari.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._materiiProfesoriTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.MateriiProfesori.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._materii_specializariTableAdapter.Update(addedRows));
+                    result = (result + this._materiiProfesoriTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._materii_profesoriTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet._Materii_profesori.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._materiiSpecializariTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.MateriiSpecializari.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._materii_profesoriTableAdapter.Update(addedRows));
+                    result = (result + this._materiiSpecializariTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -7017,19 +7014,19 @@ SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateDeletedRows(CatalogDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._materii_profesoriTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet._Materii_profesori.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._materiiSpecializariTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.MateriiSpecializari.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._materii_profesoriTableAdapter.Update(deletedRows));
+                    result = (result + this._materiiSpecializariTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._materii_specializariTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet._Materii_specializari.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._materiiProfesoriTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.MateriiProfesori.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._materii_specializariTableAdapter.Update(deletedRows));
+                    result = (result + this._materiiProfesoriTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -7125,11 +7122,6 @@ SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
-            if (((this._materii_specializariTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._materii_specializariTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
             if (((this._listaGrupeTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._listaGrupeTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
@@ -7155,8 +7147,13 @@ SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
-            if (((this._materii_profesoriTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._materii_profesoriTableAdapter.Connection) == false))) {
+            if (((this._materiiProfesoriTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._materiiProfesoriTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._materiiSpecializariTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._materiiSpecializariTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -7199,15 +7196,6 @@ SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
                     if (this._catalogTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._catalogTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._catalogTableAdapter.Adapter);
-                    }
-                }
-                if ((this._materii_specializariTableAdapter != null)) {
-                    revertConnections.Add(this._materii_specializariTableAdapter, this._materii_specializariTableAdapter.Connection);
-                    this._materii_specializariTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._materii_specializariTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._materii_specializariTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._materii_specializariTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._materii_specializariTableAdapter.Adapter);
                     }
                 }
                 if ((this._listaGrupeTableAdapter != null)) {
@@ -7255,13 +7243,22 @@ SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
                         adaptersWithAcceptChangesDuringUpdate.Add(this._listaStudentiTableAdapter.Adapter);
                     }
                 }
-                if ((this._materii_profesoriTableAdapter != null)) {
-                    revertConnections.Add(this._materii_profesoriTableAdapter, this._materii_profesoriTableAdapter.Connection);
-                    this._materii_profesoriTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._materii_profesoriTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._materii_profesoriTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._materii_profesoriTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._materii_profesoriTableAdapter.Adapter);
+                if ((this._materiiProfesoriTableAdapter != null)) {
+                    revertConnections.Add(this._materiiProfesoriTableAdapter, this._materiiProfesoriTableAdapter.Connection);
+                    this._materiiProfesoriTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._materiiProfesoriTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._materiiProfesoriTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._materiiProfesoriTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._materiiProfesoriTableAdapter.Adapter);
+                    }
+                }
+                if ((this._materiiSpecializariTableAdapter != null)) {
+                    revertConnections.Add(this._materiiSpecializariTableAdapter, this._materiiSpecializariTableAdapter.Connection);
+                    this._materiiSpecializariTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._materiiSpecializariTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._materiiSpecializariTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._materiiSpecializariTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._materiiSpecializariTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -7326,10 +7323,6 @@ SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
                     this._catalogTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._catalogTableAdapter]));
                     this._catalogTableAdapter.Transaction = null;
                 }
-                if ((this._materii_specializariTableAdapter != null)) {
-                    this._materii_specializariTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._materii_specializariTableAdapter]));
-                    this._materii_specializariTableAdapter.Transaction = null;
-                }
                 if ((this._listaGrupeTableAdapter != null)) {
                     this._listaGrupeTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._listaGrupeTableAdapter]));
                     this._listaGrupeTableAdapter.Transaction = null;
@@ -7350,9 +7343,13 @@ SELECT ID, IdMaterie, IdProfesor FROM [Materii-profesori] WHERE (ID = @ID)";
                     this._listaStudentiTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._listaStudentiTableAdapter]));
                     this._listaStudentiTableAdapter.Transaction = null;
                 }
-                if ((this._materii_profesoriTableAdapter != null)) {
-                    this._materii_profesoriTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._materii_profesoriTableAdapter]));
-                    this._materii_profesoriTableAdapter.Transaction = null;
+                if ((this._materiiProfesoriTableAdapter != null)) {
+                    this._materiiProfesoriTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._materiiProfesoriTableAdapter]));
+                    this._materiiProfesoriTableAdapter.Transaction = null;
+                }
+                if ((this._materiiSpecializariTableAdapter != null)) {
+                    this._materiiSpecializariTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._materiiSpecializariTableAdapter]));
+                    this._materiiSpecializariTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

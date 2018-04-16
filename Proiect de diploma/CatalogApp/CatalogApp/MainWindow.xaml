@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CatalogApp"
         mc:Ignorable="d" FontSize="20"
-        Title="Catalog" Height="768" Width="1024" ResizeMode="CanMinimize" 
-        WindowStartupLocation="CenterScreen" VerticalAlignment="Top">
+        Title="Catalog" Height="768" Width="1300" ResizeMode="CanMinimize" 
+        WindowStartupLocation="CenterScreen" VerticalAlignment="Top" Loaded="Window_Loaded">
     <Grid Margin="2" Background="DarkGray">
         <TabControl TabStripPlacement="Left">
 
@@ -19,11 +19,11 @@
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="2*"/>
                                         <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="2*"/>
                                         <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="auto"/>
-                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
 
                                     <Grid.RowDefinitions>
@@ -36,13 +36,13 @@
                                     <TextBlock Grid.Column="2" Grid.Row="0" Text="Materie:"
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                                     <TextBlock Grid.Column="4" Grid.Row="0" Text="Nota:"
-                                           Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                                           Margin="10,2,2,2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                                     <TextBlock Grid.Column="0" Grid.Row="1" Text="Student:"
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                                     <TextBlock Grid.Column="2" Grid.Row="1" Text="Data examen:"
-                                           Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                                           Margin="10,2,2,2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
 
-                                    <ComboBox x:Name="cbxCatalogProfesor" Margin="2" Grid.Column="1" Grid.Row="0" Padding="2" Width="200" />
+                                    <ComboBox x:Name="cbxCatalogProfesor" Margin="2" Grid.Column="1" Grid.Row="0" Padding="2" />
                                     <ComboBox x:Name="cbxCatalogMaterie" Margin="2" Grid.Column="3" Grid.Row="0" Padding="2" />
                                     <ComboBox x:Name="cbxCatalogNota" Margin="2" Grid.Column="5" Grid.Row="0" Padding="2" Width="60" IsEditable="True">
                                         <Button Content="1" Background="White" BorderBrush="White"/>
@@ -68,16 +68,16 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Button Margin="5" Grid.Column="0" Content="Add"/>
-                                <Button Margin="5" Grid.Column="1" Content="Update"/>
-                                <Button Margin="5" Grid.Column="2" Content="Delete"/>
-                                <Button Margin="5" Grid.Column="3" Content="Reset"/>
+                                <Button x:Name="btnAddCatalog" Margin="5" Grid.Column="0" Content="Add" Click="btnAddCatalog_Click"/>
+                                <Button x:Name="btnUpdateCatalog" Margin="5" Grid.Column="1" Content="Update" IsEnabled="False" Click="btnUpdateCatalog_Click"/>
+                                <Button x:Name="btnDeleteCatalog" Margin="5" Grid.Column="2" Content="Delete" IsEnabled="False" Click="btnDeleteCatalog_Click"/>
+                                <Button x:Name="btnResetCatalog" Margin="5" Grid.Column="3" Content="Reset" Click="btnResetCatalog_Click"/>
                             </Grid>
 
                         </StackPanel>
                     </Expander>
 
-                    <DataGrid x:Name="dgr_catalog" IsReadOnly="True" >
+                    <DataGrid x:Name="dgr_catalog" IsReadOnly="True" Loaded="dgr_catalog_Loaded" SelectionChanged="dgr_catalog_SelectionChanged" >
 
                     </DataGrid>
                 </DockPanel>
@@ -106,7 +106,7 @@
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                                     <TextBlock Grid.Column="2" Grid.Row="0" Text="Prenume profesor:"
                                            Margin="50,2,2,2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Id:"
+                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Id Profesor:"
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
 
                                     <TextBox x:Name="txtNumeProfesor" Margin="2" Grid.Column="1" Grid.Row="0" Padding="2" Width="200"/>
@@ -121,12 +121,15 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
                                 <Button x:Name="btnAddProfesor" Margin="5" Grid.Column="0" Content="Add" Click="btnAddProfesor_Click"/>
                                 <Button x:Name="btnUpdateProfesor" Margin="5" Grid.Column="1" Content="Update" Click="btnUpdateProfesor_Click" IsEnabled="False"/>
                                 <Button x:Name="btnDeleteProfesor" Margin="5" Grid.Column="2" Content="Delete" Click="btnDeleteProfesor_Click" IsEnabled="False"/>
                                 <Button x:Name="btnResetProfesor" Margin="5" Grid.Column="3" Content="Reset" Click="btnResetProfesor_Click"/>
+                                <Button x:Name="btnAfisareProfesor" Margin="5" Grid.Column="4" Content="Afisare" Click="btnAfisareProfesor_Click" />
+
                             </Grid>
 
                         </StackPanel>
@@ -177,12 +180,14 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
                                 <Button x:Name="btnAddStudent" Margin="5" Grid.Column="0" Content="Add" Click="btnAddStudent_Click"/>
                                 <Button x:Name="btnUpdateStudent" Margin="5" Grid.Column="1" Content="Update" Click="btnUpdateStudent_Click" IsEnabled="False"/>
                                 <Button x:Name="btnDeleteStudent" Margin="5" Grid.Column="2" Content="Delete" Click="btnDeleteStudent_Click" IsEnabled="False"/>
                                 <Button x:Name="btnResetStudent" Margin="5" Grid.Column="3" Content="Reset" Click="btnResetStudent_Click"/>
+                                <Button x:Name="btnAfisareStudent" Margin="5" Grid.Column="4" Content="Afisare" Click="btnAfisareStudent_Click" />
                             </Grid>
 
                         </StackPanel>
@@ -268,16 +273,16 @@
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
 
-                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Materie:" 
+                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Nume Materie:" 
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Id Profesor:"
+                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Specializare:"
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                    <TextBlock Grid.Column="2" Grid.Row="1" Text="Id Specializare:"
+                                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Id Materie:"
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
 
                                     <TextBox x:Name="txtMatNumeMaterie" Margin="2" Grid.Column="1" Grid.Row="0" Padding="2" Width="200"/>
-                                    <TextBox x:Name="txtMatIdProfesor" Margin="2" Grid.Column="1" Grid.Row="1" Padding="2" Width="200" IsEnabled="False" Background="#FFE0E0E0" />
-                                    <ComboBox x:Name="txtMatIdSpecializare" Margin="2" Grid.Column="3" Grid.Row="1" Padding="2" Width="200"/>
+                                    <ComboBox x:Name="cbxMatSpecializare" Margin="2" Grid.Column="1" Grid.Row="1" Padding="2" Width="200" IsEnabled="False" Background="#FFE0E0E0" />
+                                    <TextBox x:Name="txtMatIdMaterie" Margin="2" Grid.Column="3" Grid.Row="0" Padding="2" Width="200" IsEnabled="False" Background="#FFE0E0E0"/>
                                 </Grid>
                             </GroupBox>
                             <Grid Margin="3">
@@ -288,16 +293,16 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Button Margin="5" Grid.Column="0" Content="Add"/>
-                                <Button Margin="5" Grid.Column="1" Content="Update"/>
-                                <Button Margin="5" Grid.Column="2" Content="Delete"/>
-                                <Button Margin="5" Grid.Column="3" Content="Reset"/>
+                                <Button x:Name="btnAddMaterie" Margin="5" Grid.Column="0" Content="Add" Click="btnAddMaterie_Click"/>
+                                <Button x:Name="btnUpdateMaterie" Margin="5" Grid.Column="1" Content="Update" IsEnabled="False" Click="btnUpdateMaterie_Click"/>
+                                <Button x:Name="btnDeleteMaterie" Margin="5" Grid.Column="2" Content="Delete" IsEnabled="False" Click="btnDeleteMaterie_Click"/>
+                                <Button x:Name="btnResetMaterie" Margin="5" Grid.Column="3" Content="Reset" Click="btnResetMaterie_Click"/>
                             </Grid>
 
                         </StackPanel>
                     </Expander>
 
-                    <DataGrid x:Name="dgr_materii" IsReadOnly="True" >
+                    <DataGrid x:Name="dgr_materii" IsReadOnly="True" SelectionChanged="dgr_materii_SelectionChanged" Loaded="dgr_materii_Loaded" >
 
                     </DataGrid>
                 </DockPanel>
@@ -323,7 +328,7 @@
 
                                     <TextBlock Grid.Column="0" Grid.Row="0" Text="Nume Specializare:" 
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Id:"
+                                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Id Specializare:"
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
 
                                     <TextBox x:Name="txtNumeSpecializare" Margin="2" Grid.Column="1" Grid.Row="0" Padding="2" Width="200" />
@@ -338,23 +343,25 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Button Margin="5" Grid.Column="0" Content="Add"/>
-                                <Button Margin="5" Grid.Column="1" Content="Update"/>
-                                <Button Margin="5" Grid.Column="2" Content="Delete"/>
-                                <Button Margin="5" Grid.Column="3" Content="Reset"/>
+                                <Button x:Name="btnAddSpecializare" Margin="5" Grid.Column="0" Content="Add" Click="btnAddSpecializare_Click"/>
+                                <Button x:Name="btnUpdateSpecializare" Margin="5" Grid.Column="1" Content="Update" IsEnabled="False" Click="btnUpdateSpecializare_Click"/>
+                                <Button x:Name="btnDeleteSpecializare" Margin="5" Grid.Column="2" Content="Delete" IsEnabled="False" Click="btnDeleteSpecializare_Click"/>
+                                <Button x:Name="btnResetSpecializare" Margin="5" Grid.Column="3" Content="Reset" Click="btnResetSpecializare_Click"/>
                             </Grid>
 
                         </StackPanel>
                     </Expander>
 
-                    <DataGrid x:Name="dgr_specializari" IsReadOnly="True" >
+                    <DataGrid x:Name="dgr_specializari" IsReadOnly="True" Loaded="dgr_specializari_Loaded" SelectionChanged="dgr_specializari_SelectionChanged" >
 
                     </DataGrid>
                 </DockPanel>
             </TabItem>
 
         </TabControl>
-        
+
+
+
         <StatusBar x:Name="status_conn" Height="1" Width="110" VerticalAlignment="Bottom" HorizontalAlignment="Left">
             <StatusBar.Background>
                 <SolidColorBrush Color="Red" />
@@ -362,6 +369,6 @@
         </StatusBar>
 
     </Grid>
-    
+
 
 </Window>
