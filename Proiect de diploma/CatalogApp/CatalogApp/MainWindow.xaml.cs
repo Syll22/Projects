@@ -17,7 +17,6 @@ using System.Windows.Shapes;
 using System.Printing;
 using System.Drawing.Printing;
 
-
 namespace CatalogApp
 {
     /// <summary>
@@ -27,7 +26,15 @@ namespace CatalogApp
     {
         public MainWindow()
         {
+            Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
             InitializeComponent();
+            populateNote();
+        }
+
+        private void Current_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show(e.Exception.ToString(), "Unhandled exception", MessageBoxButton.OK, MessageBoxImage.Error);
+            e.Handled = true;
         }
 
         int[] vIdCatalogProfesor = new int[100];
@@ -43,6 +50,77 @@ namespace CatalogApp
         int idStudentAles = 0;
         int idMaterieAleasa = 0;
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = Properties.Settings.Default.ConnString;
+            conn.Open();
+
+            string query = "SELECT * FROM ListaProfesori ORDER BY NumeProfesor, PrenumeProfesor ";
+
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dataReader = cmd.ExecuteReader();
+            string s;
+            int n = 0;
+            while (dataReader.Read())
+            {
+                s = dataReader["NumeProfesor"].ToString() + " " + dataReader["PrenumeProfesor"].ToString();
+                cbxCatalogProfesor.Items.Add(s);
+
+                vIdCatalogProfesor[n] = Convert.ToInt32(dataReader["IdProfesor"].ToString());
+                n++;
+            }
+            dataReader.Close();
+            conn.Close();
+            dimVIdCatalogProfesor = n;
+
+            // ==================Studenti
+
+            conn = new SqlConnection();
+            conn.ConnectionString = Properties.Settings.Default.ConnString;
+            conn.Open();
+
+            query = "SELECT * FROM ListaStudenti ORDER BY NumeStudent, PrenumeStudent ";
+
+            cmd = new SqlCommand(query, conn);
+            dataReader = cmd.ExecuteReader();
+            n = 0;
+            while (dataReader.Read())
+            {
+                s = dataReader["NumeStudent"].ToString() + " " + dataReader["PrenumeStudent"].ToString();
+                cbxCatalogStudenti.Items.Add(s);
+
+                vIdCatalogStudent[n] = Convert.ToInt32(dataReader["NumarMatricol"].ToString());
+                n++;
+            }
+            dataReader.Close();
+            conn.Close();
+            dimVIdCatalogStudent = n;
+
+            // ==================Materii
+
+            conn = new SqlConnection();
+            conn.ConnectionString = Properties.Settings.Default.ConnString;
+            conn.Open();
+
+            query = "SELECT * FROM ListaMaterii ORDER BY NumeMaterie";
+
+            cmd = new SqlCommand(query, conn);
+            dataReader = cmd.ExecuteReader();
+            n = 0;
+            while (dataReader.Read())
+            {
+                s = dataReader["NumeMaterie"].ToString();
+                cbxCatalogMaterie.Items.Add(s);
+
+                vIdCatalogMaterie[n] = Convert.ToInt32(dataReader["IdMaterie"].ToString());
+                n++;
+            }
+            dataReader.Close();
+            conn.Close();
+            dimVIdCatalogMaterie = n;
+
+        }
 
         // Profesori ------------------------------------------------------------------------------------------------------
 
@@ -52,7 +130,7 @@ namespace CatalogApp
             conn.ConnectionString = Properties.Settings.Default.ConnString;
             conn.Open();
 
-            string query = "SELECT IdProfesor, NumeProfesor, PrenumeProfesor FROM ListaProfesori ORDER BY NumeProfesor";
+            string query = "SELECT IdProfesor AS ID, NumeProfesor AS Nume, PrenumeProfesor AS Prenume FROM ListaProfesori ORDER BY NumeProfesor";
 
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dataReader = cmd.ExecuteReader();
@@ -75,9 +153,9 @@ namespace CatalogApp
             DataRowView dataRowView = dataGrid.SelectedItem as DataRowView;
             if (dataRowView != null)
             {
-                txtNumeProfesor.Text = dataRowView["NumeProfesor"].ToString();
-                txtPrenumeProfesor.Text = dataRowView["PrenumeProfesor"].ToString();
-                txtId.Text = dataRowView["IdProfesor"].ToString();
+                txtNumeProfesor.Text = dataRowView["Nume"].ToString();
+                txtPrenumeProfesor.Text = dataRowView["Prenume"].ToString();
+                txtId.Text = dataRowView["ID"].ToString();
                 btnAddProfesor.IsEnabled = false;
                 btnUpdateProfesor.IsEnabled = true;
                 btnDeleteProfesor.IsEnabled = true;
@@ -253,6 +331,12 @@ namespace CatalogApp
             btnDeleteProfesor.IsEnabled = false;
         }
 
+        private void btnAfisareProfesor_Click(object sender, RoutedEventArgs e)
+        {
+            FormProfesorAfisare frm = new FormProfesorAfisare();
+            frm.ShowDialog();
+        }
+
         // Studenti -------------------------------------------------------------------------------------------------------
 
         private void updateDataGrid_Studenti()
@@ -261,14 +345,14 @@ namespace CatalogApp
             conn.ConnectionString = Properties.Settings.Default.ConnString;
             conn.Open();
 
-            string query = "SELECT NumarMatricol, NumeStudent, PrenumeStudent FROM ListaStudenti ORDER BY NumeStudent";
+            string query = "SELECT NumarMatricol as [Numar matricol], NumeStudent AS Nume, PrenumeStudent AS Prenume FROM ListaStudenti ORDER BY NumeStudent";
 
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dataReader = cmd.ExecuteReader();
             DataTable dataTable = new DataTable();
             dataTable.Load(dataReader);
             dgr_studenti.ItemsSource = dataTable.DefaultView;
-
+            dgr_studenti.DataContext = dataTable;
             dataReader.Close();
             conn.Close();
         }
@@ -284,9 +368,9 @@ namespace CatalogApp
             DataRowView dataRowView = dataGrid.SelectedItem as DataRowView;
             if (dataRowView != null)
             {
-                txtNumeStudent.Text = dataRowView["NumeStudent"].ToString();
-                txtPrenumeStudent.Text = dataRowView["PrenumeStudent"].ToString();
-                txtNumarMatricol.Text = dataRowView["NumarMatricol"].ToString();
+                txtNumeStudent.Text = dataRowView["Nume"].ToString();
+                txtPrenumeStudent.Text = dataRowView["Prenume"].ToString();
+                txtNumarMatricol.Text = dataRowView["Numar matricol"].ToString();
                 //cbxStuGrupa.Text = dataRowView["IdGrupa"].ToString(); //de reparat
                 btnAddStudent.IsEnabled = false;
                 btnUpdateStudent.IsEnabled = true;
@@ -390,6 +474,64 @@ namespace CatalogApp
             btnDeleteStudent.IsEnabled = false;
         }
 
+        private void btnPrintStudent_Click(object sender, EventArgs e)
+        {
+            PrintDocument pd2 = new PrintDocument();
+
+            pd2.PrintPage += new PrintPageEventHandler(this.preluare_date);
+
+            System.Windows.Forms.PrintDialog pdlg = new System.Windows.Forms.PrintDialog();
+            System.Windows.Forms.PrintPreviewDialog ppd = new System.Windows.Forms.PrintPreviewDialog();
+
+            ppd.Document = pd2;
+            ppd.ShowDialog();
+
+            pdlg.Document = pd2;
+
+            if (pdlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                pd2.Print();
+            }
+        }
+
+        private void preluare_date(object sender, PrintPageEventArgs e)
+        {
+            int entryLevelX = 1;
+            int entryLevelY = 1;
+            foreach (var item in cbxCatalogNota.Items)
+            {
+                e.Graphics.DrawString("\n O nota este: " + item.ToString(), new System.Drawing.Font("Arial", 20), System.Drawing.Brushes.Blue, 10 * entryLevelX, 25 * entryLevelY++);
+            }
+        }
+
+        private void btnAfisareStudent_Click(object sender, RoutedEventArgs e)
+        {
+            btnPrintStudent_Click(null, null);
+            return;
+            //FormStudentAfisare frm = new FormStudentAfisare();
+            //frm.ShowDialog();
+        }
+
+        private void filtru1TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var dt = dgr_studenti.DataContext as DataTable;
+
+            DataRow[] rows = dt.Select("NumeStudent LIKE '" + (sender as TextBox).Text + "%'");
+            dgr_studenti.ItemsSource = rows;
+            dgr_studenti.Items.Refresh();
+            Console.ReadLine();
+        }
+
+        private void filtru2TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void filtru3TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
         // Grupe ----------------------------------------------------------------------------------------------------------
 
         private void updateDataGrid_Grupe()
@@ -422,12 +564,20 @@ namespace CatalogApp
             DataRowView dataRowView = dataGrid.SelectedItem as DataRowView;
             if (dataRowView != null)
             {
-                txtGruNumeGrupa.Text = dataRowView["NumeGrupa"].ToString();
-                txtGruIdGrupa.Text = dataRowView["IdGrupa"].ToString();
+                txtGruNumeGrupa.Text = dataRowView["Grupa"].ToString();
+                txtGruIdGrupa.Text = dataRowView["ID"].ToString();
                 //cbxGruSpecializare.Text = dataRowView["IdSpecializare"].ToString(); //de reparat
                 btnAddGrupa.IsEnabled = false;
                 btnUpdateGrupa.IsEnabled = true;
                 btnDeleteGrupa.IsEnabled = true;
+            }
+        }
+
+        private void populateNote()
+        {
+            for (int i = 1; i < 11; i++)
+            {
+                cbxCatalogNota.Items.Add(i.ToString());
             }
         }
 
@@ -521,6 +671,11 @@ namespace CatalogApp
             btnDeleteGrupa.IsEnabled = false;
         }
 
+        private void btnAfisareGrupa_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         // Materii --------------------------------------------------------------------------------------------------------
 
         private void updateDataGrid_Materii()
@@ -529,7 +684,7 @@ namespace CatalogApp
             conn.ConnectionString = Properties.Settings.Default.ConnString;
             conn.Open();
 
-            string query = "SELECT IdMaterie, NumeMaterie FROM ListaMaterii ORDER BY NumeMaterie";
+            string query = "SELECT IdMaterie AS ID, NumeMaterie AS Materie FROM ListaMaterii ORDER BY NumeMaterie";
 
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dataReader = cmd.ExecuteReader();
@@ -552,8 +707,8 @@ namespace CatalogApp
             DataRowView dataRowView = dataGrid.SelectedItem as DataRowView;
             if (dataRowView != null)
             {
-                txtMatNumeMaterie.Text = dataRowView["NumeMaterie"].ToString();
-                txtMatIdMaterie.Text = dataRowView["IdMaterie"].ToString();
+                txtMatNumeMaterie.Text = dataRowView["Materie"].ToString();
+                txtMatIdMaterie.Text = dataRowView["ID"].ToString();
                 //cbxMatSpecializare.Text = dataRowView["IdSpecializare"].ToString(); //de reparat
                 btnAddMaterie.IsEnabled = false;
                 btnUpdateMaterie.IsEnabled = true;
@@ -650,6 +805,11 @@ namespace CatalogApp
             btnDeleteMaterie.IsEnabled = false;
         }
 
+        private void btnAfisareMaterie_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         // Specializari ---------------------------------------------------------------------------------------------------
 
         private void updateDataGrid_Specializari()
@@ -658,7 +818,7 @@ namespace CatalogApp
             conn.ConnectionString = Properties.Settings.Default.ConnString;
             conn.Open();
 
-            string query = "SELECT IdSpecializare, NumeSpecializare FROM ListaSpecializari ORDER BY NumeSpecializare";
+            string query = "SELECT IdSpecializare AS ID, NumeSpecializare AS Specializare FROM ListaSpecializari ORDER BY NumeSpecializare";
 
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dataReader = cmd.ExecuteReader();
@@ -681,8 +841,8 @@ namespace CatalogApp
             DataRowView dataRowView = dataGrid.SelectedItem as DataRowView;
             if (dataRowView != null)
             {
-                txtNumeSpecializare.Text = dataRowView["NumeSpecializare"].ToString();
-                txtIdSpecializare.Text = dataRowView["IdSpecializare"].ToString();
+                txtNumeSpecializare.Text = dataRowView["Specializare"].ToString();
+                txtIdSpecializare.Text = dataRowView["ID"].ToString();
                 btnAddSpecializare.IsEnabled = false;
                 btnUpdateSpecializare.IsEnabled = true;
                 btnDeleteSpecializare.IsEnabled = true;
@@ -777,6 +937,11 @@ namespace CatalogApp
             btnDeleteSpecializare.IsEnabled = false;
         }
 
+        private void btnAfisareSpecializare_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         // Catalog --------------------------------------------------------------------------------------------------------
 
         private void updateDataGrid_Catalog()
@@ -832,16 +997,17 @@ namespace CatalogApp
                     sql = "INSERT INTO Catalog (NumarMatricol, IdMaterie, Nota, IdProfesor, DataExamen)" +
                         " VALUES('" + idStudentAles + "', '" + idMaterieAleasa + "', '" + cbxCatalogNota.Text + "', '" + idProfesorAles + "', '" + dpkCatalogDataExamen.Text + "')";
                     // msg = "Datele despre specializare au fost adaugate cu succes.";
-                    msg = sql;
+
+                    msg = "Datele despre examen au fost introduse.";
                     break;
                 case 1:
                     sql = "UPDATE ListaSpecializari SET NumeSpecializare='" + txtNumeSpecializare.Text + "' WHERE IdSpecializare=" + 
                         txtIdSpecializare.Text; //to be fixed
-                    msg = "Datele despre specializare au fost actualizate.";
+                    msg = "Datele despre examen au fost actualizate.";
                     break;
                 case 2:
-                    sql = "DELETE FROM ListaSpecializari WHERE IdSpecializare=" + txtIdSpecializare.Text; //to be fixed
-                    msg = "Datele despre specializare au fost sterse.";
+                    sql = "DELETE FROM Catalog WHERE IdCatalog=" + txtIdCatalog.Text;
+                    msg = "Datele despre examen au fost sterse.";
                     break;
             }
 
@@ -875,12 +1041,39 @@ namespace CatalogApp
         {
             if (cbxCatalogProfesor.Text == "")
             {
-                MessageBox.Show("Nu ati introdus numele profesorului!");
+                MessageBox.Show("Nu ati introdus numele profesorului.");
                 cbxCatalogProfesor.Focus();
                 return;
             }
 
-            //de adaugat cate un if pentru fiecare camp din tab
+            if (cbxCatalogMaterie.Text =="")
+            {
+                MessageBox.Show("Nu ati introdus materia.");
+                cbxCatalogMaterie.Focus();
+                return;
+            }
+
+            if (cbxCatalogStudenti.Text == "")
+            {
+                MessageBox.Show("Nu ati introdus studentul.");
+                cbxCatalogStudenti.Focus();
+                return;
+            }
+
+            if (cbxCatalogNota.Text == "")
+            {
+                MessageBox.Show("Nu ati introdus nota.");
+                cbxCatalogNota.Focus();
+                return;
+            }
+
+            if (dpkCatalogDataExamen.Text == "")
+            {
+                MessageBox.Show("Nu ati ales o data corecta");
+                dpkCatalogDataExamen.Focus();
+                return;
+            }
+
             int index = 0;
 
             index = cbxCatalogProfesor.SelectedIndex;
@@ -919,88 +1112,15 @@ namespace CatalogApp
             btnDeleteCatalog.IsEnabled = false;
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void cbxCatalogNota_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SqlConnection conn = new SqlConnection();
-            conn.ConnectionString = Properties.Settings.Default.ConnString;
-            conn.Open();
+            Console.WriteLine((sender as ComboBox).SelectedValue.ToString());
+        }
 
-            string query = "SELECT * FROM ListaProfesori ORDER BY NumeProfesor, PrenumeProfesor ";
-
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dataReader = cmd.ExecuteReader();
-            string s;
-            int n = 0;
-            while (dataReader.Read())
-            {
-                s = dataReader["NumeProfesor"].ToString() + " " + dataReader["PrenumeProfesor"].ToString();
-                cbxCatalogProfesor.Items.Add(s);
-
-                vIdCatalogProfesor[n] = Convert.ToInt32(dataReader["IdProfesor"].ToString());
-                n++;
-            }
-            dataReader.Close();
-            conn.Close();
-            dimVIdCatalogProfesor = n;
-
-            // ==================Studenti
-
-            conn = new SqlConnection();
-            conn.ConnectionString = Properties.Settings.Default.ConnString;
-            conn.Open();
-
-            query = "SELECT * FROM ListaStudenti ORDER BY NumeStudent, PrenumeStudent ";
-
-            cmd = new SqlCommand(query, conn);
-            dataReader = cmd.ExecuteReader();
-            n = 0;
-            while (dataReader.Read())
-            {
-                s = dataReader["NumeStudent"].ToString() + " " + dataReader["PrenumeStudent"].ToString();
-                cbxCatalogStudenti.Items.Add(s);
-
-                vIdCatalogStudent[n] = Convert.ToInt32(dataReader["NumarMatricol"].ToString());
-                n++;
-            }
-            dataReader.Close();
-            conn.Close();
-            dimVIdCatalogStudent = n;
-
-            // ==================Materii
-
-            conn = new SqlConnection();
-            conn.ConnectionString = Properties.Settings.Default.ConnString;
-            conn.Open();
-
-            query = "SELECT * FROM ListaMaterii ORDER BY NumeMaterie";
-
-            cmd = new SqlCommand(query, conn);
-            dataReader = cmd.ExecuteReader();
-            n = 0;
-            while (dataReader.Read())
-            {
-                s = dataReader["NumeMaterie"].ToString();
-                cbxCatalogMaterie.Items.Add(s);
-
-                vIdCatalogMaterie[n] = Convert.ToInt32(dataReader["IdMaterie"].ToString());
-                n++;
-            }
-            dataReader.Close();
-            conn.Close();
-            dimVIdCatalogMaterie = n;
+        private void btnAfisareCatalog_Click(object sender, RoutedEventArgs e)
+        {
 
         }
 
-        private void btnAfisareProfesor_Click(object sender, RoutedEventArgs e)
-        {
-            FormProfesorAfisare frm = new FormProfesorAfisare();
-            frm.ShowDialog();
-        }
-
-        private void btnAfisareStudent_Click(object sender, RoutedEventArgs e)
-        {
-            FormStudentAfisare frm = new FormStudentAfisare();
-            frm.ShowDialog();
-        }
     }
 }

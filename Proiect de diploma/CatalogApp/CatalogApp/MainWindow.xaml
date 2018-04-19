@@ -7,7 +7,9 @@
         mc:Ignorable="d" FontSize="20"
         Title="Catalog" Height="768" Width="1300" ResizeMode="CanMinimize" 
         WindowStartupLocation="CenterScreen" VerticalAlignment="Top" Loaded="Window_Loaded">
+    
     <Grid Margin="2" Background="DarkGray">
+        
         <TabControl TabStripPlacement="Left">
 
             <TabItem Header="Catalog" Name="catalogTab" Height="40">
@@ -41,27 +43,24 @@
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                                     <TextBlock Grid.Column="2" Grid.Row="1" Text="Data examen:"
                                            Margin="10,2,2,2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                                    <TextBlock Grid.Column="4" Grid.Row="1" Text="ID:"
+                                               Margin="10,2,2,2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
 
                                     <ComboBox x:Name="cbxCatalogProfesor" Margin="2" Grid.Column="1" Grid.Row="0" Padding="2" />
                                     <ComboBox x:Name="cbxCatalogMaterie" Margin="2" Grid.Column="3" Grid.Row="0" Padding="2" />
-                                    <ComboBox x:Name="cbxCatalogNota" Margin="2" Grid.Column="5" Grid.Row="0" Padding="2" Width="60" IsEditable="True">
-                                        <Button Content="1" Background="White" BorderBrush="White"/>
-                                        <Button Content="2" Background="White" BorderBrush="White"/>
-                                        <Button Content="3" Background="White" BorderBrush="White"/>
-                                        <Button Content="4" Background="White" BorderBrush="White"/>
-                                        <Button Content="5" Background="White" BorderBrush="White"/>
-                                        <Button Content="6" Background="White" BorderBrush="White"/>
-                                        <Button Content="7" Background="White" BorderBrush="White"/>
-                                        <Button Content="8" Background="White" BorderBrush="White"/>
-                                        <Button Content="9" Background="White" BorderBrush="White"/>
-                                        <Button Content="10" Background="White" BorderBrush="White"/>
+                                    <ComboBox x:Name="cbxCatalogNota" SelectionChanged="cbxCatalogNota_SelectionChanged" IsEditable="False" 
+                                              Margin="2" Grid.Column="5" Grid.Row="0" Padding="2" Width="60" >
                                     </ComboBox>
                                     <ComboBox x:Name="cbxCatalogStudenti" Margin="2" Grid.Column="1" Grid.Row="1" Padding="2" />
                                     <DatePicker x:Name="dpkCatalogDataExamen" Margin="2" Grid.Column="3" Grid.Row="1" FirstDayOfWeek="Monday"/>
+                                    <TextBox x:Name="txtIdCatalog" Margin="2" Grid.Column="5" Grid.Row="1" IsEnabled="False" Background="#FFE0E0E0" 
+                                             Padding="2" Width="60"/>
+
                                 </Grid>
                             </GroupBox>
                             <Grid Margin="3">
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
@@ -72,6 +71,7 @@
                                 <Button x:Name="btnUpdateCatalog" Margin="5" Grid.Column="1" Content="Update" IsEnabled="False" Click="btnUpdateCatalog_Click"/>
                                 <Button x:Name="btnDeleteCatalog" Margin="5" Grid.Column="2" Content="Delete" IsEnabled="False" Click="btnDeleteCatalog_Click"/>
                                 <Button x:Name="btnResetCatalog" Margin="5" Grid.Column="3" Content="Reset" Click="btnResetCatalog_Click"/>
+                                <Button x:Name="btnAfisareCatalog" Margin="5" Grid.Column="4" Content="Afisare" Click="btnAfisareCatalog_Click" />
                             </Grid>
 
                         </StackPanel>
@@ -193,6 +193,16 @@
                         </StackPanel>
                     </Expander>
 
+                    <Grid DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox TextChanged="filtru1TextChanged" Margin="2"/>
+                        <TextBox Grid.Column ="1"  TextChanged="filtru2TextChanged" Margin="2"/>
+                        <TextBox Grid.Column ="2" TextChanged="filtru3TextChanged" Margin="2"/>
+                    </Grid>
                     <DataGrid x:Name="dgr_studenti" IsReadOnly="True" Loaded="dgr_studenti_Loaded" SelectionChanged="dgr_studenti_SelectionChanged" >
 
                     </DataGrid>
@@ -237,12 +247,14 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
                                 <Button x:Name="btnAddGrupa" Margin="5" Grid.Column="0" Content="Add" Click="btnAddGrupa_Click"/>
                                 <Button x:Name="btnUpdateGrupa" Margin="5" Grid.Column="1" Content="Update" IsEnabled="False" Click="btnUpdateGrupa_Click"/>
                                 <Button x:Name="btnDeleteGrupa" Margin="5" Grid.Column="2" Content="Delete" IsEnabled="False" Click="btnDeleteGrupa_Click"/>
                                 <Button x:Name="btnResetGrupa" Margin="5" Grid.Column="3" Content="Reset" Click="btnResetGrupa_Click"/>
+                                <Button x:Name="btnAfisareGrupa" Margin="5" Grid.Column="4" Content="Afisare" Click="btnAfisareGrupa_Click" />
                             </Grid>
 
                         </StackPanel>
@@ -291,12 +303,14 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
                                 <Button x:Name="btnAddMaterie" Margin="5" Grid.Column="0" Content="Add" Click="btnAddMaterie_Click"/>
                                 <Button x:Name="btnUpdateMaterie" Margin="5" Grid.Column="1" Content="Update" IsEnabled="False" Click="btnUpdateMaterie_Click"/>
                                 <Button x:Name="btnDeleteMaterie" Margin="5" Grid.Column="2" Content="Delete" IsEnabled="False" Click="btnDeleteMaterie_Click"/>
                                 <Button x:Name="btnResetMaterie" Margin="5" Grid.Column="3" Content="Reset" Click="btnResetMaterie_Click"/>
+                                <Button x:Name="btnAfisareMaterie" Margin="5" Grid.Column="4" Content="Afisare" Click="btnAfisareMaterie_Click" />
                             </Grid>
 
                         </StackPanel>
@@ -341,12 +355,14 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
                                 <Button x:Name="btnAddSpecializare" Margin="5" Grid.Column="0" Content="Add" Click="btnAddSpecializare_Click"/>
                                 <Button x:Name="btnUpdateSpecializare" Margin="5" Grid.Column="1" Content="Update" IsEnabled="False" Click="btnUpdateSpecializare_Click"/>
                                 <Button x:Name="btnDeleteSpecializare" Margin="5" Grid.Column="2" Content="Delete" IsEnabled="False" Click="btnDeleteSpecializare_Click"/>
                                 <Button x:Name="btnResetSpecializare" Margin="5" Grid.Column="3" Content="Reset" Click="btnResetSpecializare_Click"/>
+                                <Button x:Name="btnAfisareSpecializare" Margin="5" Grid.Column="4" Content="Afisare" Click="btnAfisareSpecializare_Click" />
                             </Grid>
 
                         </StackPanel>
@@ -360,8 +376,6 @@
 
         </TabControl>
 
-
-
         <StatusBar x:Name="status_conn" Height="1" Width="110" VerticalAlignment="Bottom" HorizontalAlignment="Left">
             <StatusBar.Background>
                 <SolidColorBrush Color="Red" />
@@ -369,6 +383,5 @@
         </StatusBar>
 
     </Grid>
-
 
 </Window>
