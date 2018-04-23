@@ -7,9 +7,9 @@
         mc:Ignorable="d" FontSize="20"
         Title="Catalog" Height="768" Width="1300" ResizeMode="CanMinimize" 
         WindowStartupLocation="CenterScreen" VerticalAlignment="Top" Loaded="Window_Loaded">
-    
+
     <Grid Margin="2" Background="DarkGray">
-        
+
         <TabControl TabStripPlacement="Left">
 
             <TabItem Header="Catalog" Name="catalogTab" Height="40">
@@ -48,10 +48,9 @@
 
                                     <ComboBox x:Name="cbxCatalogProfesor" Margin="2" Grid.Column="1" Grid.Row="0" Padding="2" />
                                     <ComboBox x:Name="cbxCatalogMaterie" Margin="2" Grid.Column="3" Grid.Row="0" Padding="2" />
-                                    <ComboBox x:Name="cbxCatalogNota" SelectionChanged="cbxCatalogNota_SelectionChanged" IsEditable="False" 
-                                              Margin="2" Grid.Column="5" Grid.Row="0" Padding="2" Width="60" >
-                                    </ComboBox>
-                                    <ComboBox x:Name="cbxCatalogStudenti" Margin="2" Grid.Column="1" Grid.Row="1" Padding="2" />
+                                    <ComboBox x:Name="cbxCatalogNota" IsEditable="False" 
+                                              Margin="57,2,57,0" Grid.Column="5" Grid.Row="0" Padding="2" Width="60" Height="32" VerticalAlignment="Top" />
+                                    <ComboBox x:Name="cbxCatalogStudent" Margin="2" Grid.Column="1" Grid.Row="1" Padding="2" />
                                     <DatePicker x:Name="dpkCatalogDataExamen" Margin="2" Grid.Column="3" Grid.Row="1" FirstDayOfWeek="Monday"/>
                                     <TextBox x:Name="txtIdCatalog" Margin="2" Grid.Column="5" Grid.Row="1" IsEnabled="False" Background="#FFE0E0E0" 
                                              Padding="2" Width="60"/>
@@ -199,9 +198,9 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <TextBox TextChanged="filtru1TextChanged" Margin="2"/>
-                        <TextBox Grid.Column ="1"  TextChanged="filtru2TextChanged" Margin="2"/>
-                        <TextBox Grid.Column ="2" TextChanged="filtru3TextChanged" Margin="2"/>
+                        <TextBox Name="txtNumarMatricolFiltru" TextChanged="filtru1TextChanged" Margin="2"/>
+                        <TextBox Name="txtNumeFiltru" Grid.Column ="1"  TextChanged="filtru2TextChanged" Margin="2"/>
+                        <TextBox Name="txtPrenumeFiltru" Grid.Column ="2" TextChanged="filtru3TextChanged" Margin="2"/>
                     </Grid>
                     <DataGrid x:Name="dgr_studenti" IsReadOnly="True" Loaded="dgr_studenti_Loaded" SelectionChanged="dgr_studenti_SelectionChanged" >
 

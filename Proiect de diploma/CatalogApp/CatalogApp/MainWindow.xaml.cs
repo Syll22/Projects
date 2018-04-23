@@ -28,29 +28,37 @@ namespace CatalogApp
         {
             Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
             InitializeComponent();
-            populateNote();
+            populareNote();
         }
 
         private void Current_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        //aceasta functie ajuta cu continuarea aplicatiei cand apare o exceptie.
+
         {
             MessageBox.Show(e.Exception.ToString(), "Unhandled exception", MessageBoxButton.OK, MessageBoxImage.Error);
             e.Handled = true;
         }
 
-        int[] vIdCatalogProfesor = new int[100];
-        int dimVIdCatalogProfesor = 0;
+        List<int> valoriIdProfesori = new List<int>();
+        List<string> numeProfesori = new List<string>();
 
-        int[] vIdCatalogStudent = new int[100];
-        int dimVIdCatalogStudent = 0;
+        List<int> valoriIdStudenti = new List<int>();
+        List<string> numeStudenti = new List<string>();
 
-        int[] vIdCatalogMaterie = new int[100];
-        int dimVIdCatalogMaterie = 0;
+        List<int> valoriIdMaterii = new List<int>();
+        List<string> numeMaterii = new List<string>();
+
+        List<int> valoriIdSpecializari = new List<int>();
+        List<string> numeSpecializri = new List<string>();
+
+        List<int> valoriIdGrupe = new List<int>();
+        List<string> numeGrupe = new List<string>();
 
         int idProfesorAles = 0;
         int idStudentAles = 0;
         int idMaterieAleasa = 0;
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void creazaListaProfesori()
         {
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = Properties.Settings.Default.ConnString;
@@ -61,65 +69,76 @@ namespace CatalogApp
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dataReader = cmd.ExecuteReader();
             string s;
-            int n = 0;
+            cbxCatalogProfesor.Items.Clear();
             while (dataReader.Read())
             {
                 s = dataReader["NumeProfesor"].ToString() + " " + dataReader["PrenumeProfesor"].ToString();
+
                 cbxCatalogProfesor.Items.Add(s);
 
-                vIdCatalogProfesor[n] = Convert.ToInt32(dataReader["IdProfesor"].ToString());
-                n++;
+                valoriIdProfesori.Add(Convert.ToInt32(dataReader["IdProfesor"].ToString()));
             }
             dataReader.Close();
             conn.Close();
-            dimVIdCatalogProfesor = n;
+        }
 
-            // ==================Studenti
-
-            conn = new SqlConnection();
+        private void creazaListaStudenti()
+        {
+            SqlConnection conn = new SqlConnection();
             conn.ConnectionString = Properties.Settings.Default.ConnString;
             conn.Open();
 
-            query = "SELECT * FROM ListaStudenti ORDER BY NumeStudent, PrenumeStudent ";
+            string query = "SELECT * FROM ListaStudenti ORDER BY NumeStudent, PrenumeStudent ";
 
-            cmd = new SqlCommand(query, conn);
-            dataReader = cmd.ExecuteReader();
-            n = 0;
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dataReader = cmd.ExecuteReader();
+            string s;
             while (dataReader.Read())
             {
                 s = dataReader["NumeStudent"].ToString() + " " + dataReader["PrenumeStudent"].ToString();
-                cbxCatalogStudenti.Items.Add(s);
+                cbxCatalogStudent.Items.Add(s);
 
-                vIdCatalogStudent[n] = Convert.ToInt32(dataReader["NumarMatricol"].ToString());
-                n++;
+                valoriIdStudenti.Add(Convert.ToInt32(dataReader["NumarMatricol"].ToString()));
             }
             dataReader.Close();
             conn.Close();
-            dimVIdCatalogStudent = n;
+        }
 
-            // ==================Materii
-
-            conn = new SqlConnection();
+        private void creazaListaMaterii()
+        {
+            SqlConnection conn = new SqlConnection();
             conn.ConnectionString = Properties.Settings.Default.ConnString;
             conn.Open();
 
-            query = "SELECT * FROM ListaMaterii ORDER BY NumeMaterie";
+            string query = "SELECT * FROM ListaMaterii ORDER BY NumeMaterie";
 
-            cmd = new SqlCommand(query, conn);
-            dataReader = cmd.ExecuteReader();
-            n = 0;
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dataReader = cmd.ExecuteReader();
+            string s;
             while (dataReader.Read())
             {
                 s = dataReader["NumeMaterie"].ToString();
                 cbxCatalogMaterie.Items.Add(s);
-
-                vIdCatalogMaterie[n] = Convert.ToInt32(dataReader["IdMaterie"].ToString());
-                n++;
+                valoriIdMaterii.Add(Convert.ToInt32(dataReader["IdMaterie"].ToString()));
             }
             dataReader.Close();
             conn.Close();
-            dimVIdCatalogMaterie = n;
 
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            // Crearea listei de profesori pentru combo box
+            creazaListaProfesori();
+
+            // Crearea listei de studenti pentru combo box
+
+            creazaListaStudenti();
+
+            // Crearea listei de materii pentru combo box
+
+            creazaListaMaterii();
         }
 
         // Profesori ------------------------------------------------------------------------------------------------------
@@ -211,6 +230,7 @@ namespace CatalogApp
                 conn.Close();
                 resetProfesori();
                 status_conn.Background = Brushes.Red;
+                creazaListaProfesori();
             }
         }
 
@@ -339,13 +359,28 @@ namespace CatalogApp
 
         // Studenti -------------------------------------------------------------------------------------------------------
 
-        private void updateDataGrid_Studenti()
+        void selectareStudenti()
         {
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = Properties.Settings.Default.ConnString;
             conn.Open();
 
-            string query = "SELECT NumarMatricol as [Numar matricol], NumeStudent AS Nume, PrenumeStudent AS Prenume FROM ListaStudenti ORDER BY NumeStudent";
+            string query = "SELECT NumarMatricol as [Numar matricol], NumeStudent AS Nume, PrenumeStudent AS Prenume FROM ListaStudenti WHERE 1=1 ";
+            
+            if(txtNumarMatricolFiltru.Text != "")  //cautare dupa NumarMatricol
+            {
+                query += " AND NumarMatricol=" + txtNumarMatricolFiltru.Text;
+            }
+            if (txtNumeFiltru.Text !="")  //cautare dupa NumarMatricol
+            {
+                query += " AND NumeStudent LIKE '%" + txtNumeFiltru.Text + "%'";
+            }
+            if (txtPrenumeFiltru.Text !="")  //cautare dupa NumarMatricol
+            {
+                query += " AND PrenumeStudent LIKE '%" + txtPrenumeFiltru.Text + "%'";
+            }
+            
+            query += " ORDER BY NumeStudent";
 
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dataReader = cmd.ExecuteReader();
@@ -355,6 +390,11 @@ namespace CatalogApp
             dgr_studenti.DataContext = dataTable;
             dataReader.Close();
             conn.Close();
+
+        }
+        private void updateDataGrid_Studenti()
+        {
+            selectareStudenti();
         }
 
         private void dgr_studenti_Loaded(object sender, RoutedEventArgs e)
@@ -391,7 +431,7 @@ namespace CatalogApp
             switch (pOperatie)
             {
                 case 0:
-                    sql = "INSERT INTO ListaStudenti(NumeStudent, PrenumeStudent) " +
+                    sql = "INSERT INTO ListaStudenti (NumeStudent, PrenumeStudent) " +
                         "VALUES('" + txtNumeStudent.Text + "', '" + txtPrenumeStudent.Text + "')";
                     msg = "Datele despre student au fost adaugate cu suuces.";
                     break;
@@ -508,28 +548,21 @@ namespace CatalogApp
         {
             btnPrintStudent_Click(null, null);
             return;
-            //FormStudentAfisare frm = new FormStudentAfisare();
-            //frm.ShowDialog();
         }
 
         private void filtru1TextChanged(object sender, TextChangedEventArgs e)
         {
-            var dt = dgr_studenti.DataContext as DataTable;
-
-            DataRow[] rows = dt.Select("NumeStudent LIKE '" + (sender as TextBox).Text + "%'");
-            dgr_studenti.ItemsSource = rows;
-            dgr_studenti.Items.Refresh();
-            Console.ReadLine();
+            selectareStudenti();
         }
 
         private void filtru2TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            selectareStudenti();
         }
 
         private void filtru3TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            selectareStudenti();
         }
 
         // Grupe ----------------------------------------------------------------------------------------------------------
@@ -570,14 +603,6 @@ namespace CatalogApp
                 btnAddGrupa.IsEnabled = false;
                 btnUpdateGrupa.IsEnabled = true;
                 btnDeleteGrupa.IsEnabled = true;
-            }
-        }
-
-        private void populateNote()
-        {
-            for (int i = 1; i < 11; i++)
-            {
-                cbxCatalogNota.Items.Add(i.ToString());
             }
         }
 
@@ -971,13 +996,122 @@ namespace CatalogApp
         {
             DataGrid dataGrid = sender as DataGrid;
             DataRowView dataRowView = dataGrid.SelectedItem as DataRowView;
+
             if (dataRowView != null)
             {
-                //cbxCatalogProfesor.Text = dataRowView["NumeSpecializare"].ToString();
-                //txtIdSpecializare.Text = dataRowView["IdSpecializare"].ToString();
-                btnAddSpecializare.IsEnabled = false;
-                btnUpdateSpecializare.IsEnabled = true;
-                btnDeleteSpecializare.IsEnabled = true;
+                btnAddCatalog.IsEnabled = false;
+                btnUpdateCatalog.IsEnabled = true;
+                btnDeleteCatalog.IsEnabled = true;
+                txtIdCatalog.Text = dataRowView["ID"].ToString();
+                dpkCatalogDataExamen.Text = dataRowView["Data examen"].ToString();
+                cbxCatalogMaterie.Text = dataRowView["Materie"].ToString();
+                cbxCatalogNota.Text = dataRowView["Nota"].ToString();
+
+                int idCatalogSelectat = Convert.ToInt32( dataRowView["ID"].ToString());
+
+                // Extragere id profesor din tabela de date pe baza intrarii din catalog selectata.
+                int idProfSelectat = 0;
+                String sirSQL = "SELECT IdProfesor FROM Catalog WHERE IdCatalog=" + idCatalogSelectat; 
+
+                SqlConnection conn = new SqlConnection();
+                conn.ConnectionString = Properties.Settings.Default.ConnString;
+                conn.Open();
+
+                SqlCommand cmd = conn.CreateCommand();
+                SqlCommand comm = new SqlCommand(sirSQL, conn);
+                SqlDataReader reader = comm.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    idProfSelectat = Convert.ToInt32(reader["IdProfesor"].ToString());
+                    reader.Close();
+                }
+                conn.Close();
+
+
+                // Extragere nume si prenume profesori din tabela si incarcare in combo box, avand selectat profesorul actual.
+                string sirBazaProfesor = "", sirProfesorSelectat = "";
+                sirSQL = "SELECT IdProfesor, NumeProfesor, PrenumeProfesor FROM ListaProfesori ORDER BY NumeProfesor, PrenumeProfesor";
+
+                conn = new SqlConnection();
+                conn.ConnectionString = Properties.Settings.Default.ConnString;
+                conn.Open();
+
+                cmd = conn.CreateCommand();
+                comm = new SqlCommand(sirSQL, conn);
+                reader = comm.ExecuteReader();
+
+                cbxCatalogProfesor.Items.Clear();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        sirBazaProfesor = reader["NumeProfesor"].ToString() + " " + reader["PrenumeProfesor"].ToString();
+                        cbxCatalogProfesor.Items.Add(sirBazaProfesor);
+
+                        if (idProfSelectat == Convert.ToInt32(reader["IdProfesor"]))
+                        {
+                            sirProfesorSelectat = sirBazaProfesor;
+                        }
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+
+                cbxCatalogProfesor.SelectedItem = sirProfesorSelectat;
+
+                // Extragere numar matricol student din tabela de date pe baza intrarii din catalog selectata.
+                int numarMatricolStudentSelectat = 0;
+                sirSQL = "SELECT NumarMatricol FROM Catalog WHERE IdCatalog=" + idCatalogSelectat;
+
+                conn = new SqlConnection();
+                conn.ConnectionString = Properties.Settings.Default.ConnString;
+                conn.Open();
+
+                cmd = conn.CreateCommand();
+                comm = new SqlCommand(sirSQL, conn);
+                reader = comm.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    numarMatricolStudentSelectat = Convert.ToInt32(reader["NumarMatricol"].ToString());
+                    reader.Close();
+                }
+                conn.Close();
+
+                // Extragere nume si prenume studenti din tabela si incarcare in combo box, avand selectat studentul actual.
+                string sirBazaStudent = "", sirStudentSelectat = "";
+                sirSQL = "SELECT NumarMatricol, NumeStudent, PrenumeStudent FROM ListaStudenti ORDER BY NumeStudent, PrenumeStudent";
+
+                conn = new SqlConnection();
+                conn.ConnectionString = Properties.Settings.Default.ConnString;
+                conn.Open();
+
+                cmd = conn.CreateCommand();
+                comm = new SqlCommand(sirSQL, conn);
+                reader = comm.ExecuteReader();
+
+                cbxCatalogStudent.Items.Clear();
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        sirBazaStudent = reader["NumeStudent"].ToString() + " " + reader["PrenumeStudent"].ToString();
+
+                        cbxCatalogStudent.Items.Add(sirBazaStudent);
+
+                        if (numarMatricolStudentSelectat == Convert.ToInt32(reader["NumarMatricol"]))
+                        {
+                            sirStudentSelectat = sirBazaStudent;
+                        }
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+
+                cbxCatalogStudent.SelectedItem = sirStudentSelectat;
             }
         }
 
@@ -996,13 +1130,11 @@ namespace CatalogApp
                 case 0:
                     sql = "INSERT INTO Catalog (NumarMatricol, IdMaterie, Nota, IdProfesor, DataExamen)" +
                         " VALUES('" + idStudentAles + "', '" + idMaterieAleasa + "', '" + cbxCatalogNota.Text + "', '" + idProfesorAles + "', '" + dpkCatalogDataExamen.Text + "')";
-                    // msg = "Datele despre specializare au fost adaugate cu succes.";
-
                     msg = "Datele despre examen au fost introduse.";
                     break;
                 case 1:
-                    sql = "UPDATE ListaSpecializari SET NumeSpecializare='" + txtNumeSpecializare.Text + "' WHERE IdSpecializare=" + 
-                        txtIdSpecializare.Text; //to be fixed
+                    sql = "UPDATE Catalog SET IdProfesor='" + idProfesorAles + "' WHERE IdCatalog=" +
+                        txtIdCatalog.Text; 
                     msg = "Datele despre examen au fost actualizate.";
                     break;
                 case 2:
@@ -1032,7 +1164,6 @@ namespace CatalogApp
             {
                 conn.Close();
                 status_conn.Background = Brushes.Red;
-
                 resetCatalog();
             }
         }
@@ -1053,10 +1184,10 @@ namespace CatalogApp
                 return;
             }
 
-            if (cbxCatalogStudenti.Text == "")
+            if (cbxCatalogStudent.Text == "")
             {
                 MessageBox.Show("Nu ati introdus studentul.");
-                cbxCatalogStudenti.Focus();
+                cbxCatalogStudent.Focus();
                 return;
             }
 
@@ -1077,25 +1208,36 @@ namespace CatalogApp
             int index = 0;
 
             index = cbxCatalogProfesor.SelectedIndex;
-            idProfesorAles = vIdCatalogProfesor[index];
+            idProfesorAles = valoriIdProfesori[index];
 
-            index = cbxCatalogStudenti.SelectedIndex;
-            idStudentAles = vIdCatalogStudent[index];
+            index = cbxCatalogStudent.SelectedIndex;
+            idStudentAles = valoriIdStudenti[index];
 
             index = cbxCatalogMaterie.SelectedIndex;
-            idMaterieAleasa = vIdCatalogMaterie[index];
+            idMaterieAleasa = valoriIdMaterii[index];
 
             AUDCatalog(0);
         }
 
         private void btnUpdateCatalog_Click(object sender, RoutedEventArgs e)
         {
-            //AUDCatalog(1);
+            int index = 0;
+
+            index = cbxCatalogProfesor.SelectedIndex;
+            idProfesorAles = valoriIdProfesori[index];
+
+            //index = cbxCatalogStudenti.SelectedIndex;
+            //idStudentAles = valoriIdStudenti[index];
+
+            //index = cbxCatalogMaterie.SelectedIndex;
+            //idMaterieAleasa = valoriIdMaterii[index];
+
+            AUDCatalog(1);
         }
 
         private void btnDeleteCatalog_Click(object sender, RoutedEventArgs e)
         {
-            //AUDCatalog(2);
+            AUDCatalog(2);
         }
 
         private void btnResetCatalog_Click(object sender, RoutedEventArgs e)
@@ -1106,21 +1248,27 @@ namespace CatalogApp
         private void resetCatalog()
         {
             cbxCatalogProfesor.Text = "";
-            cbxCatalogStudenti.Text = "";
+            cbxCatalogStudent.Text = "";
+            txtIdCatalog.Text = "";
+            cbxCatalogMaterie.Text = "";
+            dpkCatalogDataExamen.Text = "";
+            cbxCatalogNota.Text = "";
             btnAddCatalog.IsEnabled = true;
             btnUpdateCatalog.IsEnabled = false;
             btnDeleteCatalog.IsEnabled = false;
         }
 
-        private void cbxCatalogNota_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void populareNote()
         {
-            Console.WriteLine((sender as ComboBox).SelectedValue.ToString());
+            for (int i = 1; i <= 10; i++)
+            {
+                cbxCatalogNota.Items.Add(i.ToString());
+            }
         }
 
         private void btnAfisareCatalog_Click(object sender, RoutedEventArgs e)
         {
 
         }
-
     }
 }
