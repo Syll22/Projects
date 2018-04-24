@@ -10,7 +10,7 @@
 
     <Grid Margin="2" Background="DarkGray">
 
-        <TabControl TabStripPlacement="Left">
+        <TabControl x:Name="applicationTabControl" TabStripPlacement="Left" SelectionChanged="applicationTabControl_SelectionChanged">
 
             <TabItem Header="Catalog" Name="catalogTab" Height="40">
                 <DockPanel LastChildFill="True">

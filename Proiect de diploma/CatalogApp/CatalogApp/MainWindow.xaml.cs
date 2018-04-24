@@ -31,32 +31,50 @@ namespace CatalogApp
             populareNote();
         }
 
-        private void Current_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
-        //aceasta functie ajuta cu continuarea aplicatiei cand apare o exceptie.
+        //Afiseaza un mesaj ce contine detaliile erorii atunci cand apare o exceptie, apoi continua rularea aplicatiei.
 
+        private void Current_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        
         {
             MessageBox.Show(e.Exception.ToString(), "Unhandled exception", MessageBoxButton.OK, MessageBoxImage.Error);
             e.Handled = true;
         }
 
         List<int> valoriIdProfesori = new List<int>();
-        List<string> numeProfesori = new List<string>();
+        List<string> numeProfesori = new List<string>();//de sters
 
         List<int> valoriIdStudenti = new List<int>();
-        List<string> numeStudenti = new List<string>();
+        List<string> numeStudenti = new List<string>();//de sters
 
         List<int> valoriIdMaterii = new List<int>();
-        List<string> numeMaterii = new List<string>();
+        List<string> numeMaterii = new List<string>();//de sters
 
         List<int> valoriIdSpecializari = new List<int>();
-        List<string> numeSpecializri = new List<string>();
+        List<string> numeSpecializri = new List<string>();//de sters
 
         List<int> valoriIdGrupe = new List<int>();
-        List<string> numeGrupe = new List<string>();
+        List<string> numeGrupe = new List<string>();//de sters
 
         int idProfesorAles = 0;
         int idStudentAles = 0;
         int idMaterieAleasa = 0;
+
+        //Goleste continutul campurilor din expander (nume, prenume etc.) atunci cand sunt schimbate tab-urile.
+
+        private void applicationTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.Source is TabControl)
+            {
+                resetCatalog();
+                resetGrupe();
+                resetMaterii();
+                resetProfesori();
+                resetSpecializari();
+                resetStudenti();
+            }
+        }
+
+        //Populeaza combo box-ul Profesor din tab-ul Catalog cu o lista de profesori dupa formatul Nume, Prenume din tabela ListaProfesori.
 
         private void creazaListaProfesori()
         {
@@ -82,6 +100,8 @@ namespace CatalogApp
             conn.Close();
         }
 
+        //Populeaza combo box-ul Student din tab-ul Catalog cu o lista de studenti dupa formatul Nume, Prenume din tabela ListaStudenti.
+
         private void creazaListaStudenti()
         {
             SqlConnection conn = new SqlConnection();
@@ -103,6 +123,8 @@ namespace CatalogApp
             dataReader.Close();
             conn.Close();
         }
+
+        //Populeaza combo box-ul Materie din tab-ul Catalog cu o lista de materii din tabela ListaMaterii. 
 
         private void creazaListaMaterii()
         {
@@ -128,16 +150,8 @@ namespace CatalogApp
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
-            // Crearea listei de profesori pentru combo box
             creazaListaProfesori();
-
-            // Crearea listei de studenti pentru combo box
-
             creazaListaStudenti();
-
-            // Crearea listei de materii pentru combo box
-
             creazaListaMaterii();
         }
 
@@ -1134,8 +1148,8 @@ namespace CatalogApp
                     break;
                 case 1:
                     sql = "UPDATE Catalog SET IdProfesor='" + idProfesorAles + "' WHERE IdCatalog=" +
-                        txtIdCatalog.Text; 
-                    msg = "Datele despre examen au fost actualizate.";
+                        txtIdCatalog.Text; //de continuat
+                    msg = "Datele despre examen au fost actualizate. \n Repara-ma!";
                     break;
                 case 2:
                     sql = "DELETE FROM Catalog WHERE IdCatalog=" + txtIdCatalog.Text;
@@ -1270,5 +1284,6 @@ namespace CatalogApp
         {
 
         }
+
     }
 }
