@@ -41,23 +41,16 @@ namespace CatalogApp
         }
 
         List<int> valoriIdProfesori = new List<int>();
-        List<string> numeProfesori = new List<string>();//de sters
-
         List<int> valoriIdStudenti = new List<int>();
-        List<string> numeStudenti = new List<string>();//de sters
-
         List<int> valoriIdMaterii = new List<int>();
-        List<string> numeMaterii = new List<string>();//de sters
-
         List<int> valoriIdSpecializari = new List<int>();
-        List<string> numeSpecializri = new List<string>();//de sters
-
         List<int> valoriIdGrupe = new List<int>();
-        List<string> numeGrupe = new List<string>();//de sters
 
         int idProfesorAles = 0;
         int idStudentAles = 0;
         int idMaterieAleasa = 0;
+        int idGrupaAleasa = 0;
+        int idSpecializareAleasa = 0;
 
         //Goleste continutul campurilor din expander (nume, prenume etc.) atunci cand sunt schimbate tab-urile.
 
@@ -145,7 +138,53 @@ namespace CatalogApp
             }
             dataReader.Close();
             conn.Close();
+        }
 
+        //Populeaza combo box-ul Grupe din tab-ul ListaStudenti cu o lista de Grupe din tabela ListaGrupe. 
+
+        private void creazaListaGrupe()
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = Properties.Settings.Default.ConnString;
+            conn.Open();
+
+            string query = "SELECT * FROM ListaGrupe ORDER BY NumeGrupa";
+
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dataReader = cmd.ExecuteReader();
+            string s;
+            while (dataReader.Read())
+            {
+                s = dataReader["NumeGrupa"].ToString();
+                cbxStuGrupa.Items.Add(s);
+                valoriIdGrupe.Add(Convert.ToInt32(dataReader["IdGrupa"].ToString()));
+            }
+            dataReader.Close();
+            conn.Close();
+        }
+
+        //populeaza combo box-urile din tab-urile Grupe si Materii cu o lista de specializari din tabela ListaSpecializari
+
+        private void creazaListaSpecializari()
+        {
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = Properties.Settings.Default.ConnString;
+            conn.Open();
+
+            string query = "SELECT * FROM ListaSpecializari ORDER BY NumeSpecializare";
+
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dataReader = cmd.ExecuteReader();
+            string s;
+            while (dataReader.Read())
+            {
+                s = dataReader["NumeSpecializare"].ToString();
+                cbxMatSpecializare.Items.Add(s);
+                cbxGruSpecializare.Items.Add(s);
+                valoriIdSpecializari.Add(Convert.ToInt32(dataReader["IdSpecializare"].ToString()));
+            }
+            dataReader.Close();
+            conn.Close();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -153,6 +192,8 @@ namespace CatalogApp
             creazaListaProfesori();
             creazaListaStudenti();
             creazaListaMaterii();
+            creazaListaGrupe();
+            creazaListaSpecializari();
         }
 
         // Profesori ------------------------------------------------------------------------------------------------------
@@ -373,28 +414,47 @@ namespace CatalogApp
 
         // Studenti -------------------------------------------------------------------------------------------------------
 
-        void selectareStudenti()
+        //void filtrareStudenti()
+        //{
+        //    SqlConnection conn = new SqlConnection();
+        //    conn.ConnectionString = Properties.Settings.Default.ConnString;
+        //    conn.Open();
+
+        //    string query = "SELECT NumarMatricol as [Numar matricol], NumeStudent AS Nume, PrenumeStudent AS Prenume, NumeGrupa AS Grupa FROM ListaStudenti FULL OUTER JOIN ListaGrupe ON ListaGrupe.IdGrupa=ListaStudenti.IdGrupa WHERE 1=1 ";
+
+        //    if (txtNumarMatricolFiltru.Text != "")  //cautare dupa NumarMatricol
+        //    {
+        //        query += " AND NumarMatricol=" + txtNumarMatricolFiltru.Text;
+        //    }
+        //    if (txtNumeFiltru.Text !="")  //cautare dupa Nume
+        //    {
+        //        query += " AND NumeStudent LIKE '%" + txtNumeFiltru.Text + "%'";
+        //    }
+        //    if (txtPrenumeFiltru.Text !="")  //cautare dupa Prenume
+        //    {
+        //        query += " AND PrenumeStudent LIKE '%" + txtPrenumeFiltru.Text + "%'";
+        //    }
+            
+        //    query += " ORDER BY NumeStudent";
+
+        //    SqlCommand cmd = new SqlCommand(query, conn);
+        //    SqlDataReader dataReader = cmd.ExecuteReader();
+        //    DataTable dataTable = new DataTable();
+        //    dataTable.Load(dataReader);
+        //    dgr_studenti.ItemsSource = dataTable.DefaultView;
+        //    dgr_studenti.DataContext = dataTable;
+        //    dataReader.Close();
+        //    conn.Close();
+        //}
+
+        private void updateDataGrid_Studenti()
         {
             SqlConnection conn = new SqlConnection();
             conn.ConnectionString = Properties.Settings.Default.ConnString;
             conn.Open();
 
-            string query = "SELECT NumarMatricol as [Numar matricol], NumeStudent AS Nume, PrenumeStudent AS Prenume FROM ListaStudenti WHERE 1=1 ";
-            
-            if(txtNumarMatricolFiltru.Text != "")  //cautare dupa NumarMatricol
-            {
-                query += " AND NumarMatricol=" + txtNumarMatricolFiltru.Text;
-            }
-            if (txtNumeFiltru.Text !="")  //cautare dupa NumarMatricol
-            {
-                query += " AND NumeStudent LIKE '%" + txtNumeFiltru.Text + "%'";
-            }
-            if (txtPrenumeFiltru.Text !="")  //cautare dupa NumarMatricol
-            {
-                query += " AND PrenumeStudent LIKE '%" + txtPrenumeFiltru.Text + "%'";
-            }
-            
-            query += " ORDER BY NumeStudent";
+            string query = "SELECT NumarMatricol as [Numar matricol], NumeStudent AS Nume, PrenumeStudent AS Prenume, NumeGrupa AS Grupa FROM ListaStudenti " +
+                "FULL OUTER JOIN ListaGrupe ON ListaGrupe.IdGrupa=ListaStudenti.IdGrupa WHERE 1=1 ORDER BY NumeStudent";
 
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dataReader = cmd.ExecuteReader();
@@ -404,11 +464,6 @@ namespace CatalogApp
             dgr_studenti.DataContext = dataTable;
             dataReader.Close();
             conn.Close();
-
-        }
-        private void updateDataGrid_Studenti()
-        {
-            selectareStudenti();
         }
 
         private void dgr_studenti_Loaded(object sender, RoutedEventArgs e)
@@ -425,7 +480,7 @@ namespace CatalogApp
                 txtNumeStudent.Text = dataRowView["Nume"].ToString();
                 txtPrenumeStudent.Text = dataRowView["Prenume"].ToString();
                 txtNumarMatricol.Text = dataRowView["Numar matricol"].ToString();
-                //cbxStuGrupa.Text = dataRowView["IdGrupa"].ToString(); //de reparat
+                cbxStuGrupa.Text = dataRowView["Grupa"].ToString();
                 btnAddStudent.IsEnabled = false;
                 btnUpdateStudent.IsEnabled = true;
                 btnDeleteStudent.IsEnabled = true;
@@ -447,10 +502,20 @@ namespace CatalogApp
                 case 0:
                     sql = "INSERT INTO ListaStudenti (NumeStudent, PrenumeStudent) " +
                         "VALUES('" + txtNumeStudent.Text + "', '" + txtPrenumeStudent.Text + "')";
-                    msg = "Datele despre student au fost adaugate cu suuces.";
+
+                    if (cbxStuGrupa.Text != "")
+                    {
+                        sql += " AND IdGrupa =" + idGrupaAleasa;
+                    }
+
+                    msg = "Datele despre student au fost adaugate cu succes.";
                     break;
                 case 1:
-                    sql = "UPDATE ListaStudenti SET NumeStudent='" + txtNumeStudent.Text + "', PrenumeStudent='" + txtPrenumeStudent.Text + "' WHERE NumarMatricol=" + txtNumarMatricol.Text;
+                    sql = "UPDATE ListaStudenti SET NumeStudent='" + txtNumeStudent.Text + "', PrenumeStudent='" + txtPrenumeStudent.Text +
+                        "' " + ((!string.IsNullOrEmpty(cbxStuGrupa.Text)) ? (" , IdGrupa =" + idGrupaAleasa  + " ") : "")
+                            + " WHERE NumarMatricol=" + txtNumarMatricol.Text;
+                    
+
                     msg = "Datele despre student au fost actualizate.";
                     break;
                 case 2:
@@ -499,11 +564,27 @@ namespace CatalogApp
                 txtPrenumeStudent.Focus();
                 return;
             }
+
+            int index = 0;
+            if (cbxStuGrupa.Text != "")
+            {
+                index = cbxStuGrupa.SelectedIndex;
+                idGrupaAleasa = valoriIdGrupe[index];
+            }
+
             AUDStudenti(0);
         }
 
         private void btnUpdateStudent_Click(object sender, RoutedEventArgs e)
         {
+            int index = 0;
+
+            if (cbxStuGrupa.Text != "")
+            {
+                index = cbxStuGrupa.SelectedIndex;
+                idGrupaAleasa = valoriIdGrupe[index];
+            }
+
             AUDStudenti(1);
         }
 
@@ -564,21 +645,6 @@ namespace CatalogApp
             return;
         }
 
-        private void filtru1TextChanged(object sender, TextChangedEventArgs e)
-        {
-            selectareStudenti();
-        }
-
-        private void filtru2TextChanged(object sender, TextChangedEventArgs e)
-        {
-            selectareStudenti();
-        }
-
-        private void filtru3TextChanged(object sender, TextChangedEventArgs e)
-        {
-            selectareStudenti();
-        }
-
         // Grupe ----------------------------------------------------------------------------------------------------------
 
         private void updateDataGrid_Grupe()
@@ -613,7 +679,7 @@ namespace CatalogApp
             {
                 txtGruNumeGrupa.Text = dataRowView["Grupa"].ToString();
                 txtGruIdGrupa.Text = dataRowView["ID"].ToString();
-                //cbxGruSpecializare.Text = dataRowView["IdSpecializare"].ToString(); //de reparat
+                cbxGruSpecializare.Text = dataRowView["Specializare"].ToString();
                 btnAddGrupa.IsEnabled = false;
                 btnUpdateGrupa.IsEnabled = true;
                 btnDeleteGrupa.IsEnabled = true;
@@ -633,12 +699,13 @@ namespace CatalogApp
             switch (pOperatie)
             {
                 case 0:
-                    sql = "INSERT INTO ListaGrupe (NumeGrupa) " +
-                        "VALUES('" + txtGruNumeGrupa.Text + "')";
+                    sql = "INSERT INTO ListaGrupe (NumeGrupa, IdSpecializare) " +
+                        "VALUES('" + txtGruNumeGrupa.Text + "', '" + idSpecializareAleasa + "')";
                     msg = "Datele despre grupa au fost adaugate cu suuces.";
                     break;
                 case 1:
-                    sql = "UPDATE ListaGrupe SET NumeGrupa='" + txtGruNumeGrupa.Text + "' WHERE IdGrupa=" + txtGruIdGrupa.Text;
+                    sql = "UPDATE ListaGrupe SET NumeGrupa='" + txtGruNumeGrupa.Text + "', IdSpecializare='" + 
+                        idSpecializareAleasa + "' WHERE IdGrupa=" + txtGruIdGrupa.Text;
                     msg = "Datele despre grupa au fost actualizate.";
                     break;
                 case 2:
@@ -669,7 +736,7 @@ namespace CatalogApp
                 conn.Close();
                 status_conn.Background = Brushes.Red;
 
-                resetStudenti();
+                resetGrupe();
             }
         }
 
@@ -681,12 +748,28 @@ namespace CatalogApp
                 txtGruNumeGrupa.Focus();
                 return;
             }
-            //AUDGrupe(0); //de reparat IDSpecializare cbx source
+
+            if (cbxGruSpecializare.Text == "")
+            {
+                MessageBox.Show("Nu ati ales o specializare!");
+                cbxGruSpecializare.Focus();
+                return;
+            }
+
+            int index = 0;
+
+            index = cbxGruSpecializare.SelectedIndex;
+            idSpecializareAleasa = valoriIdSpecializari[index];
+
+            AUDGrupe(0);
 
         }
 
         private void btnUpdateGrupa_Click(object sender, RoutedEventArgs e)
         {
+            int index = cbxGruSpecializare.SelectedIndex;
+            idSpecializareAleasa = valoriIdSpecializari[index];
+
             AUDGrupe(1);
         }
 
@@ -748,7 +831,7 @@ namespace CatalogApp
             {
                 txtMatNumeMaterie.Text = dataRowView["Materie"].ToString();
                 txtMatIdMaterie.Text = dataRowView["ID"].ToString();
-                //cbxMatSpecializare.Text = dataRowView["IdSpecializare"].ToString(); //de reparat
+                cbxMatSpecializare.Text = dataRowView["Specializare"].ToString();
                 btnAddMaterie.IsEnabled = false;
                 btnUpdateMaterie.IsEnabled = true;
                 btnDeleteMaterie.IsEnabled = true;
@@ -1143,13 +1226,16 @@ namespace CatalogApp
             {
                 case 0:
                     sql = "INSERT INTO Catalog (NumarMatricol, IdMaterie, Nota, IdProfesor, DataExamen)" +
-                        " VALUES('" + idStudentAles + "', '" + idMaterieAleasa + "', '" + cbxCatalogNota.Text + "', '" + idProfesorAles + "', '" + dpkCatalogDataExamen.Text + "')";
+                        " VALUES('" + idStudentAles + "', '" + idMaterieAleasa + "', '" + cbxCatalogNota.Text + "', '" +
+                        idProfesorAles + "', '" + dpkCatalogDataExamen.Text + "')";
+
                     msg = "Datele despre examen au fost introduse.";
                     break;
                 case 1:
-                    sql = "UPDATE Catalog SET IdProfesor='" + idProfesorAles + "' WHERE IdCatalog=" +
-                        txtIdCatalog.Text; //de continuat
-                    msg = "Datele despre examen au fost actualizate. \n Repara-ma!";
+                    sql = "UPDATE Catalog SET IdProfesor='" + idProfesorAles + "', Nota='" + cbxCatalogNota.Text +
+                        "', IdMaterie='" + idMaterieAleasa + "', NumarMatricol='" + idStudentAles + "', DataExamen='" +
+                        dpkCatalogDataExamen.Text + "' WHERE IdCatalog=" + txtIdCatalog.Text;
+                    msg = "Datele despre examen au fost actualizate.";
                     break;
                 case 2:
                     sql = "DELETE FROM Catalog WHERE IdCatalog=" + txtIdCatalog.Text;
@@ -1240,11 +1326,11 @@ namespace CatalogApp
             index = cbxCatalogProfesor.SelectedIndex;
             idProfesorAles = valoriIdProfesori[index];
 
-            //index = cbxCatalogStudenti.SelectedIndex;
-            //idStudentAles = valoriIdStudenti[index];
+            index = cbxCatalogStudent.SelectedIndex;
+            idStudentAles = valoriIdStudenti[index];
 
-            //index = cbxCatalogMaterie.SelectedIndex;
-            //idMaterieAleasa = valoriIdMaterii[index];
+            index = cbxCatalogMaterie.SelectedIndex;
+            idMaterieAleasa = valoriIdMaterii[index];
 
             AUDCatalog(1);
         }

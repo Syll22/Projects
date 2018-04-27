@@ -192,18 +192,8 @@
                         </StackPanel>
                     </Expander>
 
-                    <Grid DockPanel.Dock="Top">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <TextBox Name="txtNumarMatricolFiltru" TextChanged="filtru1TextChanged" Margin="2"/>
-                        <TextBox Name="txtNumeFiltru" Grid.Column ="1"  TextChanged="filtru2TextChanged" Margin="2"/>
-                        <TextBox Name="txtPrenumeFiltru" Grid.Column ="2" TextChanged="filtru3TextChanged" Margin="2"/>
-                    </Grid>
                     <DataGrid x:Name="dgr_studenti" IsReadOnly="True" Loaded="dgr_studenti_Loaded" SelectionChanged="dgr_studenti_SelectionChanged" >
-
+                        
                     </DataGrid>
                 </DockPanel>
             </TabItem>
@@ -292,7 +282,7 @@
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
 
                                     <TextBox x:Name="txtMatNumeMaterie" Margin="2" Grid.Column="1" Grid.Row="0" Padding="2" Width="200"/>
-                                    <ComboBox x:Name="cbxMatSpecializare" Margin="2" Grid.Column="1" Grid.Row="1" Padding="2" Width="200" IsEnabled="False" Background="#FFE0E0E0" />
+                                    <ComboBox x:Name="cbxMatSpecializare" Margin="2" Grid.Column="1" Grid.Row="1" Padding="2" Width="200"/>
                                     <TextBox x:Name="txtMatIdMaterie" Margin="2" Grid.Column="3" Grid.Row="0" Padding="2" Width="200" IsEnabled="False" Background="#FFE0E0E0"/>
                                 </Grid>
                             </GroupBox>
