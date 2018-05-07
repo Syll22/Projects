@@ -806,7 +806,9 @@ namespace CatalogApp
             conn.ConnectionString = Properties.Settings.Default.ConnString;
             conn.Open();
 
-            string query = "SELECT IdMaterie AS ID, NumeMaterie AS Materie FROM ListaMaterii ORDER BY NumeMaterie";
+            //string query = "SELECT * FROM ViewMateriiSpecializari ORDER BY Materie";
+
+            string query = "SELECT *, NumeMaterie AS Specializari FROM ListaMaterii Order BY NumeMaterie";
 
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dataReader = cmd.ExecuteReader();
@@ -815,7 +817,51 @@ namespace CatalogApp
             dgr_materii.ItemsSource = dataTable.DefaultView;
 
             dataReader.Close();
+
+            string query2 = "";
+            int x = dataTable.Rows.Count;
+            string idM = "";
+            for (int i=0; i<=x-1; i++)
+            {
+                // MessageBox.Show(dataTable.Rows[i][1].ToString());
+                idM = dataTable.Rows[i][0].ToString();
+
+                query2 = "SELECT NumeSpecializare " +
+                    "FROM MateriiSpecializari INNER JOIN ListaSpecializari " +
+                    "   ON MateriiSpecializari.idSpecializare = ListaSpecializari.idSpecializare " +
+                    " WHERE idMaterie=" + idM;
+                SqlConnection conn2 = new SqlConnection();
+                conn2.ConnectionString = Properties.Settings.Default.ConnString;
+                conn2.Open();
+
+                SqlCommand cmd2 = new SqlCommand(query2, conn2);
+                SqlDataReader dataReader2 = cmd2.ExecuteReader();
+                dataReader2.Read();
+                //dataTable.Rows[i][2] = dataReader2["NumeSpecializare"];
+                dataTable.Rows[i][2] = idM;
+
+                conn2.Close();
+            }
+
+
+            dataReader = cmd.ExecuteReader();
+            while (dataReader.Read())
+            {
+                // MessageBox.Show("altceva");
+
+            }
+
+            dataReader.Close();
             conn.Close();
+
+
+            DataGrid dataGrid = dgr_materii;
+            DataRowView dataRowView = dataGrid.SelectedItem as DataRowView;
+            while (dataRowView != null)
+            {
+                MessageBox.Show(dataRowView["ID"].ToString());
+            }
+
         }
 
         private void dgr_materii_Loaded(object sender, RoutedEventArgs e)
@@ -930,6 +976,87 @@ namespace CatalogApp
         private void btnAfisareMaterie_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void btnStergeSpecializare_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Functionalitate neimplementata.");
+        }
+
+        private void btnAdaugaSpecializare_Click(object sender, RoutedEventArgs e)
+        {
+            if (cbxMatSpecializare.Text == "")
+            {
+                MessageBox.Show("Nu ati ales nici o specializare!");
+                return;
+            }
+            else
+            {
+                int index = 0;
+                index = cbxMatSpecializare.SelectedIndex;
+                idSpecializareAleasa = valoriIdSpecializari[index];
+            }
+
+            //DataGrid dataGrid = sender as DataGrid;
+            DataRowView dataRowView = dgr_materii.SelectedItem as DataRowView;
+
+            if (dataRowView == null)
+            {
+                MessageBox.Show("Nu ati ales o materie!");
+                return;
+            }
+            else
+            {
+                idMaterieAleasa = Convert.ToInt32(txtMatIdMaterie.Text);
+            }
+
+            //verificare daca specializarea este deja asociata cu materia
+
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = Properties.Settings.Default.ConnString;
+            conn.Open();
+
+            string query = "SELECT * FROM MateriiSpecializari WHERE IdMaterie=" + idMaterieAleasa.ToString() + " AND IdSpecializare=" + idSpecializareAleasa.ToString();
+
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dataReader = cmd.ExecuteReader();
+
+            if (dataReader.HasRows)
+            {
+                MessageBox.Show("Aceasta specializare este deja adaugata!");
+                dataReader.Close();
+                conn.Close();
+                return;
+            }
+            else
+            {
+                dataReader.Close();
+                conn.Close();
+
+                //introducere in baza de date
+
+                query = "INSERT INTO MateriiSpecializari (IdMaterie, IdSpecializare) VALUES (" + idMaterieAleasa.ToString() + ", "
+                    + idSpecializareAleasa.ToString() + ")";
+            }
+
+
+            conn = new SqlConnection();
+            conn.ConnectionString = Properties.Settings.Default.ConnString;
+            conn.Open();
+
+            cmd = new SqlCommand(query, conn);
+            int rezultat = cmd.ExecuteNonQuery();
+
+            if (rezultat > 0)
+            {
+                MessageBox.Show("Datele despre specializare au fost adaugate cu succes.");
+            }
+            else
+            {
+                MessageBox.Show("Datele nu au fost inserate!");
+            }
+            dataReader.Close();
+            conn.Close();
         }
 
         // Specializari ---------------------------------------------------------------------------------------------------
@@ -1063,6 +1190,7 @@ namespace CatalogApp
         {
 
         }
+
 
         // Catalog --------------------------------------------------------------------------------------------------------
 
@@ -1370,6 +1498,6 @@ namespace CatalogApp
         {
 
         }
-
+        
     }
 }
