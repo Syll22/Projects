@@ -32,7 +32,6 @@ namespace CatalogApp
         }
 
         //Afiseaza un mesaj ce contine detaliile erorii atunci cand apare o exceptie, apoi continua rularea aplicatiei.
-
         private void Current_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         
         {
@@ -53,7 +52,6 @@ namespace CatalogApp
         int idSpecializareAleasa = 0;
 
         //Goleste continutul campurilor din expander (nume, prenume etc.) atunci cand sunt schimbate tab-urile.
-
         private void applicationTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.Source is TabControl)
@@ -68,7 +66,6 @@ namespace CatalogApp
         }
 
         //Populeaza combo box-ul Profesor din tab-ul Catalog cu o lista de profesori dupa formatul Nume, Prenume din tabela ListaProfesori.
-
         private void creazaListaProfesori()
         {
             SqlConnection conn = new SqlConnection();
@@ -94,7 +91,6 @@ namespace CatalogApp
         }
 
         //Populeaza combo box-ul Student din tab-ul Catalog cu o lista de studenti dupa formatul Nume, Prenume din tabela ListaStudenti.
-
         private void creazaListaStudenti()
         {
             SqlConnection conn = new SqlConnection();
@@ -106,6 +102,7 @@ namespace CatalogApp
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dataReader = cmd.ExecuteReader();
             string s;
+            cbxCatalogStudent.Items.Clear();
             while (dataReader.Read())
             {
                 s = dataReader["NumeStudent"].ToString() + " " + dataReader["PrenumeStudent"].ToString();
@@ -118,7 +115,6 @@ namespace CatalogApp
         }
 
         //Populeaza combo box-ul Materie din tab-ul Catalog cu o lista de materii din tabela ListaMaterii. 
-
         private void creazaListaMaterii()
         {
             SqlConnection conn = new SqlConnection();
@@ -126,14 +122,17 @@ namespace CatalogApp
             conn.Open();
 
             string query = "SELECT * FROM ListaMaterii ORDER BY NumeMaterie";
-
+            cbxCatalogMaterie.Items.Clear();
+            cbxProfesorMaterii.Items.Clear();
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dataReader = cmd.ExecuteReader();
             string s;
+
             while (dataReader.Read())
             {
                 s = dataReader["NumeMaterie"].ToString();
                 cbxCatalogMaterie.Items.Add(s);
+                cbxProfesorMaterii.Items.Add(s);
                 valoriIdMaterii.Add(Convert.ToInt32(dataReader["IdMaterie"].ToString()));
             }
             dataReader.Close();
@@ -141,7 +140,6 @@ namespace CatalogApp
         }
 
         //Populeaza combo box-ul Grupe din tab-ul ListaStudenti cu o lista de Grupe din tabela ListaGrupe. 
-
         private void creazaListaGrupe()
         {
             SqlConnection conn = new SqlConnection();
@@ -153,6 +151,7 @@ namespace CatalogApp
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dataReader = cmd.ExecuteReader();
             string s;
+            cbxStuGrupa.Items.Clear();
             while (dataReader.Read())
             {
                 s = dataReader["NumeGrupa"].ToString();
@@ -164,7 +163,6 @@ namespace CatalogApp
         }
 
         //populeaza combo box-urile din tab-urile Grupe si Materii cu o lista de specializari din tabela ListaSpecializari
-
         private void creazaListaSpecializari()
         {
             SqlConnection conn = new SqlConnection();
@@ -176,6 +174,8 @@ namespace CatalogApp
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dataReader = cmd.ExecuteReader();
             string s;
+            cbxMatSpecializare.Items.Clear();
+            cbxGruSpecializare.Items.Clear();
             while (dataReader.Read())
             {
                 s = dataReader["NumeSpecializare"].ToString();
@@ -187,6 +187,7 @@ namespace CatalogApp
             conn.Close();
         }
 
+        //la incarcarea ferestrei principale se aoeleaza functiile de creare a listelor (materii, studenti etc.)
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             creazaListaProfesori();
@@ -194,6 +195,76 @@ namespace CatalogApp
             creazaListaMaterii();
             creazaListaGrupe();
             creazaListaSpecializari();
+        }
+
+        private void Export (DataGrid dgr)
+        {
+            Microsoft.Office.Interop.Excel.Application excelApplication = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Workbook excelWorkBook = excelApplication.Workbooks.Add(Type.Missing);
+            Microsoft.Office.Interop.Excel.Worksheet excelWorkSheet= null;
+
+            //object missingValue = System.Reflection.Missing.Value;
+            //excelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)excelWorkBook.Worksheets.get_Item(1);
+
+            try
+            {
+                excelWorkSheet = excelWorkBook.ActiveSheet;
+
+                int cellRowIndex = 1;
+                int cellColumnIndex = 1;
+
+                DataTable dtExport = new DataTable();
+                dtExport = ((DataView)dgr.ItemsSource).ToTable();
+
+                for (int i = 0; i <= dtExport.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dtExport.Columns.Count; j++)
+                    {
+                        if (cellRowIndex == 1)
+                        {
+                            excelWorkSheet.Cells[cellRowIndex, cellColumnIndex] = dtExport.Columns[j].ColumnName;
+                        }
+                        else
+                        {
+                            excelWorkSheet.Cells[cellRowIndex, cellColumnIndex] = dtExport.Rows[i-1][j].ToString();
+                        }
+                        cellColumnIndex++;
+                    }
+                    cellColumnIndex = 1;
+                    cellRowIndex++;
+                }
+
+                System.Windows.Forms.SaveFileDialog saveDialog = new System.Windows.Forms.SaveFileDialog(); 
+                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*"; 
+                saveDialog.FilterIndex = 1; 
+  
+                if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK) 
+                {
+                    excelWorkBook.SaveAs(saveDialog.FileName); 
+                    MessageBox.Show("Export Successful"); 
+                }                
+
+                //excelWorkBook.SaveAs(cale + "Grupe.xls", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, missingValue,
+                //    missingValue, missingValue, missingValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive,
+                //    missingValue, missingValue, missingValue, missingValue, missingValue);
+                //excelWorkBook.Close(true, missingValue, missingValue);
+                //excelApplication.Quit();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                //releaseObject(excelWorkSheet);
+                //releaseObject(excelWorkBook);
+                //releaseObject(excelApplication);
+
+                excelApplication.Quit();
+                excelWorkBook = null;
+                excelApplication = null;
+            }
         }
 
         // Profesori ------------------------------------------------------------------------------------------------------
@@ -204,7 +275,17 @@ namespace CatalogApp
             conn.ConnectionString = Properties.Settings.Default.ConnString;
             conn.Open();
 
-            string query = "SELECT IdProfesor AS ID, NumeProfesor AS Nume, PrenumeProfesor AS Prenume FROM ListaProfesori ORDER BY NumeProfesor";
+            string query = "" +
+                "SELECT m.IdProfesor as ID, m.NumeProfesor as Nume, m.PrenumeProfesor as Prenume, " +
+                  "STUFF(( " +
+                    "SELECT ', ' + cast(s.NumeMaterie as varchar(max)) " +
+                    "FROM ListaProfesori mat LEFT JOIN MateriiProfesori ma on ma.IdProfesor = mat.IdProfesor " +
+                    "FULL join ListaMaterii s on s.IdMaterie = ma.idMaterie" +
+                    " WHERE mat.IdProfesor = m.IdProfesor FOR XML PATH(''), TYPE).value('.', 'varchar(max)'),1,2,'') as Materii " +
+                "FROM ListaProfesori m " +
+                "LEFT JOIN MateriiProfesori ms on m.IdProfesor = MS.IdProfesor " +
+                "LEFT JOIN ListaMaterii s on s.IdMaterie = ms.IdMaterie " +
+                "Group by m.IdProfesor, M.NumeProfesor, m.PrenumeProfesor; ";
 
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dataReader = cmd.ExecuteReader();
@@ -304,6 +385,7 @@ namespace CatalogApp
                 return;
             }
             AUDProfesori(0);
+            creazaListaProfesori();
         }
 
         private void btnUpdateProfesor_Click(object sender, RoutedEventArgs e)
@@ -401,15 +483,177 @@ namespace CatalogApp
             txtNumeProfesor.Text = "";
             txtPrenumeProfesor.Text = "";
             txtId.Text = "";
+            cbxProfesorMaterii.Text = "";
             btnAddProfesor.IsEnabled = true;
             btnUpdateProfesor.IsEnabled = false;
             btnDeleteProfesor.IsEnabled = false;
         }
 
-        private void btnAfisareProfesor_Click(object sender, RoutedEventArgs e)
+        private void btnExportProfesor_Click(object sender, RoutedEventArgs e)
         {
-            FormProfesorAfisare frm = new FormProfesorAfisare();
-            frm.ShowDialog();
+            Export(dgr_profesori);
+        }
+
+        private void btnAdaugaMaterie_Click(object sender, RoutedEventArgs e)
+        {
+            if (cbxProfesorMaterii.Text == "")
+            {
+                MessageBox.Show("Nu ati ales nici o materie!");
+                return;
+            }
+            else
+            {
+                int index = 0;
+                index = cbxProfesorMaterii.SelectedIndex;
+                idMaterieAleasa = valoriIdMaterii[index];
+            }
+
+            DataRowView dataRowView = dgr_profesori.SelectedItem as DataRowView;
+
+            if (dataRowView == null)
+            {
+                MessageBox.Show("Nu ati ales un profesor!");
+                return;
+            }
+            else
+            {
+                idProfesorAles = Convert.ToInt32(txtId.Text);
+            }
+
+            //verificare daca materia este deja asociata cu profesorul
+
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = Properties.Settings.Default.ConnString;
+            conn.Open();
+
+            string query = "SELECT * FROM MateriiProfesori WHERE IdProfesor=" + idProfesorAles.ToString() + " AND IdMaterie=" + idMaterieAleasa.ToString();
+
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dataReader = cmd.ExecuteReader();
+
+            if (dataReader.HasRows)
+            {
+                MessageBox.Show("Aceasta materie este deja adaugata!");
+                dataReader.Close();
+                conn.Close();
+                return;
+            }
+            else
+            {
+                dataReader.Close();
+                conn.Close();
+
+                //introducere in baza de date
+
+                query = "INSERT INTO MateriiProfesori (IdProfesor, IdMaterie) VALUES (" + idProfesorAles.ToString() + ", "
+                    + idMaterieAleasa.ToString() + ")";
+            }
+
+            conn = new SqlConnection();
+            conn.ConnectionString = Properties.Settings.Default.ConnString;
+            conn.Open();
+
+            cmd = new SqlCommand(query, conn);
+            int rezultat = cmd.ExecuteNonQuery();
+
+            if (rezultat > 0)
+            {
+                MessageBox.Show("Datele despre materie au fost adaugate cu succes.");
+            }
+            else
+            {
+                MessageBox.Show("Datele nu au fost inserate!");
+            }
+            dataReader.Close();
+            conn.Close();
+            updateDataGrid_Profesori();
+            resetProfesori();
+        }
+
+        private void btnStergeMaterie_Click(object sender, RoutedEventArgs e)
+        {
+            if (cbxProfesorMaterii.Text == "")
+            {
+                MessageBox.Show("Nu ati ales nici un profesor!");
+                return;
+            }
+            else
+            {
+                int index = 0;
+                index = cbxProfesorMaterii.SelectedIndex;
+                idMaterieAleasa = valoriIdMaterii[index];
+            }
+
+            DataRowView dataRowView = dgr_profesori.SelectedItem as DataRowView;
+
+            if (dataRowView == null)
+            {
+                MessageBox.Show("Nu ati ales un profesor!");
+                return;
+            }
+            else
+            {
+                idProfesorAles = Convert.ToInt32(txtId.Text);
+            }
+
+            //verificare daca materia este deja asociata cu profesorul
+
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = Properties.Settings.Default.ConnString;
+            conn.Open();
+
+            string query = "SELECT * FROM MateriiProfesori WHERE IdProfesor=" + idProfesorAles.ToString() + " AND IdMaterie="
+                + idMaterieAleasa.ToString();
+
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dataReader = cmd.ExecuteReader();
+
+            if (dataReader.HasRows)
+            {
+                query = "DELETE FROM MateriiProfesori WHERE IdProfesor = " + idProfesorAles.ToString() + " AND " +
+                    "IdMaterie= " + idMaterieAleasa.ToString();
+                dataReader.Close();
+                conn.Close();
+            }
+            else
+            {
+                MessageBox.Show("Asociere inexistenta!");
+                dataReader.Close();
+                conn.Close();
+                return;
+            }
+
+            conn = new SqlConnection();
+            conn.ConnectionString = Properties.Settings.Default.ConnString;
+            conn.Open();
+
+            cmd = new SqlCommand(query, conn);
+            int rezultat = cmd.ExecuteNonQuery();
+
+            if (rezultat > 0)
+            {
+                MessageBox.Show("Asocierea dintre profesor si materie a fost stearsa cu succes.");
+            }
+            else
+            {
+                MessageBox.Show("Datele nu au fost sterse!");
+            }
+            dataReader.Close();
+            conn.Close();
+            updateDataGrid_Profesori();
+            resetProfesori();
+        }
+
+        private void txtId_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtId.Text == "")
+            {
+                cbxProfesorMaterii.IsEnabled = false;
+            }
+            else
+            {
+                cbxProfesorMaterii.IsEnabled = true;
+            }
         }
 
         // Studenti -------------------------------------------------------------------------------------------------------
@@ -434,7 +678,7 @@ namespace CatalogApp
         //    {
         //        query += " AND PrenumeStudent LIKE '%" + txtPrenumeFiltru.Text + "%'";
         //    }
-            
+
         //    query += " ORDER BY NumeStudent";
 
         //    SqlCommand cmd = new SqlCommand(query, conn);
@@ -454,7 +698,7 @@ namespace CatalogApp
             conn.Open();
 
             string query = "SELECT NumarMatricol as [Numar matricol], NumeStudent AS Nume, PrenumeStudent AS Prenume, NumeGrupa AS Grupa FROM ListaStudenti " +
-                "FULL OUTER JOIN ListaGrupe ON ListaGrupe.IdGrupa=ListaStudenti.IdGrupa WHERE 1=1 ORDER BY NumeStudent";
+                "LEFT JOIN ListaGrupe ON ListaGrupe.IdGrupa=ListaStudenti.IdGrupa ORDER BY NumeStudent";
 
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dataReader = cmd.ExecuteReader();
@@ -505,7 +749,8 @@ namespace CatalogApp
 
                     if (cbxStuGrupa.Text != "")
                     {
-                        sql += " AND IdGrupa =" + idGrupaAleasa;
+                        sql = "INSERT INTO ListaStudenti (NumeStudent, PrenumeStudent, IdGrupa) " +
+                        "VALUES('" + txtNumeStudent.Text + "', '" + txtPrenumeStudent.Text + "', "+ idGrupaAleasa +")";
                     }
 
                     msg = "Datele despre student au fost adaugate cu succes.";
@@ -573,6 +818,7 @@ namespace CatalogApp
             }
 
             AUDStudenti(0);
+            creazaListaStudenti();
         }
 
         private void btnUpdateStudent_Click(object sender, RoutedEventArgs e)
@@ -609,40 +855,9 @@ namespace CatalogApp
             btnDeleteStudent.IsEnabled = false;
         }
 
-        private void btnPrintStudent_Click(object sender, EventArgs e)
+        private void btnExportStudent_Click(object sender, RoutedEventArgs e)
         {
-            PrintDocument pd2 = new PrintDocument();
-
-            pd2.PrintPage += new PrintPageEventHandler(this.preluare_date);
-
-            System.Windows.Forms.PrintDialog pdlg = new System.Windows.Forms.PrintDialog();
-            System.Windows.Forms.PrintPreviewDialog ppd = new System.Windows.Forms.PrintPreviewDialog();
-
-            ppd.Document = pd2;
-            ppd.ShowDialog();
-
-            pdlg.Document = pd2;
-
-            if (pdlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            {
-                pd2.Print();
-            }
-        }
-
-        private void preluare_date(object sender, PrintPageEventArgs e)
-        {
-            int entryLevelX = 1;
-            int entryLevelY = 1;
-            foreach (var item in cbxCatalogNota.Items)
-            {
-                e.Graphics.DrawString("\n O nota este: " + item.ToString(), new System.Drawing.Font("Arial", 20), System.Drawing.Brushes.Blue, 10 * entryLevelX, 25 * entryLevelY++);
-            }
-        }
-
-        private void btnAfisareStudent_Click(object sender, RoutedEventArgs e)
-        {
-            btnPrintStudent_Click(null, null);
-            return;
+            Export(dgr_studenti);
         }
 
         // Grupe ----------------------------------------------------------------------------------------------------------
@@ -762,7 +977,7 @@ namespace CatalogApp
             idSpecializareAleasa = valoriIdSpecializari[index];
 
             AUDGrupe(0);
-
+            creazaListaGrupe();
         }
 
         private void btnUpdateGrupa_Click(object sender, RoutedEventArgs e)
@@ -793,9 +1008,9 @@ namespace CatalogApp
             btnDeleteGrupa.IsEnabled = false;
         }
 
-        private void btnAfisareGrupa_Click(object sender, RoutedEventArgs e)
+        private void btnExportGrupa_Click(object sender, RoutedEventArgs e)
         {
-
+            Export(dgr_grupe);
         }
 
         // Materii --------------------------------------------------------------------------------------------------------
@@ -806,9 +1021,17 @@ namespace CatalogApp
             conn.ConnectionString = Properties.Settings.Default.ConnString;
             conn.Open();
 
-            //string query = "SELECT * FROM ViewMateriiSpecializari ORDER BY Materie";
-
-            string query = "SELECT *, NumeMaterie AS Specializari FROM ListaMaterii Order BY NumeMaterie";
+            string query = "" +
+                "SELECT m.IdMaterie as ID, m.NumeMaterie as Materie, " +
+                  "STUFF(( " +
+                    "SELECT ', ' + cast(s.NumeSpecializare as varchar(max)) " +
+                    "FROM ListaMaterii mat LEFT JOIN MateriiSpecializari ma on ma.IdMaterie = mat.IdMaterie " +
+                    "FULL join ListaSpecializari s on s.IdSpecializare = ma.idspecializare" +
+                    " WHERE mat.IdMaterie = m.IdMaterie FOR XML PATH(''), TYPE).value('.', 'varchar(max)'),1,2,'') as Specializari " +
+                "FROM ListaMaterii m " +
+                "LEFT JOIN MateriiSpecializari ms on m.IdMaterie = MS.IdMaterie " +
+                "LEFT JOIN ListaSpecializari s on s.IdSpecializare = ms.IdSpecializare " +
+                "Group by m.IdMaterie, M.NumeMaterie; ";
 
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dataReader = cmd.ExecuteReader();
@@ -817,51 +1040,7 @@ namespace CatalogApp
             dgr_materii.ItemsSource = dataTable.DefaultView;
 
             dataReader.Close();
-
-            string query2 = "";
-            int x = dataTable.Rows.Count;
-            string idM = "";
-            for (int i=0; i<=x-1; i++)
-            {
-                // MessageBox.Show(dataTable.Rows[i][1].ToString());
-                idM = dataTable.Rows[i][0].ToString();
-
-                query2 = "SELECT NumeSpecializare " +
-                    "FROM MateriiSpecializari INNER JOIN ListaSpecializari " +
-                    "   ON MateriiSpecializari.idSpecializare = ListaSpecializari.idSpecializare " +
-                    " WHERE idMaterie=" + idM;
-                SqlConnection conn2 = new SqlConnection();
-                conn2.ConnectionString = Properties.Settings.Default.ConnString;
-                conn2.Open();
-
-                SqlCommand cmd2 = new SqlCommand(query2, conn2);
-                SqlDataReader dataReader2 = cmd2.ExecuteReader();
-                dataReader2.Read();
-                //dataTable.Rows[i][2] = dataReader2["NumeSpecializare"];
-                dataTable.Rows[i][2] = idM;
-
-                conn2.Close();
-            }
-
-
-            dataReader = cmd.ExecuteReader();
-            while (dataReader.Read())
-            {
-                // MessageBox.Show("altceva");
-
-            }
-
-            dataReader.Close();
             conn.Close();
-
-
-            DataGrid dataGrid = dgr_materii;
-            DataRowView dataRowView = dataGrid.SelectedItem as DataRowView;
-            while (dataRowView != null)
-            {
-                MessageBox.Show(dataRowView["ID"].ToString());
-            }
-
         }
 
         private void dgr_materii_Loaded(object sender, RoutedEventArgs e)
@@ -877,7 +1056,7 @@ namespace CatalogApp
             {
                 txtMatNumeMaterie.Text = dataRowView["Materie"].ToString();
                 txtMatIdMaterie.Text = dataRowView["ID"].ToString();
-                cbxMatSpecializare.Text = dataRowView["Specializare"].ToString();
+                //cbxMatSpecializare.Text = dataRowView["Specializare"].ToString();
                 btnAddMaterie.IsEnabled = false;
                 btnUpdateMaterie.IsEnabled = true;
                 btnDeleteMaterie.IsEnabled = true;
@@ -899,7 +1078,7 @@ namespace CatalogApp
                 case 0:
                     sql = "INSERT INTO ListaMaterii (NumeMaterie) " +
                         "VALUES('" + txtMatNumeMaterie.Text + "')";
-                    msg = "Datele despre materie au fost adaugate cu suuces.";
+                    msg = "Datele despre materie au fost adaugate cu succes.";
                     break;
                 case 1:
                     sql = "UPDATE ListaMaterii SET NumeMaterie='" + txtMatNumeMaterie.Text + "' WHERE IdMaterie=" + txtMatIdMaterie.Text;
@@ -945,7 +1124,16 @@ namespace CatalogApp
                 txtMatNumeMaterie.Focus();
                 return;
             }
-            //AUDGrupe(0); //de reparat IDSpecializare cbx source
+
+            if (cbxMatSpecializare.Text != "")
+            {
+                MessageBox.Show("Mai intati adaugati materia, apoi efectuati asocierea cu o specializare.");
+                cbxMatSpecializare.Text = "";
+                return;
+            }
+
+            AUDMaterii(0);
+            creazaListaMaterii();
         }
 
         private void btnUpdateMaterie_Click(object sender, RoutedEventArgs e)
@@ -973,14 +1161,83 @@ namespace CatalogApp
             btnDeleteMaterie.IsEnabled = false;
         }
 
-        private void btnAfisareMaterie_Click(object sender, RoutedEventArgs e)
+        private void btnExportMaterie_Click(object sender, RoutedEventArgs e)
         {
-
+            Export(dgr_materii);
         }
 
         private void btnStergeSpecializare_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Functionalitate neimplementata.");
+            if (cbxMatSpecializare.Text == "")
+            {
+                MessageBox.Show("Nu ati ales nici o specializare!");
+                return;
+            }
+            else
+            {
+                int index = 0;
+                index = cbxMatSpecializare.SelectedIndex;
+                idSpecializareAleasa = valoriIdSpecializari[index];
+            }
+
+            DataRowView dataRowView = dgr_materii.SelectedItem as DataRowView;
+
+            if (dataRowView == null)
+            {
+                MessageBox.Show("Nu ati ales o materie!");
+                return;
+            }
+            else
+            {
+                idMaterieAleasa = Convert.ToInt32(txtMatIdMaterie.Text);
+            }
+
+            //verificare daca specializarea este deja asociata cu materia
+
+            SqlConnection conn = new SqlConnection();
+            conn.ConnectionString = Properties.Settings.Default.ConnString;
+            conn.Open();
+
+            string query = "SELECT * FROM MateriiSpecializari WHERE IdMaterie=" + idMaterieAleasa.ToString() + " AND IdSpecializare=" 
+                + idSpecializareAleasa.ToString();
+
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dataReader = cmd.ExecuteReader();
+
+            if (dataReader.HasRows)
+            {
+                query = "DELETE FROM MateriiSpecializari WHERE IdMaterie = " + idMaterieAleasa.ToString() + " AND " +
+                    "IdSpecializare= " + idSpecializareAleasa.ToString();
+                dataReader.Close();
+                conn.Close();
+            }
+            else
+            {
+                MessageBox.Show("Asociere inexistenta!");
+                dataReader.Close();
+                conn.Close();
+                return;
+            }
+
+            conn = new SqlConnection();
+            conn.ConnectionString = Properties.Settings.Default.ConnString;
+            conn.Open();
+
+            cmd = new SqlCommand(query, conn);
+            int rezultat = cmd.ExecuteNonQuery();
+
+            if (rezultat > 0)
+            {
+                MessageBox.Show("Asocierea dintre materie si specializare a fost stearsa cu succes.");
+            }
+            else
+            {
+                MessageBox.Show("Datele nu au fost sterse!");
+            }
+            dataReader.Close();
+            conn.Close();
+            updateDataGrid_Materii();
+            resetMaterii();
         }
 
         private void btnAdaugaSpecializare_Click(object sender, RoutedEventArgs e)
@@ -997,7 +1254,6 @@ namespace CatalogApp
                 idSpecializareAleasa = valoriIdSpecializari[index];
             }
 
-            //DataGrid dataGrid = sender as DataGrid;
             DataRowView dataRowView = dgr_materii.SelectedItem as DataRowView;
 
             if (dataRowView == null)
@@ -1039,7 +1295,6 @@ namespace CatalogApp
                     + idSpecializareAleasa.ToString() + ")";
             }
 
-
             conn = new SqlConnection();
             conn.ConnectionString = Properties.Settings.Default.ConnString;
             conn.Open();
@@ -1057,6 +1312,20 @@ namespace CatalogApp
             }
             dataReader.Close();
             conn.Close();
+            updateDataGrid_Materii();
+            resetMaterii();
+        }
+
+        private void txtMatIdMaterie_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtMatIdMaterie.Text == "")
+            {
+                cbxMatSpecializare.IsEnabled = false;
+            }
+            else
+            {
+                cbxMatSpecializare.IsEnabled = true;
+            }
         }
 
         // Specializari ---------------------------------------------------------------------------------------------------
@@ -1113,7 +1382,7 @@ namespace CatalogApp
                 case 0:
                     sql = "INSERT INTO ListaSpecializari (NumeSpecializare) " +
                         "VALUES('" + txtNumeSpecializare.Text + "')";
-                    msg = "Datele despre specializare au fost adaugate cu suuces.";
+                    msg = "Datele despre specializare au fost adaugate cu succes.";
                     break;
                 case 1:
                     sql = "UPDATE ListaSpecializari SET NumeSpecializare='" + txtNumeSpecializare.Text + "' WHERE IdSpecializare=" + txtIdSpecializare.Text;
@@ -1159,7 +1428,8 @@ namespace CatalogApp
                 txtNumeSpecializare.Focus();
                 return;
             }
-            AUDSpecializari(0); 
+            AUDSpecializari(0);
+            creazaListaSpecializari();
         }
 
         private void btnUpdateSpecializare_Click(object sender, RoutedEventArgs e)
@@ -1186,11 +1456,10 @@ namespace CatalogApp
             btnDeleteSpecializare.IsEnabled = false;
         }
 
-        private void btnAfisareSpecializare_Click(object sender, RoutedEventArgs e)
+        private void btnExportSpecializare_Click(object sender, RoutedEventArgs e)
         {
-
+            Export(dgr_specializari);
         }
-
 
         // Catalog --------------------------------------------------------------------------------------------------------
 
@@ -1494,10 +1763,9 @@ namespace CatalogApp
             }
         }
 
-        private void btnAfisareCatalog_Click(object sender, RoutedEventArgs e)
+        private void btnExportCatalog_Click(object sender, RoutedEventArgs e)
         {
-
+            Export(dgr_catalog);
         }
-        
     }
 }

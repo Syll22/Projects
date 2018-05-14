@@ -70,13 +70,13 @@
                                 <Button x:Name="btnUpdateCatalog" Margin="5" Grid.Column="1" Content="Update" IsEnabled="False" Click="btnUpdateCatalog_Click"/>
                                 <Button x:Name="btnDeleteCatalog" Margin="5" Grid.Column="2" Content="Delete" IsEnabled="False" Click="btnDeleteCatalog_Click"/>
                                 <Button x:Name="btnResetCatalog" Margin="5" Grid.Column="3" Content="Reset" Click="btnResetCatalog_Click"/>
-                                <Button x:Name="btnAfisareCatalog" Margin="5" Grid.Column="4" Content="Afisare" Click="btnAfisareCatalog_Click" />
+                                <Button x:Name="btnExportCatalog" Margin="5" Grid.Column="4" Content="Export date" Click="btnExportCatalog_Click" />
                             </Grid>
 
                         </StackPanel>
                     </Expander>
 
-                    <DataGrid x:Name="dgr_catalog" IsReadOnly="True" Loaded="dgr_catalog_Loaded" SelectionChanged="dgr_catalog_SelectionChanged" >
+                    <DataGrid x:Name="dgr_catalog" IsReadOnly="True" Loaded="dgr_catalog_Loaded" SelectionChanged="dgr_catalog_SelectionChanged" HorizontalScrollBarVisibility="Visible" >
 
                     </DataGrid>
                 </DockPanel>
@@ -105,12 +105,23 @@
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                                     <TextBlock Grid.Column="2" Grid.Row="0" Text="Prenume profesor:"
                                            Margin="50,2,2,2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Id Profesor:"
+                                    <TextBlock Grid.Column="2" Grid.Row="1" Text="Id Profesor:"
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Materie" Margin="50,2,2,2"
+                                               HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
 
-                                    <TextBox x:Name="txtNumeProfesor" Margin="2" Grid.Column="1" Grid.Row="0" Padding="2" Width="200"/>
-                                    <TextBox x:Name="txtPrenumeProfesor" Margin="2" Grid.Column="3" Grid.Row="0" Padding="2" Width="200"/>
-                                    <TextBox x:Name="txtId" Margin="2" Grid.Column="1" Grid.Row="1" Padding="2" Width="200" IsEnabled="False" Background="#FFE0E0E0"/>
+                                    <TextBox x:Name="txtNumeProfesor" Margin="10,2,96,2" Grid.Column="1" Grid.Row="0" Padding="2"/>
+                                    <TextBox x:Name="txtPrenumeProfesor" Margin="10,2,96,2" Grid.Column="3" Grid.Row="0" Padding="2"/>
+                                    <TextBox x:Name="txtId" Margin="10,2,96,2" Grid.Column="3" Grid.Row="1" Padding="2" IsEnabled="False" Background="#FFE0E0E0" TextChanged="txtId_TextChanged"/>
+                                    <ComboBox Name="cbxProfesorMaterii" Margin="10,2,96,2" Grid.Column="1" Grid.Row="1" IsEnabled="False"/>
+
+                                    <Button x:Name="btnAdaugaMaterie" Width="20" Grid.Column="1" Grid.Row="1" Margin="0,10,71,7" 
+                                            Background="#FFD1E6B7" Content="+" VerticalAlignment="Center" HorizontalAlignment="Right" 
+                                            Height="20" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Padding="0,-7,0,0" BorderBrush="#FF3B7A06" Click="btnAdaugaMaterie_Click"/>
+                                    <Button x:Name="btnStergeMaterie" Width="20" Grid.Column="1" Grid.Row="1" Margin="0,10,46,7" 
+                                            Background="#FFE6C3C3" Content="x" VerticalContentAlignment="Top" VerticalAlignment="Center" 
+                                            HorizontalAlignment="Right" Height="20" Padding="2,-7,3,0" HorizontalContentAlignment="Center" BorderBrush="#FFB01B0C" Click="btnStergeMaterie_Click"/>
+
 
                                 </Grid>
                             </GroupBox>
@@ -127,7 +138,7 @@
                                 <Button x:Name="btnUpdateProfesor" Margin="5" Grid.Column="1" Content="Update" Click="btnUpdateProfesor_Click" IsEnabled="False"/>
                                 <Button x:Name="btnDeleteProfesor" Margin="5" Grid.Column="2" Content="Delete" Click="btnDeleteProfesor_Click" IsEnabled="False"/>
                                 <Button x:Name="btnResetProfesor" Margin="5" Grid.Column="3" Content="Reset" Click="btnResetProfesor_Click"/>
-                                <Button x:Name="btnAfisareProfesor" Margin="5" Grid.Column="4" Content="Afisare" Click="btnAfisareProfesor_Click" />
+                                <Button x:Name="btnExportProfesor" Margin="5" Grid.Column="4" Content="Export date" Click="btnExportProfesor_Click" />
 
                             </Grid>
 
@@ -135,7 +146,7 @@
                     </Expander>
 
                     <DataGrid x:Name="dgr_profesori" Loaded="dgr_profesori_Loaded" SelectionChanged="dgr_profesori_SelectionChanged" 
-                              IsReadOnly="True" />
+                              IsReadOnly="True" HorizontalScrollBarVisibility="Visible" />
                 </DockPanel>
             </TabItem>
 
@@ -167,10 +178,10 @@
                                     <TextBlock Grid.Column="2" Grid.Row="1" Text="Grupa:"
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
 
-                                    <TextBox x:Name="txtNumeStudent" Margin="2" Grid.Column="1" Grid.Row="0" Padding="2" Width="200"/>
-                                    <TextBox x:Name="txtPrenumeStudent" Margin="2" Grid.Column="3" Grid.Row="0" Padding="2" Width="200"/>
-                                    <TextBox x:Name="txtNumarMatricol" Margin="2" Grid.Column="1" Grid.Row="1" Padding="2" Width="200" IsEnabled="False" Background="#FFE0E0E0" />
-                                    <ComboBox x:Name="cbxStuGrupa" Margin="2" Grid.Column="3" Grid.Row="1" Padding="2" Width="200"/>
+                                    <TextBox x:Name="txtNumeStudent" Margin="10,2,97,2" Grid.Column="1" Grid.Row="0" Padding="2"/>
+                                    <TextBox x:Name="txtPrenumeStudent" Margin="10,2,96,2" Grid.Column="3" Grid.Row="0" Padding="2"/>
+                                    <TextBox x:Name="txtNumarMatricol" Margin="10,2,97,2" Grid.Column="1" Grid.Row="1" Padding="2" IsEnabled="False" Background="#FFE0E0E0" />
+                                    <ComboBox x:Name="cbxStuGrupa" Margin="10,2,96,2" Grid.Column="3" Grid.Row="1" Padding="2"/>
                                 </Grid>
                             </GroupBox>
                             <Grid Margin="3">
@@ -186,14 +197,14 @@
                                 <Button x:Name="btnUpdateStudent" Margin="5" Grid.Column="1" Content="Update" Click="btnUpdateStudent_Click" IsEnabled="False"/>
                                 <Button x:Name="btnDeleteStudent" Margin="5" Grid.Column="2" Content="Delete" Click="btnDeleteStudent_Click" IsEnabled="False"/>
                                 <Button x:Name="btnResetStudent" Margin="5" Grid.Column="3" Content="Reset" Click="btnResetStudent_Click"/>
-                                <Button x:Name="btnAfisareStudent" Margin="5" Grid.Column="4" Content="Afisare" Click="btnAfisareStudent_Click" />
+                                <Button x:Name="btnExportStudent" Margin="5" Grid.Column="4" Content="Export date" Click="btnExportStudent_Click" />
                             </Grid>
 
                         </StackPanel>
                     </Expander>
 
-                    <DataGrid x:Name="dgr_studenti" IsReadOnly="True" Loaded="dgr_studenti_Loaded" SelectionChanged="dgr_studenti_SelectionChanged" >
-                        
+                    <DataGrid x:Name="dgr_studenti" IsReadOnly="True" Loaded="dgr_studenti_Loaded" SelectionChanged="dgr_studenti_SelectionChanged" HorizontalScrollBarVisibility="Visible" >
+
                     </DataGrid>
                 </DockPanel>
             </TabItem>
@@ -224,9 +235,9 @@
                                     <TextBlock Grid.Column="2" Grid.Row="0" Text="Id Grupa:"
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
 
-                                    <TextBox x:Name="txtGruNumeGrupa" Margin="2" Grid.Column="1" Grid.Row="0" Padding="2" Width="200" />
-                                    <ComboBox x:Name="cbxGruSpecializare" Margin="2" Grid.Column="1" Grid.Row="1" Padding="2" Width="200"/>
-                                    <TextBox x:Name="txtGruIdGrupa" Margin="2" Grid.Column="3" Grid.Row="0" Padding="2" Width="200" IsEnabled="False" Background="#FFE0E0E0"/>
+                                    <TextBox x:Name="txtGruNumeGrupa" Margin="10,2,134,2" Grid.Column="1" Grid.Row="0" Padding="2" />
+                                    <ComboBox x:Name="cbxGruSpecializare" Margin="10,2,134,2" Grid.Column="1" Grid.Row="1" Padding="2"/>
+                                    <TextBox x:Name="txtGruIdGrupa" Margin="10,2,134,2" Grid.Column="3" Grid.Row="0" Padding="2" IsEnabled="False" Background="#FFE0E0E0"/>
 
                                 </Grid>
                             </GroupBox>
@@ -243,13 +254,13 @@
                                 <Button x:Name="btnUpdateGrupa" Margin="5" Grid.Column="1" Content="Update" IsEnabled="False" Click="btnUpdateGrupa_Click"/>
                                 <Button x:Name="btnDeleteGrupa" Margin="5" Grid.Column="2" Content="Delete" IsEnabled="False" Click="btnDeleteGrupa_Click"/>
                                 <Button x:Name="btnResetGrupa" Margin="5" Grid.Column="3" Content="Reset" Click="btnResetGrupa_Click"/>
-                                <Button x:Name="btnAfisareGrupa" Margin="5" Grid.Column="4" Content="Afisare" Click="btnAfisareGrupa_Click" />
+                                <Button x:Name="btnExportGrupa" Margin="5" Grid.Column="4" Content="Export date" Click="btnExportGrupa_Click" />
                             </Grid>
 
                         </StackPanel>
                     </Expander>
 
-                    <DataGrid x:Name="dgr_grupe" IsReadOnly="True" Loaded="dgr_grupe_Loaded" SelectionChanged="dgr_grupe_SelectionChanged" >
+                    <DataGrid x:Name="dgr_grupe" IsReadOnly="True" Loaded="dgr_grupe_Loaded" SelectionChanged="dgr_grupe_SelectionChanged" HorizontalScrollBarVisibility="Visible" >
 
                     </DataGrid>
                 </DockPanel>
@@ -283,9 +294,9 @@
                                     <Button x:Name="btnAdaugaSpecializare" Width="20" Grid.Column="1" Grid.Row="1" Margin="0,9,97,8" 
                                             Click="btnAdaugaSpecializare_Click" Background="#FFD1E6B7" Content="+" VerticalAlignment="Center" HorizontalAlignment="Right" Height="20" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" Padding="0,-7,0,0" BorderBrush="#FF3B7A06"/>
 
-                                    <TextBox x:Name="txtMatNumeMaterie" Margin="2" Grid.Column="1" Grid.Row="0" Padding="2" Width="200"/>
-                                    <ComboBox x:Name="cbxMatSpecializare" Margin="2" Grid.Column="1" Grid.Row="1" Padding="2" Width="200"/>
-                                    <TextBox x:Name="txtMatIdMaterie" Margin="2" Grid.Column="3" Grid.Row="0" Padding="2" Width="200" IsEnabled="False" Background="#FFE0E0E0"/>
+                                    <TextBox x:Name="txtMatNumeMaterie" Margin="10,2,127,2" Grid.Column="1" Grid.Row="0" Padding="2"/>
+                                    <ComboBox x:Name="cbxMatSpecializare" Margin="10,2,127,2" Grid.Column="1" Grid.Row="1" Padding="2" IsEnabled="False"/>
+                                    <TextBox x:Name="txtMatIdMaterie" Margin="10,2,127,2" Grid.Column="3" Grid.Row="0" Padding="2" IsEnabled="False" Background="#FFE0E0E0" TextChanged="txtMatIdMaterie_TextChanged"/>
                                     <Button x:Name="btnStergeSpecializare" Width="20" Grid.Column="1" Grid.Row="1" Margin="0,9,72,8" 
                                         Background="#FFE6C3C3" Content="x" VerticalContentAlignment="Top" VerticalAlignment="Center" HorizontalAlignment="Right" Height="20" Click="btnStergeSpecializare_Click" Padding="2,-7,3,0" HorizontalContentAlignment="Center" BorderBrush="#FFB01B0C"/>
                                 </Grid>
@@ -303,13 +314,13 @@
                                 <Button x:Name="btnUpdateMaterie" Margin="5" Grid.Column="1" Content="Update" IsEnabled="False" Click="btnUpdateMaterie_Click"/>
                                 <Button x:Name="btnDeleteMaterie" Margin="5" Grid.Column="2" Content="Delete" IsEnabled="False" Click="btnDeleteMaterie_Click"/>
                                 <Button x:Name="btnResetMaterie" Margin="5" Grid.Column="3" Content="Reset" Click="btnResetMaterie_Click"/>
-                                <Button x:Name="btnAfisareMaterie" Margin="5" Grid.Column="4" Content="Afisare" Click="btnAfisareMaterie_Click" />
+                                <Button x:Name="btnExportMaterie" Margin="5" Grid.Column="4" Content="Export date" Click="btnExportMaterie_Click" />
                             </Grid>
 
                         </StackPanel>
                     </Expander>
 
-                    <DataGrid x:Name="dgr_materii" IsReadOnly="True" SelectionChanged="dgr_materii_SelectionChanged" Loaded="dgr_materii_Loaded" >
+                    <DataGrid x:Name="dgr_materii" IsReadOnly="True" SelectionChanged="dgr_materii_SelectionChanged" Loaded="dgr_materii_Loaded" HorizontalScrollBarVisibility="Visible" >
 
                     </DataGrid>
                 </DockPanel>
@@ -338,8 +349,8 @@
                                     <TextBlock Grid.Column="2" Grid.Row="0" Text="Id Specializare:"
                                            Margin="2" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
 
-                                    <TextBox x:Name="txtNumeSpecializare" Margin="2" Grid.Column="1" Grid.Row="0" Padding="2" Width="200" />
-                                    <TextBox x:Name="txtIdSpecializare" Margin="2" Grid.Column="3" Grid.Row="0" Padding="2" Width="200" IsEnabled="False" Background="#FFE0E0E0"/>
+                                    <TextBox x:Name="txtNumeSpecializare" Margin="10,2,109,2" Grid.Column="1" Grid.Row="0" Padding="2" />
+                                    <TextBox x:Name="txtIdSpecializare" Margin="10,2,110,2" Grid.Column="3" Grid.Row="0" Padding="2" IsEnabled="False" Background="#FFE0E0E0"/>
                                 </Grid>
                             </GroupBox>
                             <Grid Margin="3">
@@ -355,13 +366,13 @@
                                 <Button x:Name="btnUpdateSpecializare" Margin="5" Grid.Column="1" Content="Update" IsEnabled="False" Click="btnUpdateSpecializare_Click"/>
                                 <Button x:Name="btnDeleteSpecializare" Margin="5" Grid.Column="2" Content="Delete" IsEnabled="False" Click="btnDeleteSpecializare_Click"/>
                                 <Button x:Name="btnResetSpecializare" Margin="5" Grid.Column="3" Content="Reset" Click="btnResetSpecializare_Click"/>
-                                <Button x:Name="btnAfisareSpecializare" Margin="5" Grid.Column="4" Content="Afisare" Click="btnAfisareSpecializare_Click" />
+                                <Button x:Name="btnExportSpecializare" Margin="5" Grid.Column="4" Content="Export date" Click="btnExportSpecializare_Click" />
                             </Grid>
 
                         </StackPanel>
                     </Expander>
 
-                    <DataGrid x:Name="dgr_specializari" IsReadOnly="True" Loaded="dgr_specializari_Loaded" SelectionChanged="dgr_specializari_SelectionChanged" >
+                    <DataGrid x:Name="dgr_specializari" IsReadOnly="True" Loaded="dgr_specializari_Loaded" SelectionChanged="dgr_specializari_SelectionChanged" HorizontalScrollBarVisibility="Visible" >
 
                     </DataGrid>
                 </DockPanel>
