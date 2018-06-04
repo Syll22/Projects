@@ -28,7 +28,6 @@ namespace CatalogApp
         {
             Application.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
             InitializeComponent();
-            populareNote();
         }
 
         //Afiseaza un mesaj ce contine detaliile erorii atunci cand apare o exceptie, apoi continua rularea aplicatiei.
@@ -986,11 +985,13 @@ namespace CatalogApp
             idSpecializareAleasa = valoriIdSpecializari[index];
 
             AUDGrupe(1);
+            creazaListaGrupe();
         }
 
         private void btnDeleteGrupa_Click(object sender, RoutedEventArgs e)
         {
             AUDGrupe(2);
+            creazaListaGrupe();
         }
 
         private void btnResetGrupa_Click(object sender, RoutedEventArgs e)
@@ -1435,11 +1436,13 @@ namespace CatalogApp
         private void btnUpdateSpecializare_Click(object sender, RoutedEventArgs e)
         {
             AUDSpecializari(1);
+            creazaListaSpecializari();
         }
 
         private void btnDeleteSpecializare_Click(object sender, RoutedEventArgs e)
         {
             AUDSpecializari(2);
+            creazaListaSpecializari();
         }
 
         private void btnResetSpecializare_Click(object sender, RoutedEventArgs e)
@@ -1484,6 +1487,7 @@ namespace CatalogApp
         private void dgr_catalog_Loaded(object sender, RoutedEventArgs e)
         {
             updateDataGrid_Catalog();
+            populareNote();
         }
 
         private void dgr_catalog_SelectionChanged(object sender, SelectionChangedEventArgs e)
