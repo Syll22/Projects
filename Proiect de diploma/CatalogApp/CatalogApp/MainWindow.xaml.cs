@@ -384,7 +384,6 @@ namespace CatalogApp
                 return;
             }
             AUDProfesori(0);
-            creazaListaProfesori();
         }
 
         private void btnUpdateProfesor_Click(object sender, RoutedEventArgs e)
@@ -436,7 +435,6 @@ namespace CatalogApp
                 status_conn.Background = Brushes.Red;
 
                 AUDProfesori(2);
-                resetProfesori();
             }
             //try
             //{
@@ -791,6 +789,7 @@ namespace CatalogApp
                 status_conn.Background = Brushes.Red;
 
                 resetStudenti();
+                creazaListaStudenti();
             }
         }
 
@@ -817,7 +816,6 @@ namespace CatalogApp
             }
 
             AUDStudenti(0);
-            creazaListaStudenti();
         }
 
         private void btnUpdateStudent_Click(object sender, RoutedEventArgs e)
@@ -951,6 +949,7 @@ namespace CatalogApp
                 status_conn.Background = Brushes.Red;
 
                 resetGrupe();
+                creazaListaGrupe();
             }
         }
 
@@ -976,7 +975,6 @@ namespace CatalogApp
             idSpecializareAleasa = valoriIdSpecializari[index];
 
             AUDGrupe(0);
-            creazaListaGrupe();
         }
 
         private void btnUpdateGrupa_Click(object sender, RoutedEventArgs e)
@@ -985,13 +983,11 @@ namespace CatalogApp
             idSpecializareAleasa = valoriIdSpecializari[index];
 
             AUDGrupe(1);
-            creazaListaGrupe();
         }
 
         private void btnDeleteGrupa_Click(object sender, RoutedEventArgs e)
         {
             AUDGrupe(2);
-            creazaListaGrupe();
         }
 
         private void btnResetGrupa_Click(object sender, RoutedEventArgs e)
@@ -1114,6 +1110,7 @@ namespace CatalogApp
                 status_conn.Background = Brushes.Red;
 
                 resetMaterii();
+                creazaListaMaterii();
             }
         }
 
@@ -1134,7 +1131,6 @@ namespace CatalogApp
             }
 
             AUDMaterii(0);
-            creazaListaMaterii();
         }
 
         private void btnUpdateMaterie_Click(object sender, RoutedEventArgs e)
@@ -1418,6 +1414,7 @@ namespace CatalogApp
                 status_conn.Background = Brushes.Red;
 
                 resetSpecializari();
+                creazaListaSpecializari();
             }
         }
 
@@ -1430,19 +1427,16 @@ namespace CatalogApp
                 return;
             }
             AUDSpecializari(0);
-            creazaListaSpecializari();
         }
 
         private void btnUpdateSpecializare_Click(object sender, RoutedEventArgs e)
         {
             AUDSpecializari(1);
-            creazaListaSpecializari();
         }
 
         private void btnDeleteSpecializare_Click(object sender, RoutedEventArgs e)
         {
             AUDSpecializari(2);
-            creazaListaSpecializari();
         }
 
         private void btnResetSpecializare_Click(object sender, RoutedEventArgs e)
