@@ -186,7 +186,7 @@ namespace CatalogApp
             conn.Close();
         }
 
-        //la incarcarea ferestrei principale se aoeleaza functiile de creare a listelor (materii, studenti etc.)
+        //la incarcarea ferestrei principale se apeleaza metodele de creare a listelor (materii, studenti etc.)
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             creazaListaProfesori();
