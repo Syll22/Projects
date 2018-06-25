@@ -88,16 +88,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CatalogDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="FormProfesorAfisare.cs">
+    <Compile Include="Forms\FormProfesorAfisare.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormProfesorAfisare.Designer.cs">
+    <Compile Include="Forms\FormProfesorAfisare.Designer.cs">
       <DependentUpon>FormProfesorAfisare.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormProfesorAdaugare.cs">
+    <Compile Include="Forms\FormProfesorAdaugare.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormProfesorAdaugare.Designer.cs">
+    <Compile Include="Forms\FormProfesorAdaugare.Designer.cs">
       <DependentUpon>FormProfesorAdaugare.cs</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -109,28 +109,28 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DBFunctions.cs" />
-    <Compile Include="FormProfesorModificare.cs">
+    <Compile Include="Forms\FormProfesorModificare.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormProfesorModificare.Designer.cs">
+    <Compile Include="Forms\FormProfesorModificare.Designer.cs">
       <DependentUpon>FormProfesorModificare.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormProfesorStergere.cs">
+    <Compile Include="Forms\FormProfesorStergere.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormProfesorStergere.Designer.cs">
+    <Compile Include="Forms\FormProfesorStergere.Designer.cs">
       <DependentUpon>FormProfesorStergere.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormStudentAdaugare.cs">
+    <Compile Include="Forms\FormStudentAdaugare.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormStudentAdaugare.Designer.cs">
+    <Compile Include="Forms\FormStudentAdaugare.Designer.cs">
       <DependentUpon>FormStudentAdaugare.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormStudentAfisare.cs">
+    <Compile Include="Forms\FormStudentAfisare.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormStudentAfisare.Designer.cs">
+    <Compile Include="Forms\FormStudentAfisare.Designer.cs">
       <DependentUpon>FormStudentAfisare.cs</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
@@ -152,22 +152,22 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="FormProfesorAfisare.resx">
+    <EmbeddedResource Include="Forms\FormProfesorAfisare.resx">
       <DependentUpon>FormProfesorAfisare.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormProfesorAdaugare.resx">
+    <EmbeddedResource Include="Forms\FormProfesorAdaugare.resx">
       <DependentUpon>FormProfesorAdaugare.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormProfesorModificare.resx">
+    <EmbeddedResource Include="Forms\FormProfesorModificare.resx">
       <DependentUpon>FormProfesorModificare.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormProfesorStergere.resx">
+    <EmbeddedResource Include="Forms\FormProfesorStergere.resx">
       <DependentUpon>FormProfesorStergere.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormStudentAdaugare.resx">
+    <EmbeddedResource Include="Forms\FormStudentAdaugare.resx">
       <DependentUpon>FormStudentAdaugare.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormStudentAfisare.resx">
+    <EmbeddedResource Include="Forms\FormStudentAfisare.resx">
       <DependentUpon>FormStudentAfisare.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
