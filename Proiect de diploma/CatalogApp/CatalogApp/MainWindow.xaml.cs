@@ -240,7 +240,7 @@ namespace CatalogApp
                 if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK) 
                 {
                     excelWorkBook.SaveAs(saveDialog.FileName); 
-                    MessageBox.Show("Export Successful"); 
+                    MessageBox.Show("Export realizat cu succes!"); 
                 }                
 
                 //excelWorkBook.SaveAs(cale + "Grupe.xls", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, missingValue,
@@ -1755,6 +1755,7 @@ namespace CatalogApp
 
         private void populareNote()
         {
+            cbxCatalogNota.Items.Clear();
             for (int i = 1; i <= 10; i++)
             {
                 cbxCatalogNota.Items.Add(i.ToString());
