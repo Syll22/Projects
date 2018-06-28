@@ -571,7 +571,7 @@ namespace CatalogApp
         {
             if (cbxProfesorMaterii.Text == "")
             {
-                MessageBox.Show("Nu ati ales nici un profesor!");
+                MessageBox.Show("Nu ati ales nici o materie!");
                 return;
             }
             else
@@ -1246,22 +1246,21 @@ namespace CatalogApp
             }
             else
             {
-                int index = 0;
-                index = cbxMatSpecializare.SelectedIndex;
+                int index = cbxMatSpecializare.SelectedIndex;
                 idSpecializareAleasa = valoriIdSpecializari[index];
             }
 
             DataRowView dataRowView = dgr_materii.SelectedItem as DataRowView;
 
-            if (dataRowView == null)
-            {
-                MessageBox.Show("Nu ati ales o materie!");
-                return;
-            }
-            else
-            {
+            //if (dataRowView == null)
+            //{
+            //    MessageBox.Show("Nu ati ales o materie!");
+            //    return;
+            //}
+            //else
+            //{
                 idMaterieAleasa = Convert.ToInt32(txtMatIdMaterie.Text);
-            }
+            //}
 
             //verificare daca specializarea este deja asociata cu materia
 
