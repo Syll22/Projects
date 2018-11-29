@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2048
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterpolationSearchAlgorithm", "InterpolationSearchAlgorithm\InterpolationSearchAlgorithm.csproj", "{8EAFCAB4-2C97-49C1-8535-D2A7F8B189EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8EAFCAB4-2C97-49C1-8535-D2A7F8B189EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EAFCAB4-2C97-49C1-8535-D2A7F8B189EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EAFCAB4-2C97-49C1-8535-D2A7F8B189EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EAFCAB4-2C97-49C1-8535-D2A7F8B189EB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {73A40971-6736-4786-AE47-1EE1A6BB3CED}
+	EndGlobalSection
+EndGlobal
